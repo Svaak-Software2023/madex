@@ -1,0 +1,38 @@
+.createAccountForm {
+    /* border: 1px solid var(--blue); */
+    margin: 0px;
+    margin-top: 45px;
+    padding: 5rem;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    background-color: white;
+
+}
+label span{
+    color: red;
+    font-weight: bold;
+}
+
+.ssn-ein-button{
+    width: 100%;
+    padding: 8px 15px ;
+    border: 1px solid rgb(189, 188, 188);
+    margin-bottom: 15px;
+    background-color: #fff;
+    transition: ease-out .3s;
+}
+
+.ssn-ein-button.active{
+    background-color: rgba(172, 173, 173, 0.486);
+}
+
+
+@media screen and (max-width:750px) {
+    .createAccountForm {
+        padding: 25px !important;
+        padding-top: 40px !important;
+
+        margin-top: 0px;
+        box-shadow: none;
+    }
+}

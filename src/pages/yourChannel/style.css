@@ -1,0 +1,183 @@
+.channel_profile {
+  display: flex;
+  align-items:center;
+  padding: 20px;
+}
+.channel_profile .profile_img {
+  /* margin-top: 15px; */
+  height: 100px;
+  width: 100px;
+  border: 1px solid #e3dfdf;
+  border-radius: 50%;
+}
+
+.channel_profile .profile_img img {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  border-radius: 50%;
+}
+
+.channel_profile .profile_details {
+  width: calc(100%-100px);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.channel_profile .profile_details h1 {
+  font-size: 1.4rem;
+  color: #000;
+  font-weight: 500;
+}
+.channel_profile .profile_details h3 {
+  font-size: 1.2rem;
+  color: #454242;
+  margin-top: 10px;
+  line-height: 15px;
+}
+.channel_profile .profile_details span {
+  font-size: 1.2rem;
+  color: #454242;
+  line-height: 15px;
+  margin: 2px 0px 5px;
+}
+
+.channel_profile .profile_details .profile_buttons {
+  display: flex;
+  gap: 8px;
+}
+.channel_profile .profile_details .profile_buttons button {
+  padding: 10px;
+  border-radius: 30px;
+  background: #efefef;
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  border: 0;
+}
+.videos_container .header .header_list {
+  list-style: none;
+  display: flex;
+  /* align-items: center; */
+  margin: 0;
+  border-bottom: 1.8px solid #999;
+}
+.videos_container .header .header_list li {
+  padding: 8px;
+  cursor: pointer;
+}
+.videos_container .header .header_list h2 {
+  font-size: 1.2rem;
+  border-bottom: 2px solid #000;
+}
+.videos_container .header .header_list .search_icon {
+  font-size: 1.2rem;
+  color: #999999;
+}
+
+.videos_list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.videos_list .create_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 300px;
+}
+.videos_list .create_content h3 {
+  color: #000;
+  font-size: 20px;
+  font-weight: 500;
+}
+.videos_list .create_content p {
+  color: #454242;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+}
+.videos_list .create_content button {
+  border-radius: 30px;
+  background: #454242;
+  padding: 10px;
+  padding-inline: 25px;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* Upload Video  Modal */
+.video_uploader_modal .close_modal {
+  font-size: 25px;
+  float: right;
+  color: #999;
+  border: none;
+  background: none;
+}
+.video_uploader_modal .heading {
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+.close_modal {
+  float: right;
+}
+
+.upload_video {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.upload_video .choose_file input {
+  display: none;
+}
+.upload_icon {
+  width: 145px;
+  height: 145px;
+  flex-shrink: 0;
+  background: #ebebeb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.upload_icon svg {
+  font-size: 70px;
+  color: #999;
+}
+.upload_video h5 {
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+}
+.upload_video p {
+  color: #999;
+  font-size: 16px;
+  font-weight: 400;
+}
+.upload_video button {
+  background: #065fd4;
+  color: white;
+  padding: 10px;
+  padding-inline: 20px;
+  border: none;
+}
+.desc {
+  max-width: 800px;
+}
+.video_uploader_modal .desc p {
+  color: #999;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+}
+.video_uploader_modal .desc span {
+  color: #065fd4;
+}

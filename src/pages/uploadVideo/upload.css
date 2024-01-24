@@ -1,0 +1,29 @@
+.upload-progress-top{
+    height: 100%;
+    margin: 0;
+}
+.upload-progress-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #ffffff69;
+  }
+.video-upload-progress-bar{
+    width: 500px;
+    height: 20px;
+}
+.video-upload-progress-bar div{
+    background-color: black !important;
+}
+
+
+@media screen and (max-width: 768px) {
+    .video-upload-progress-bar{
+        width: 300px;
+    }
+}
