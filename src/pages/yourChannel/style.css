@@ -1,6 +1,6 @@
 .channel_profile {
   display: flex;
-  align-items:center;
+  align-items: center;
   padding: 20px;
 }
 .channel_profile .profile_img {
@@ -56,6 +56,8 @@
   outline: none;
   border: 0;
 }
+
+/* comment */
 .videos_container .header .header_list {
   list-style: none;
   display: flex;
@@ -64,13 +66,46 @@
   border-bottom: 1.8px solid #999;
 }
 .videos_container .header .header_list li {
-  padding: 8px;
+  /* padding: 8px; */
   cursor: pointer;
 }
 .videos_container .header .header_list h2 {
+  margin: 0;
   font-size: 1.2rem;
   border-bottom: 2px solid #000;
 }
+
+/* comment */
+
+.btn-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  border-bottom: 1.8px solid #999;
+}
+.job-btn {
+  background: transparent;
+  border-color: transparent;
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0 0.5rem;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  line-height: 1;
+  outline-color: #000;
+}
+.job-btn:hover {
+  color: #000;
+  border-bottom: 1.8px solid #999696;
+}
+.active-btn {
+  border-bottom: 1.8px solid #000;
+}
+
 .videos_container .header .header_list .search_icon {
   font-size: 1.2rem;
   color: #999999;
@@ -88,15 +123,24 @@
   align-items: center;
   max-width: 300px;
 }
+.videos_list .create_content .content_img {
+  height: 200px;
+  width: 100%;
+}
+.videos_list .create_content .content_img img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
 .videos_list .create_content h3 {
   color: #000;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
 }
 .videos_list .create_content p {
   color: #454242;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
 }
 .videos_list .create_content button {

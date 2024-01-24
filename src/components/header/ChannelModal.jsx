@@ -16,7 +16,7 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    zIndex: "1000 !important"
+    zIndex: "1000 !important",
   },
 };
 
@@ -27,7 +27,12 @@ const ChannelModal = (props) => {
   const { closeModal, afterOpenModal, modalIsOpen } = props;
   const user = useSelector((state) => state.auth.user);
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
   const onSubmit = (formData) => {
     const dataWithId = { ...formData, userId: user._id };
@@ -44,14 +49,14 @@ const ChannelModal = (props) => {
 
   useEffect(() => {
     user && getChannelData(user._id);
-  }, []); 
+  }, []);
 
   // useEffect(() => {
   //   // Redirect only when channel data is available
   //   channel.data && navigate("/your-channel");
   // }, []);
 
-  if (channel.loading) return <Loading />
+  if (channel.loading) return <Loading />;
   return (
     <>
       <Modal
@@ -74,10 +79,26 @@ const ChannelModal = (props) => {
 
           <form className="form" onSubmit={handleSubmit(onSubmit)}>
             <div className="inputs ">
-              <input type="text" placeholder="Name" {...register("channelName", { required: true })} />
-              {errors.channelName && <span className="text-danger fw-bold">Channel name is requird</span>}
-              <input type="text" placeholder="Description" {...register("description", { required: true })} />
-              {errors.description && <span className="text-danger fw-bold">Description is required</span>}
+              <input
+                type="text"
+                placeholder="Name"
+                {...register("channelName", { required: true })}
+              />
+              {errors.channelName && (
+                <span className="text-danger fw-bold">
+                  Channel name is requird
+                </span>
+              )}
+              <input
+                type="text"
+                placeholder="Description"
+                {...register("description", { required: true })}
+              />
+              {errors.description && (
+                <span className="text-danger fw-bold">
+                  Description is required
+                </span>
+              )}
               <p>
                 By clicking Create Station you agree to
                 <span>YouTubea&apos;s Terms of Service</span>. Changes made to
@@ -87,7 +108,7 @@ const ChannelModal = (props) => {
               </p>
             </div>
             <div className="buttons">
-              <button>Cancel</button>
+              <button onClick={closeModal}>Cancel</button>
               <button>Create Station</button>
             </div>
           </form>
