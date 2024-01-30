@@ -6,8 +6,23 @@ import { FaSearch } from "react-icons/fa";
 import Loading from "../../assets/loader/Loading";
 import { getChannel } from "../../redux/featurs/channelSlice";
 import { getAllChanelVideo } from "../../redux/featurs/videoSlice";
-import "./style.css"
+import "./style.css";
 import VideoList from "../../components/videoList/VideoList";
+
+const menus = [
+  {
+    id: 1,
+    name: "Home",
+  },
+  {
+    id: 2,
+    name: "Playlists",
+  },
+  {
+    id: 3,
+    name: "Shorts",
+  },
+];
 
 const YourChannel = () => {
   const { user, loading: authLoading } = useSelector((state) => state.auth);
@@ -15,18 +30,26 @@ const YourChannel = () => {
     (state) => state.channel
   );
 
-  const videoData = useSelector((state) => state.video.videoData)
+  const [activeTab, setActiveTab] = useState(1);
+  console.log("Active Tab:", activeTab);
+
+  const handleTabClick = (tabNumber) => {
+    setActiveTab(tabNumber);
+  };
+
+  const videoData = useSelector((state) => state.video.videoData);
 
   // console.log(videoData);
   const dispatch = useDispatch();
 
   useEffect(() => {
       user&&dispatch(getChannel(user._id));
-  },[]);
+      channelData&&dispatch(getAllChanelVideo(channelData._id));
+  }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     channelData&&dispatch(getAllChanelVideo(channelData._id));
-  },[channelData])
+}, [channelData]);
 
   if (authLoading || channelLoading) return <Loading />;
 
@@ -51,7 +74,25 @@ const YourChannel = () => {
         </div>
 
         <div className="videos_container">
-          <div className="header">
+          <div className="btn-container">
+            {menus.map((item, index) => {
+              return (
+                <button
+                  key={index}
+                  onClick={() => handleTabClick(item.id)}
+                  className={`job-btn ${
+                    activeTab === index + 1 && "active-btn"
+                  }`}
+                >
+                  {item.name}
+                </button>
+              );
+            })}
+
+            <FaSearch className="search_icon" />
+          </div>
+
+          {/* <div className="header">
             <ul className="header_list">
               <li>
                 <h2>Home</h2>
@@ -60,18 +101,30 @@ const YourChannel = () => {
                 <FaSearch className="search_icon" />
               </li>
             </ul>
-          </div>
+          </div> */}
+
           <div className="videos_list mb-3">
-            {videoData ?
+            {videoData ? (
               <div className="my-3 w-100">
                 <VideoList data={videoData} />
-              </div> :
-              <div className="d-flex justify-content-center align-items-center" style={{ height: "200px" }}>
+              </div>
+            ) : (
+              <div className="d-flex justify-content-center align-items-center">
                 <Link to="/upload-video">
-                  <h3>Create your content</h3>
+                  <div className="create_content">
+                    <div className="content_img">
+                      <img src="/assets/channel/create_content.svg" alt="" />
+                    </div>
+                    <h3>Create content on any device</h3>
+                    <p>
+                      Upload and record at home or on the go. Everything you
+                      make public will appear here.
+                    </p>
+                    <button>Create</button>
+                  </div>
                 </Link>
               </div>
-            }
+            )}
           </div>
         </div>
       </div>

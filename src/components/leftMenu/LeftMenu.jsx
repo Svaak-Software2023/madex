@@ -1,11 +1,14 @@
 import { FaRegUserCircle } from "react-icons/fa";
-import menuData from "../../utils/menuData/UserData"
+import menuData from "../../utils/menuData/UserData";
 import "./sidebar.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const LeftMenu = ({ data }) => {
+  const user = useSelector((state) => state.auth.user);
+
   return (
     <>
-      {data &&
+      {data && (
         <div className="left-menu-width">
           <div className="sidebar show-sidebar">
             <div className="sidebar_list">
@@ -15,15 +18,19 @@ const LeftMenu = ({ data }) => {
                   return (
                     <li key={id}>
                       {heading && <div className="heading">{heading}</div>}
-                      {url && <Link to={url}>
-                        {icon}
-                        {text}
-                      </Link>}
+                      {url && (
+                        <Link to={url}>
+                          {icon}
+                          {text}
+                        </Link>
+                      )}
                       {line && <hr />}
-                      {signIn && (
+                      {!user && signIn ? (
                         <>
                           <div className="signIn_message">
-                            <p>Sign in to like videos, comment, and subscribe.</p>
+                            <p>
+                              Sign in to like videos, comment, and subscribe.
+                            </p>
                             <button className="signIn_button mt-2">
                               <FaRegUserCircle />
                               Sign in
@@ -31,6 +38,8 @@ const LeftMenu = ({ data }) => {
                           </div>
                           <hr />
                         </>
+                      ) : (
+                        ""
                       )}
                     </li>
                   );
@@ -44,7 +53,7 @@ const LeftMenu = ({ data }) => {
             </div>
           </div>
         </div>
-      }
+      )}
     </>
   );
 };
