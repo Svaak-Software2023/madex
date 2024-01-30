@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api"
 
-export const getAllVideo = createAsyncThunk("video/getAll", async () => {
+export const getAllVideo = createAsyncThunk("video/getAll", async (page) => {
     try {
-        const response = await api.getAllVideo()
+        const response = await api.getAllVideo(page)
+        console.log("page:",page);
         return response.data
     } catch (error) {
         throw error.response.data
@@ -29,7 +30,7 @@ export const videoUpload = createAsyncThunk("video/upload", async ({formData,set
     }
 })
 
-export const getAllChanelVideo = createAsyncThunk("channel/video",async (chanelId)=>{
+export const getAllChanelVideo = createAsyncThunk("channel/getallvideo",async (chanelId)=>{
     try {
         const response = await api.getAllChanelVideo(chanelId)
         // console.log(response);

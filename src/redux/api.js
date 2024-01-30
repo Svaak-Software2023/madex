@@ -3,6 +3,8 @@ import axios from "axios";
 const API = axios.create({
     // baseURL: "https://madextube.onrender.com/api/v1"
     baseURL: "http://localhost:8000/api/v1"
+    // baseURL: "https://madextube.com/api/v1"
+
 })
 
 //User API's 
@@ -14,7 +16,7 @@ export const createAccount = (formData) => API.post("/users/register", formData,
 })
 
 // Video API's 
-export const getAllVideo = () => API.get("/videos/all-videos")
+export const getAllVideo = (page=1,limit=12) => API.get(`/videos/all-videos?page=${page}&limit=${limit}`)
 export const getSingleVideo = (videoId) => API.get(`/videos/get-single-video/${videoId}`)
 export const videoUpload = ({formData,setPercentage}) => API.post("/videos/add-video", formData, {
     onUploadProgress: (progressEvent) => {
@@ -23,8 +25,8 @@ export const videoUpload = ({formData,setPercentage}) => API.post("/videos/add-v
     },
 });
 
-export const getAllChanelVideo = (channelId) => API.get(`/videos/${channelId}`)
-export const getAllCategoryVideo = (categoryId) => API.get(`/videos/category/${categoryId}`)
+export const getAllChanelVideo = (channelId) => API.get(`/videos/getByChannelId/${channelId}`)
+export const getAllCategoryVideo = (categoryId) => API.get(`/videos/getByCategoryId/${categoryId}`)
 
 
 

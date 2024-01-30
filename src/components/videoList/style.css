@@ -3,14 +3,14 @@
     flex-direction: row;
     flex-wrap: wrap;
     /* background-color: #737070; */
-    justify-content: center;
+    justify-content:start;
     width: 100%;
     margin: auto;
 }
 
 .video-list {
-    width: 335px;
-    margin: 10px;
+    /* width: calc(100%/4); */
+    padding: 10px;
     margin-bottom: 15px;
 }
 
@@ -92,7 +92,7 @@
     }
 
     .video-list {
-        width: 100%;
-        margin: 10px
+        width: 100% !important;
+        padding: 10px 5px;
     }
 }

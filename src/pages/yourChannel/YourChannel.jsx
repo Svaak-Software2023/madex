@@ -22,8 +22,11 @@ const YourChannel = () => {
 
   useEffect(() => {
       user&&dispatch(getChannel(user._id));
-      channelData&&dispatch(getAllChanelVideo(channelData._id));
-  }, []);
+  },[]);
+
+  useEffect(()=>{
+    channelData&&dispatch(getAllChanelVideo(channelData._id));
+  },[channelData])
 
   if (authLoading || channelLoading) return <Loading />;
 

@@ -1,12 +1,18 @@
 import React from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 function VideoList({ data }) {
+  const isSidebarOpen=useSelector((state)=>state.globalFunction.isMenuOpen);
+
+  const style={
+    width:isSidebarOpen?"calc(100%/3)":"calc(100%/4)"
+  }
   return (
     <>
       <div className="video-list-main">
       {data&&data.map((item, i) =>
-        <div div key={i} className="video-list" >
+        <div div key={i} className="video-list" style={style}>
             <Link to={`/video/${item._id}`}>
               <div className="video-item">
                 <img
