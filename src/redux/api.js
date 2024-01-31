@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-    // baseURL: "https://madextube.onrender.com/api/v1"
-    baseURL: "http://localhost:8000/api/v1"
+    baseURL: "https://moviefam.com/api/v1"
+    // baseURL: "http://localhost:8000/api/v1"
 })
 
 
