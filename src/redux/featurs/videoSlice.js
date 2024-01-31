@@ -4,6 +4,7 @@ import * as api from "../api";
 export const getAllVideo = createAsyncThunk("video/getAll", async () => {
     try {
         const response = await api.getAllVideo()
+        console.log("Video",response);
         return response.data
     } catch (error) {
         throw error.response.data

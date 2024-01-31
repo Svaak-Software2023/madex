@@ -3,6 +3,7 @@ import authSlice from "./featurs/authSlice";
 import videoSlice from "./featurs/videoSlice";
 import categorySlice from "./featurs/categorySlice";
 import channelSlice from "./featurs/channelSlice";
+import downloads from "./featurs/downloads";
 import GlobalFunctionSlice from "../utils/globalFunction/GlobalFunctionSlice";
 const store=configureStore({
     reducer:{
@@ -10,7 +11,8 @@ const store=configureStore({
         auth:authSlice,
         video:videoSlice,
         category:categorySlice  ,
-        channel:channelSlice 
+        channel:channelSlice,
+        downloads:downloads
     }
 })
 

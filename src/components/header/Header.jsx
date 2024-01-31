@@ -57,9 +57,6 @@ function Header({ toggle }) {
 
   const channel = useSelector((state) => state.channel);
 
-  useEffect(() => {
-    dispatch(getChannel(userId));
-  }, [userId]);
 
   return (
     <>

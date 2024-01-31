@@ -5,6 +5,10 @@ const API = axios.create({
     baseURL: "http://localhost:8000/api/v1"
 })
 
+
+
+
+
 //User API's
 export const login = (formData) => API.post("/users/login", formData);
 export const createAccount = (formData) =>
@@ -13,6 +17,10 @@ export const createAccount = (formData) =>
       "Content-Type": "multipart/form-data",
     },
   });
+
+
+
+
 
 // Video API's 
 export const getAllVideo = () => API.get("/videos/all-videos")
@@ -31,10 +39,33 @@ export const getAllCategoryVideo = (categoryId) => API.get(`/videos/category/${c
 
 
 
+
+
 // Category API
 export const getAllCategory = () => API.get("/category/get-category");
+
+
+
 
 //Create a new Channel
 export const createNewChannel = (formData) =>
   API.post("/channel/create-channel", formData);
 export const getChannel = (userId) => API.get(`/channel/${userId}`);
+
+
+
+
+
+// download apis 
+export const getAllDownloads = (token) => API.get("/downloads/all-download-video",{
+  headers:{
+    Authorization:token
+  }
+});
+
+export const createDownloads = ({videoId,token}) => API.post(`/downloads/${videoId}`,null,{
+  headers:{
+    Authorization:token
+  }
+});
+
