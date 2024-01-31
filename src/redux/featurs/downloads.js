@@ -2,10 +2,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api";
 
 
-const token=JSON.parse(localStorage.getItem('accessToken')).accessToken
+const token=JSON.parse(localStorage.getItem('accessToken'))
+const accessToken =token&&token.accessToken
 export const getDownload = createAsyncThunk("get/download", async () => {
     try {
-        const response = await api.getAllDownloads(token)
+        const response = await api.getAllDownloads(accessToken)
         return response.data
     }
     catch (error) {
@@ -15,7 +16,7 @@ export const getDownload = createAsyncThunk("get/download", async () => {
 
 export const createDownload = createAsyncThunk("create/download", async (videoId) => {
     try {
-        const response = await api.createDownloads({videoId,token})
+        const response = await api.createDownloads({videoId,accessToken})
         return response.data
     }
     catch (error) {
