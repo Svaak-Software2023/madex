@@ -63,9 +63,9 @@ export const getAllDownloads = (token) => API.get("/downloads/all-download-video
   }
 });
 
-export const createDownloads = ({videoId,token}) => API.post(`/downloads/${videoId}`,null,{
+export const createDownloads = ({videoId,accessToken}) => API.post(`/downloads/${videoId}`,null,{
   headers:{
-    Authorization:token
+    Authorization:accessToken
   }
 });
 

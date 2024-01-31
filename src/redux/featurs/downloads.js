@@ -15,13 +15,15 @@ export const getDownload = createAsyncThunk("get/download", async () => {
 })
 
 export const createDownload = createAsyncThunk("create/download", async (videoId) => {
+    console.log(accessToken);
     try {
         const response = await api.createDownloads({videoId,accessToken})
         return response.data
     }
     catch (error) {
-        // console.log("this is the response",error);
-        throw error.data
+        console.log("this is the response",error.response.data.statusCode);
+        alert(error.response.data.statusCode.message)
+        throw error.response.data.statusCode
     }
 })
 
