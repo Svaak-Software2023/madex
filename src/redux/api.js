@@ -35,7 +35,7 @@ export const videoUpload = ({formData,setPercentage}) => API.post("/videos/add-v
   });
 
 export const getAllChanelVideo = (channelId) => API.get(`/videos/getByChannelId/${channelId}`)
-export const getAllCategoryVideo = (categoryId) => API.get(`/videos/category/${categoryId}`)
+export const getAllCategoryVideo = (categoryId) => API.get(`/videos/getByCategoryId/${categoryId}`)
 
 
 
