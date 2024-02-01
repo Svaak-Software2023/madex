@@ -1,32 +1,45 @@
-
-import React, { useEffect, useState } from 'react';
-import './style.css';
-import { BiDislike, BiLike } from 'react-icons/bi';
+import React, { useEffect, useState } from "react";
+import "./style.css";
+import { BiDislike, BiLike } from "react-icons/bi";
 // import { IoShareSocialOutline } from 'react-icons/io5';
-import { HiDotsHorizontal } from 'react-icons/hi';
+import { HiDotsHorizontal } from "react-icons/hi";
 import { MdOutlineDownloading } from "react-icons/md";
-import ReactPlayer from 'react-player';
-import { Link } from 'react-router-dom';
+import ReactPlayer from "react-player";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { createHistory } from "../../redux/api";
 
 const VideoPlayer = ({ data }) => {
+  const dispatch = useDispatch();
   const handleDownload = (event) => {
     event.preventDefault();
 
     // Simulate download behavior
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = data.videoFile;
     link.download = data.title;
     link.click();
   };
 
-  const [view, setView] = useState("")
+  const [view, setView] = useState("");
+
+  const accessToken = JSON.parse(localStorage.getItem("accessToken"));
+  const token = accessToken.accessToken;
+  const videoId = data._id;
 
   useEffect(() => {
-    if (data.views >= 1000 && data.views < 1000000) setView(`${Math.round(data.views / 1000)} K`)
-    else if (data.views >= 1000000 && data.views < 1000000000) setView(`${Math.round(data.views / 1000000)} M`)
-    else if (data.views > 1000000000) setView(`${Math.round(data.views / 1000000000)} B`)
-    else setView(data.views)
-  }, [])
+    dispatch(createHistory({ token, videoId }));
+  });
+
+  useEffect(() => {
+    if (data.views >= 1000 && data.views < 1000000)
+      setView(`${Math.round(data.views / 1000)} K`);
+    else if (data.views >= 1000000 && data.views < 1000000000)
+      setView(`${Math.round(data.views / 1000000)} M`);
+    else if (data.views > 1000000000)
+      setView(`${Math.round(data.views / 1000000000)} B`);
+    else setView(data.views);
+  }, []);
 
   return (
     <>
@@ -39,9 +52,7 @@ const VideoPlayer = ({ data }) => {
             className="video_player"
           />
         </div>
-        <h3 className="video_title mt-2">
-          {data.title}
-        </h3>
+        <h3 className="video_title mt-2">{data.title}</h3>
 
         <div className="video_content">
           <div className="channel-profile-details">
@@ -55,14 +66,10 @@ const VideoPlayer = ({ data }) => {
             </div>
             <div className="channel_name">
               <h3>{data.channelData.channelName}</h3>
-              <p>
-                {view} Views • 3 months ago
-              </p>
+              <p>{view} Views • 3 months ago</p>
             </div>
             <div className="subscribe-button">
-              <p>
-                Subscribe
-              </p>
+              <p>Subscribe</p>
             </div>
           </div>
           <div className="more-button-in-video">
@@ -96,7 +103,7 @@ const VideoPlayer = ({ data }) => {
         </div>
       </div>
       <div className="description my-3">
-        <h3 className='video_title'>Description</h3>
+        <h3 className="video_title">Description</h3>
         {data.description}
       </div>
     </>

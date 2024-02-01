@@ -12,21 +12,18 @@ export const createChannel = createAsyncThunk(
       throw error.response.data.statusCode;
     }
   }
-  );
-  
-  
-  export const getChannel = createAsyncThunk("channel/get",
-  async (userId) => {
-    try {
-      const response = await api.getChannel(userId);
-      return response.data;
-    } catch (error) {
-      console.log("this is the error",error);
-      // Instead of throwing error.response, throw the entire error object
-      throw error.response.data.statusCode;
-    }
+);
+
+export const getChannel = createAsyncThunk("channel/get", async (userId) => {
+  try {
+    const response = await api.getChannel(userId);
+    return response.data;
+  } catch (error) {
+    // console.log("this is the error",error);
+    // Instead of throwing error.response, throw the entire error object
+    throw error.response.data.statusCode;
   }
-)
+});
 const channelSlice = createSlice({
   name: "channel",
   initialState: {
@@ -41,38 +38,37 @@ const channelSlice = createSlice({
       .addCase(createChannel.pending, (state) => {
         state.loading = true;
         state.message = "";
-        state.error = ""
+        state.error = "";
       })
       .addCase(createChannel.fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload.data;
         state.message = action.payload.message;
-        state.error = ""
+        state.error = "";
       })
       .addCase(createChannel.rejected, (state, action) => {
         state.loading = false;
-        state.data = null
+        state.data = null;
         state.message = "";
         state.error = action.error; // Use action.error.message or whatever property holds the error message
       })
       .addCase(getChannel.pending, (state) => {
         state.loading = false;
         state.message = "";
-        state.error = ""
+        state.error = "";
       })
       .addCase(getChannel.fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload.data;
         state.message = action.payload.message;
-        state.error = ""
+        state.error = "";
       })
       .addCase(getChannel.rejected, (state, action) => {
         state.loading = false;
-        state.data = null
+        state.data = null;
         state.message = "";
         state.error = action.error; // Use action.error.message or whatever property holds the error message
-      })
-      ;
+      });
   },
 });
 

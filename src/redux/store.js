@@ -4,14 +4,16 @@ import videoSlice from "./featurs/videoSlice";
 import categorySlice from "./featurs/categorySlice";
 import channelSlice from "./featurs/channelSlice";
 import GlobalFunctionSlice from "../utils/globalFunction/GlobalFunctionSlice";
-const store=configureStore({
-    reducer:{
-        globalFunction:GlobalFunctionSlice,
-        auth:authSlice,
-        video:videoSlice,
-        category:categorySlice  ,
-        channel:channelSlice 
-    }
-})
+import historySlice from "./featurs/historySlice";
+const store = configureStore({
+  reducer: {
+    globalFunction: GlobalFunctionSlice,
+    auth: authSlice,
+    video: videoSlice,
+    category: categorySlice,
+    channel: channelSlice,
+    history: historySlice,
+  },
+});
 
 export default store;

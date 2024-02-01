@@ -1,0 +1,125 @@
+.history-list-main {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+  margin-top: 5px;
+}
+.history-list-main .clear-history {
+  width: 50%;
+  outline: none;
+  padding: 5px;
+  border: none;
+  font-weight: 600;
+  align-self: center;
+}
+
+.video-history-list {
+  display: flex;
+  flex-direction: row;
+  width: calc(100% / 1.5);
+  padding: 10px;
+  margin-bottom: 15px;
+  gap: 8px;
+  position: relative;
+}
+
+.video-history-list .hs-video-delete {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 25px;
+  display: none;
+  cursor: pointer;
+  border-radius: 50%;
+  /* background: grey; */
+}
+.video-history-list:hover .hs-video-delete {
+  display: block;
+}
+
+.hs-video-item {
+  width: 330px;
+  height: 200px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.hs-video-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.hs-video-item span {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  padding: 2px 5px;
+  background-color: rgba(74, 73, 73, 0.658);
+  color: #ffff;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.hs-video-details {
+  display: flex;
+  /* padding-top: 8px; */
+}
+.hs-video-details .hs-video-name .hs-video-description {
+  height: 50px;
+  margin: 0;
+  padding: 7px;
+  overflow: hidden;
+  /* white-space: nowrap; */
+}
+.hs-video-details .hs-video-name .hs-video-description p {
+  font-size: 0.8rem;
+  text-overflow: ellipsis;
+}
+
+.video-logo-img {
+  width: 100px;
+  height: 50px;
+  /* background-color: blue; */
+  margin-right: 10px;
+}
+
+.video-logo-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.hs-video-name {
+  width: calc(100% - 50px);
+}
+
+.hs-video-name a {
+  text-decoration: none;
+}
+
+.hs-video-name h3 {
+  color: #000;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+  padding-bottom: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .history-list-main {
+    justify-content: center;
+  }
+
+  .video-history-list {
+    width: 100% !important;
+    padding: 10px 5px;
+  }
+}
