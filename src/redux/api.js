@@ -31,7 +31,7 @@ export const videoUpload = ({ formData, setPercentage }) =>
 export const getAllChanelVideo = (channelId) =>
   API.get(`/videos/getByChannelId/${channelId}`);
 export const getAllCategoryVideo = (categoryId) =>
-  API.get(`/videos/category/${categoryId}`);
+  API.get(`/videos/getByCategoryId/${categoryId}`);
 
 // Category API
 export const getAllCategory = () => API.get("/category/get-category");
@@ -40,3 +40,77 @@ export const getAllCategory = () => API.get("/category/get-category");
 export const createNewChannel = (formData) =>
   API.post("/channel/create-channel", formData);
 export const getChannel = (userId) => API.get(`/channel/${userId}`);
+
+//History API
+export const getHistory = async (token) => {
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  try {
+    const res = await API.get("/history/get-all-history", { headers: headers });
+    return res.data;
+  } catch (err) {
+    console.error("Error fetching history:", err);
+    throw err;
+  }
+};
+
+export const deleteSingleHistory = async ({ token, id }) => {
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  try {
+    const res = await API.delete(`/history/deleteByHistoryId/${id}`, {
+      headers: headers,
+    });
+    return res.data;
+  } catch (err) {
+    console.error("Error fetching history:", err);
+    throw err;
+  }
+};
+
+export const deleteAllHistory = async (token) => {
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  try {
+    const res = await API.delete(`/history/delete-all-history`, {
+      headers: headers,
+    });
+    return res.data;
+  } catch (err) {
+    console.error("Error Deleting All history:", err);
+    throw err;
+  }
+};
+
+export const createHistory = async ({ token, id }) => {
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  try {
+    const res = await API.post(`/history/${id}`, {
+      headers: headers,
+    });
+    return res;
+  } catch (error) {
+    console.error("Error creating history:", error);
+    throw error;
+  }
+};
+
+// download apis
+export const getAllDownloads = (token) =>
+  API.get("/downloads/all-download-video", {
+    headers: {
+      Authorization: token,
+    },
+  });
+
+export const createDownloads = ({ videoId, accessToken }) =>
+  API.post(`/downloads/${videoId}`, null, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });

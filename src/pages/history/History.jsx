@@ -28,20 +28,20 @@ const History = () => {
   }
 
   const clearAllHistory = () => {
-    dispatch(deleteAllHistory(token));
+    dispatch(deleteAllHistory(accessToken));
   };
 
   return (
     <>
-      <p className="h2 mt-3">Watch History</p>
+      <p className="h3 mt-3">Watch History</p>
       <div className="history-list-main">
-        <button className="clear-history" onClick={clearAllHistory}>
-          Clear All History
-        </button>
         {loading && <p className="h6">video is removing from history</p>}
         {historyData && historyData.length > 0 && (
           <HistoryList historyData={historyData} token={accessToken} />
         )}
+        <button className="clear-history" onClick={clearAllHistory}>
+          Clear All History
+        </button>
       </div>
     </>
   );

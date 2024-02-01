@@ -5,6 +5,9 @@ import categorySlice from "./featurs/categorySlice";
 import channelSlice from "./featurs/channelSlice";
 import downloads from "./featurs/downloads";
 import GlobalFunctionSlice from "../utils/globalFunction/GlobalFunctionSlice";
+
+import historySlice from "./featurs/historySlice";
+
 const store = configureStore({
   reducer: {
     globalFunction: GlobalFunctionSlice,
@@ -12,6 +15,8 @@ const store = configureStore({
     video: videoSlice,
     category: categorySlice,
     channel: channelSlice,
+    downloads: downloads,
+    history: historySlice,
   },
 });
 
