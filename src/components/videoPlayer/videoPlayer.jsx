@@ -6,13 +6,11 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import { MdOutlineDownloading } from "react-icons/md";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { createHistory } from "../../redux/api";
 
 const VideoPlayer = ({ data }) => {
-  const dispatch = useDispatch();
   const handleDownload = (event) => {
     event.preventDefault();
+    dispatch(createDownload(data._id));
 
     // Simulate download behavior
     const link = document.createElement("a");

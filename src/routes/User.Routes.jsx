@@ -1,6 +1,5 @@
 import Error404 from "../components/Error/Error404";
 import CreateAccount from "../pages/CreateAccount/CreateAccount";
-import History from "../pages/history/History";
 import Home from "../pages/home/Home";
 import Login from "../pages/Login/Login";
 import SecondHome from "../pages/second-home/SecondHome";
@@ -42,7 +41,6 @@ const UserRoutes = [
     element: <Upload />,
     isPrivate: true,
   },
-  { name: "History", path: "/cronicle", element: <History />, isPrivate: true },
 ];
 
 export default UserRoutes;

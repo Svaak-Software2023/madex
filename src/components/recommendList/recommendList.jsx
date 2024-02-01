@@ -4,7 +4,7 @@ const RecommendList = ({ data }) => {
 
   return (
     <>
-      <div className="video-list-recomended">
+      <div className="video-list-recomended mt-2">
         {data && data.map((item, i) => (
           <Link to={`/video/${item._id}`} key={i}>
             <div className="row m-0 p-0 mb-2">

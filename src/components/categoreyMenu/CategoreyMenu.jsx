@@ -15,7 +15,7 @@ function CategoreyMenu() {
   useEffect(()=>{
     !category.categoryData&& dispatch(getAllCategory())
     category.categoryData&& setData(category.categoryData)
-  })
+  },[])
   const handleClick=(categoryId)=>{
     dispatch(getAllCategoryVideo(categoryId))
     // alert("called")

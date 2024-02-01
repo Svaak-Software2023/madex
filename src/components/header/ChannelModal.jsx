@@ -44,17 +44,14 @@ const ChannelModal = (props) => {
   const channel = useSelector((state) => state.channel);
 
   const getChannelData = (userId) => {
+    console.log("User Id",userId);
     dispatch(getChannel(userId));
   };
 
   useEffect(() => {
-    user && getChannelData(user._id);
-  }, []);
+    user&&getChannelData(user?._id);
+  }, [user]);
 
-  // useEffect(() => {
-  //   // Redirect only when channel data is available
-  //   channel.data && navigate("/your-channel");
-  // }, []);
 
   if (channel.loading) return <Loading />;
   return (
