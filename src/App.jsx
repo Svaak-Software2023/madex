@@ -32,7 +32,7 @@ function App() {
   // set login user value
   const user = JSON.parse(localStorage.getItem('accessToken'))
   useEffect(() => {
-    dispatch(setUser(user&&user.user))
+    dispatch(setUser(user&&user))
   })
 
   return (

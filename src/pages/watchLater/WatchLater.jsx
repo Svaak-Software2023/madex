@@ -25,6 +25,10 @@ function WatchLater() {
         }
     }
 
+    const accessToken=useSelector((state)=>state.auth.data.accessToken)
+
+    // console.log(accessToken);
+
     // get Watch later data from the store 
     const data = useSelector((state) => state.watchLater.videoData)
 
@@ -33,7 +37,7 @@ function WatchLater() {
 
     // create watch later get function 
     const feachData = () => {
-        dispatch(getAllWatchLater())
+        dispatch(getAllWatchLater(accessToken))
     }
 
     // call watch later get function 
@@ -43,7 +47,7 @@ function WatchLater() {
 
     // handle watch later single delete 
     const handleWatchLater = (videoId) => {
-        dispatch(deleteWatchLater({ videoId, toast }))
+        accessToken&& dispatch(deleteWatchLater({ videoId, toast, accessToken}))
         setTimeout(() => {
             feachData()
         }, 500);
@@ -52,8 +56,9 @@ function WatchLater() {
     // delete all handler 
     
     const userId=useSelector((state)=>state.auth.user._id)
+
     const deleteAllhandler=()=>{
-        dispatch(deleteAllWatchLater({toast,userId}))
+        accessToken&&dispatch(deleteAllWatchLater({toast,userId,accessToken}))
         setTimeout(() => {
             feachData()
         }, 500);

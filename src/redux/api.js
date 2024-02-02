@@ -5,10 +5,6 @@ const API = axios.create({
     baseURL: "http://localhost:8000/api/v1"
 })
 
-
-
-
-
 //User API's
 export const login = (formData) => API.post("/users/login", formData);
 export const createAccount = (formData) =>
@@ -17,10 +13,6 @@ export const createAccount = (formData) =>
       "Content-Type": "multipart/form-data",
     },
   });
-
-
-
-
 
 // Video API's 
 export const getAllVideo = () => API.get("/videos/all-videos")
@@ -37,24 +29,13 @@ export const videoUpload = ({formData,setPercentage}) => API.post("/videos/add-v
 export const getAllChanelVideo = (channelId) => API.get(`/videos/getByChannelId/${channelId}`)
 export const getAllCategoryVideo = (categoryId) => API.get(`/videos/getByCategoryId/${categoryId}`)
 
-
-
-
-
 // Category API
 export const getAllCategory = () => API.get("/category/get-category");
-
-
-
 
 //Create a new Channel
 export const createNewChannel = (formData) =>
   API.post("/channel/create-channel", formData);
 export const getChannel = (userId) => API.get(`/channel/${userId}`);
-
-
-
-
 
 // download apis 
 export const getAllDownloads = (token) => API.get("/downloads/all-download-video",{
@@ -78,9 +59,9 @@ export const createWatchLater = ({videoId,accessToken}) => API.post(`/watchLater
   }
 });
 
-export const getAllWatchLater = (token) => API.get("/watchLater/all-watchLater",{
+export const getAllWatchLater = (accessToken) => API.get("/watchLater/all-watchLater",{
   headers:{
-    Authorization:token
+    Authorization:accessToken
   }
 });
 
@@ -95,7 +76,6 @@ export const deleteAllWatchLater = ({accessToken,userId}) => API.delete(`/watchL
     Authorization:accessToken
   }
 });
-
 
 
 //History API

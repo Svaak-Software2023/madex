@@ -2,10 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api"
 
 
-const token = JSON.parse(localStorage.getItem('accessToken'))
-const accessToken = token && token.accessToken
-
-export const getAllWatchLater = createAsyncThunk("get/watchLater", async () => {
+export const getAllWatchLater = createAsyncThunk("get/watchLater", async (accessToken) => {
     try {
         const response = await api.getAllWatchLater(accessToken)
         return response.data
@@ -14,19 +11,18 @@ export const getAllWatchLater = createAsyncThunk("get/watchLater", async () => {
     }
 })
 
-export const createWatchLater = createAsyncThunk("create/watchLater", async ({ videoId, toast }) => {
+export const createWatchLater = createAsyncThunk("create/watchLater", async ({ videoId, toast, accessToken }) => {
     try {
         const response = await api.createWatchLater({ videoId, accessToken })
         toast.success(response.data.message)
         return response.data
     } catch (error) {
         toast.error(error.response.data.statusCode.message)
-        console.log("error",error);
         throw error.response
     }
 })
 
-export const deleteWatchLater = createAsyncThunk("delete/watchLater", async ({ videoId, toast }) => {
+export const deleteWatchLater = createAsyncThunk("delete/watchLater", async ({ videoId, toast, accessToken }) => {
     try {
         const response = await api.deleteWatchLater({ accessToken, videoId })
         toast.success(response.data.message)
@@ -37,7 +33,7 @@ export const deleteWatchLater = createAsyncThunk("delete/watchLater", async ({ v
     }
 })
 
-export const deleteAllWatchLater = createAsyncThunk("deleteAll/watchLater", async ({ userId, toast }) => {
+export const deleteAllWatchLater = createAsyncThunk("deleteAll/watchLater", async ({ userId, toast, accessToken }) => {
     try {
         const response = await api.deleteAllWatchLater({ accessToken, userId })
         toast.success(response.data.message)
