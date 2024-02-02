@@ -9,6 +9,7 @@ import SingleVideo from "../pages/videoPlayer/SingleVideo";
 import WatchLater from "../pages/watchLater/WatchLater";
 import YourChannel from "../pages/yourChannel/YourChannel";
 import History from "../pages/history/History";
+import ShortsPlayer from "../components/shortsPlayer/ShortsPlayer";
 
 const UserRoutes = [
   { name: "404 Error", path: "*", element: <Error404 />, isPrivate: false },
@@ -23,6 +24,12 @@ const UserRoutes = [
     name: "Video Player",
     path: "/video/:videoId",
     element: <SingleVideo />,
+    isPrivate: false,
+  },
+  {
+    name: "Mini Clips",
+    path: "/mini-clips",
+    element: <ShortsPlayer />,
     isPrivate: false,
   },
   { name: "Login", path: "/login", element: <Login />, isPrivate: false },

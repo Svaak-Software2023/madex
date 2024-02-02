@@ -25,7 +25,7 @@ const menuData = [
   },
   {
     id: 2,
-    url: "/",
+    url: "/mini-clips",
     text: "Mini Clips",
     icon: <TfiClip />,
   },
@@ -36,11 +36,13 @@ const menuData = [
     icon: <MdOutlineCardMembership />,
     line: true,
   },
+ 
   {
     id: 4,
     url: "/your-channel",
-    text: "You",
+    text: "My Stations",
     icon: <MdOutlineLibraryMusic />,
+    heading: "My >",
   },
   {
     id: 5,
