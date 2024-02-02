@@ -21,6 +21,7 @@ export const createWatchLater = createAsyncThunk("create/watchLater", async ({ v
         return response.data
     } catch (error) {
         toast.error(error.response.data.statusCode.message)
+        console.log("error",error);
         throw error.response
     }
 })
