@@ -4,7 +4,7 @@ import {
   deleteAllHistory,
   getAllHistory,
 } from "../../redux/featurs/historySlice";
-import HistoryList from "../../components/historyList/HistoryList";
+import HistoryList from "./historyList/HistoryList";
 import Loading from "../../assets/loader/Loading";
 
 const History = () => {

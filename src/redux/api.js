@@ -1,9 +1,13 @@
 import axios from "axios";
 
 const API = axios.create({
-  // baseURL: "https://madextube.onrender.com/api/v1"
-  baseURL: "http://localhost:8000/api/v1",
-});
+    // baseURL: "https://moviefam.com/api/v1"
+    baseURL: "http://localhost:8000/api/v1"
+})
+
+
+
+
 
 //User API's
 export const login = (formData) => API.post("/users/login", formData);
@@ -14,12 +18,14 @@ export const createAccount = (formData) =>
     },
   });
 
-// Video API's
-export const getAllVideo = () => API.get("/videos/all-videos");
-export const getSingleVideo = (videoId) =>
-  API.get(`/videos/get-single-video/${videoId}`);
-export const videoUpload = ({ formData, setPercentage }) =>
-  API.post("/videos/add-video", formData, {
+
+
+
+
+// Video API's 
+export const getAllVideo = () => API.get("/videos/all-videos")
+export const getSingleVideo = (videoId) => API.get(`/videos/get-single-video/${videoId}`)
+export const videoUpload = ({formData,setPercentage}) => API.post("/videos/add-video", formData, {
     onUploadProgress: (progressEvent) => {
       const percentage = Math.round(
         (progressEvent.loaded / progressEvent.total) * 100
@@ -28,18 +34,62 @@ export const videoUpload = ({ formData, setPercentage }) =>
     },
   });
 
-export const getAllChanelVideo = (channelId) =>
-  API.get(`/videos/getByChannelId/${channelId}`);
-export const getAllCategoryVideo = (categoryId) =>
-  API.get(`/videos/getByCategoryId/${categoryId}`);
+export const getAllChanelVideo = (channelId) => API.get(`/videos/getByChannelId/${channelId}`)
+export const getAllCategoryVideo = (categoryId) => API.get(`/videos/getByCategoryId/${categoryId}`)
+
+
+
+
 
 // Category API
 export const getAllCategory = () => API.get("/category/get-category");
+
+
+
 
 //Create a new Channel
 export const createNewChannel = (formData) =>
   API.post("/channel/create-channel", formData);
 export const getChannel = (userId) => API.get(`/channel/${userId}`);
+
+
+
+
+
+// download apis 
+export const getAllDownloads = (token) => API.get("/downloads/all-download-video",{
+  headers:{
+    Authorization:token
+  }
+});
+
+export const createDownloads = ({ videoId, accessToken }) =>
+  API.post(`/downloads/${videoId}`, null, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });
+
+
+// Watch Later 
+export const createWatchLater = ({videoId,accessToken}) => API.post(`/watchLater/add-watchLater/${videoId}`,null,{
+  headers:{
+    Authorization:accessToken
+  }
+});
+
+export const getAllWatchLater = (token) => API.get("/watchLater/all-watchLater",{
+  headers:{
+    Authorization:token
+  }
+});
+
+export const deleteWatchLater = ({accessToken,videoId}) => API.delete(`/watchLater/${videoId}`,{
+  headers:{
+    Authorization:accessToken
+  }
+});
+
 
 //History API
 export const getHistory = async (token) => {
@@ -85,6 +135,7 @@ export const deleteAllHistory = async (token) => {
   }
 };
 
+// history
 export const createHistory = async ({ videoId, accessToken }) => {
   console.log("AccessToken:", accessToken);
   const headers = {
@@ -105,18 +156,3 @@ export const createHistory = async ({ videoId, accessToken }) => {
     throw error;
   }
 };
-
-// download apis
-export const getAllDownloads = (token) =>
-  API.get("/downloads/all-download-video", {
-    headers: {
-      Authorization: token,
-    },
-  });
-
-export const createDownloads = ({ videoId, accessToken }) =>
-  API.post(`/downloads/${videoId}`, null, {
-    headers: {
-      Authorization: accessToken,
-    },
-  });

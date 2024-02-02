@@ -9,9 +9,12 @@ import { setUser } from './redux/featurs/authSlice'
 // import AdminRouting from './Admin/AdminRouting'
 import PrivateRoute from './auth/PrivateRoute'
 import { setmenu } from './utils/globalFunction/GlobalFunctionSlice'
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
-  // const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
   const dispatch=useDispatch();
   const isSidebarOpen=useSelector((state)=>state.globalFunction.isMenuOpen);
   const { pathname } = useLocation()
@@ -27,7 +30,6 @@ function App() {
   };
 
   // set login user value
-
   const user = JSON.parse(localStorage.getItem('accessToken'))
   useEffect(() => {
     dispatch(setUser(user&&user.user))
@@ -35,7 +37,6 @@ function App() {
 
   return (
     <>
-      
       <Header toggle={openSidebar} />
       <div className="main">
         <LeftMenu data={isSidebarOpen} />
@@ -51,6 +52,7 @@ function App() {
           {/* <AdminRouting/> */}
         </div>
       </div>
+      <ToastContainer/>
     </>
   )
 }

@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "./style.css";
 import { IoMdClose } from "react-icons/io";
-import { deleteHistory, getAllHistory } from "../../redux/featurs/historySlice";
+import { deleteHistory, getAllHistory } from "../../../redux/featurs/historySlice";
 
 const HistoryList = ({ historyData, token }) => {
   const dispatch = useDispatch();

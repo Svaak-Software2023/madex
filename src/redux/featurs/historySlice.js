@@ -96,6 +96,7 @@ const historySlice = createSlice({
       })
       .addCase(deleteHistory.rejected, (state, action) => {
         state.loading = false;
+        state.historyData =null;
         state.error = action.error;
       })
       .addCase(deleteAllHistory.pending, (state) => {

@@ -12,7 +12,7 @@ function SecondHome() {
     dispatch(getAllVideo());
   }, []);
 
-  if (video.loading) return <Loading />;
+  if (video?.loading) return <Loading />;
 
   return (
     <>
