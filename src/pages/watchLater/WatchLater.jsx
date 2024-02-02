@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteWatchLater, getAllWatchLater } from '../../redux/featurs/watchLater'
+import { deleteAllWatchLater, deleteWatchLater, getAllWatchLater } from '../../redux/featurs/watchLater'
 import { Link } from 'react-router-dom';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { toast } from "react-toastify"
 import Loading from '../../assets/loader/Loading';
+import "./style.css"
 function WatchLater() {
     const isSidebarOpen = useSelector((state) => state.globalFunction.isMenuOpen);
     const style = {
@@ -25,34 +26,53 @@ function WatchLater() {
     }
 
     // get Watch later data from the store 
-    const videoData = useSelector((state) => state.watchLater.videoData)
-    const [data, setData] = useState([])
+    const data = useSelector((state) => state.watchLater.videoData)
 
-    // call watch later get function 
+
     const dispatch = useDispatch()
+
+    // create watch later get function 
     const feachData = () => {
         dispatch(getAllWatchLater())
     }
 
+    // call watch later get function 
     useEffect(() => {
         feachData()
-        setData(videoData)
     }, [])
-
-    useEffect(() => {
-        feachData()
-        setData(videoData)
-        console.log(data)
-    }, [data.length, videoData.length])
 
     // handle watch later single delete 
     const handleWatchLater = (videoId) => {
         dispatch(deleteWatchLater({ videoId, toast }))
-        setData(data.filter((item) => item.video._id !== videoId))
+        setTimeout(() => {
+            feachData()
+        }, 500);
+    }
+
+    // delete all handler 
+    
+    const userId=useSelector((state)=>state.auth.user._id)
+    const deleteAllhandler=()=>{
+        dispatch(deleteAllWatchLater({toast,userId}))
+        setTimeout(() => {
+            feachData()
+        }, 500);
     }
 
     const watchtLoading = useSelector((state) => state.watchLater.loading)
-    if (watchtLoading) return <Loading/>
+    // if loading is true then show loading 
+    if (watchtLoading) return <Loading />
+
+    // if no records found then return this message 
+    if (!data || data.length === 0) {
+        return (
+            <>
+                <p className="h3 m-3">Watch History</p>
+                <h4 className="text-center mt-5">No Watch Later Found</h4>
+            </>
+        );
+    }
+
 
     return (
         <div>
@@ -99,6 +119,12 @@ function WatchLater() {
                         </div>
                     </div>
                 )}
+            </div>
+            <div className="clear-all-watch-later">
+
+            <button  onClick={deleteAllhandler}>
+                Clear All Watch Later
+            </button>
             </div>
         </div>
     )

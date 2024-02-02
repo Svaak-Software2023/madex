@@ -19,16 +19,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogout } from "../../redux/featurs/authSlice";
 import ChannelModal from "./ChannelModal";
-import { getChannel } from "../../redux/featurs/channelSlice";
+
 function Header({ toggle }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [dropdown, setDropdown] = useState(false);
-
   const user = useSelector((state) => state.auth.user);
-
-  const userId = user?._id;
-
   const logout = () => {
     dispatch(setLogout());
     setDropdown(false);
@@ -56,7 +52,6 @@ function Header({ toggle }) {
   }, [pathname]);
 
   const channel = useSelector((state) => state.channel);
-
 
   return (
     <>

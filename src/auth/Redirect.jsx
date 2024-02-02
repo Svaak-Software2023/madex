@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 function Redirect() {
+  // state for count 
   const [count, setCount] = useState(5);
+  // navigate to an other route 
   const navigate = useNavigate()
 
+  // show count then send login page 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCount((count) => count - 1);

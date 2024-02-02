@@ -21,15 +21,21 @@ function VideoList({ data }) {
     if (!more) {
       setMore(id)
     }
-    else {
-      setMore(null)
+    else if(more!==id) {
+      setMore(id)
     }
+    else(
+      setMore(null)
+    )
   }
 
   // handle watch later 
   const dispatch=useDispatch()
+
+  // create watch later api call 
   const handleWatchLater = (videoId) => {
     dispatch(createWatchLater({videoId,toast}))
+    setMore(null)
   }
   const watchtLoading=useSelector((state)=>state.watchLater.loading)
   if(watchtLoading) return <Loading/>

@@ -56,7 +56,7 @@ const menuData = [
   },
   {
     id: 7,
-    url: "/",
+    url: "/downloads",
     text: "Downloads",
     icon: <MdHistoryEdu />,
   },

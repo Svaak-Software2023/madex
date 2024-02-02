@@ -8,23 +8,32 @@ import {
 } from "../../redux/featurs/videoSlice";
 
 function CategoreyMenu() {
+  // dispach for call redux function 
   const dispatch = useDispatch();
+
+  // state to store category data 
   const [data, setData] = useState([]);
+
+  // get category data from store 
   const category = useSelector((state) => state.category);
-  // console.log(category);
+
+  // call get category api on first render  
   useEffect(()=>{
     !category.categoryData&& dispatch(getAllCategory())
     category.categoryData&& setData(category.categoryData)
   },[])
+
+  // call video api acording the category 
   const handleClick=(categoryId)=>{
     dispatch(getAllCategoryVideo(categoryId))
     // alert("called")
   };
 
+  // call get all video api 
   const handlAllData = () => {
-    // alert("handle")
     dispatch(getAllVideo());
   };
+  
   return (
     <div className="categorey-menu-main mt-0">
       <div className="categotrey-menu-list">

@@ -25,9 +25,20 @@ export const createWatchLater = createAsyncThunk("create/watchLater", async ({ v
     }
 })
 
-export const deleteWatchLater = createAsyncThunk("delete/watchLater", async ({videoId, toast }) => {
+export const deleteWatchLater = createAsyncThunk("delete/watchLater", async ({ videoId, toast }) => {
     try {
         const response = await api.deleteWatchLater({ accessToken, videoId })
+        toast.success(response.data.message)
+        return response.data
+    } catch (error) {
+        console.log(error);
+        throw error.response.data
+    }
+})
+
+export const deleteAllWatchLater = createAsyncThunk("deleteAll/watchLater", async ({ userId, toast }) => {
+    try {
+        const response = await api.deleteAllWatchLater({ accessToken, userId })
         toast.success(response.data.message)
         return response.data
     } catch (error) {
@@ -62,6 +73,7 @@ const watchLater = createSlice({
                 state.loading = false,
                     state.message = "",
                     state.error = action.error
+                state.videoData = []
             })
             .addCase(createWatchLater.pending, (state, action) => {
                 state.loading = true,
@@ -89,6 +101,21 @@ const watchLater = createSlice({
                     state.error = ""
             })
             .addCase(deleteWatchLater.rejected, (state, action) => {
+                state.loading = false,
+                    state.message = "",
+                    state.error = action.error
+            })
+            .addCase(deleteAllWatchLater.pending, (state, action) => {
+                state.loading = true,
+                    state.message = "",
+                    state.error = ""
+            })
+            .addCase(deleteAllWatchLater.fulfilled, (state, action) => {
+                state.loading = false,
+                    state.message = action.payload,
+                    state.error = ""
+            })
+            .addCase(deleteAllWatchLater.rejected, (state, action) => {
                 state.loading = false,
                     state.message = "",
                     state.error = action.error

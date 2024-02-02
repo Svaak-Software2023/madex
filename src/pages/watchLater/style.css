@@ -1,0 +1,23 @@
+.clear-all-watch-later{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 10px
+}
+
+.clear-all-watch-later button{
+    width: 50%;
+    outline: none;
+    padding: 8px;
+    border: none;
+    background-color: rgb(225, 222, 222);
+    font-weight: 600;
+    align-self: center;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .clear-all-watch-later button{
+        width: 100%;
+    }
+}

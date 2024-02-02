@@ -90,6 +90,13 @@ export const deleteWatchLater = ({accessToken,videoId}) => API.delete(`/watchLat
   }
 });
 
+export const deleteAllWatchLater = ({accessToken,userId}) => API.delete(`/watchLater/delete-all/${userId}`,{
+  headers:{
+    Authorization:accessToken
+  }
+});
+
+
 
 //History API
 export const getHistory = async (token) => {

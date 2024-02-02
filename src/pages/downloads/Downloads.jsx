@@ -20,12 +20,14 @@ function Downloads() {
     const style = {
         width: isSidebarOpen ? "calc(100%/3)" : "calc(100%/4)"
     }
+
+    if(!download|| download.length===0) return <h3 className='text-center pt-5 mt-5'>Sorry, No Download Records !</h3>
     return (
         <>
             <div className="m-3">
                 <h3 className=''>Downloads</h3>
             </div>
-            {download ? <div className="video-list-main">
+             <div className="video-list-main">
 
                 {download.map((item, i) =>
                     <div div key={i} className="video-list" style={style} >
@@ -60,7 +62,6 @@ function Downloads() {
                     </div>
                 )}
             </div>
-                : <h3 className='text-center pt-5 mt-5'>Sorry, no data found !</h3>}
         </>
     )
 }
