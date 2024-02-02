@@ -55,7 +55,7 @@ const menuData = [
     icon: <MdHistoryEdu />,
   },
   {
-    id: 6,
+    id: 7,
     url: "/",
     text: "Downloads",
     icon: <MdHistoryEdu />,
@@ -116,7 +116,7 @@ const menuData = [
     icon: <MdOutlinePsychologyAlt />,
   },
   {
-    id: 15,
+    id: 17,
     url: "/",
     text: "Send Observation",
     icon: <BiMessageError />,

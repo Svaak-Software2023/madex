@@ -5,6 +5,7 @@ import {
   getAllHistory,
 } from "../../redux/featurs/historySlice";
 import HistoryList from "../../components/historyList/HistoryList";
+import Loading from "../../assets/loader/Loading";
 
 const History = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,9 @@ const History = () => {
     <>
       <p className="h3 mt-3">Watch History</p>
       <div className="history-list-main">
-        {loading && <p className="h6">video is removing from history</p>}
+        {/* {loading && <p className="h6">video is removing from history</p>} */}
+        {loading && <Loading />}
+
         {historyData && historyData.length > 0 && (
           <HistoryList historyData={historyData} token={accessToken} />
         )}

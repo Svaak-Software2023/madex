@@ -6,12 +6,16 @@ import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllVideo, getSingleVideo } from "../../redux/featurs/videoSlice";
 import Loading from "../../assets/loader/Loading";
+import { createHistory } from "../../redux/featurs/historySlice";
 
 const SingleVideo = () => {
   const { videoId } = useParams();
   const dispatch = useDispatch();
   const video = useSelector((state) => state.video);
   const { pathname } = useLocation();
+
+  const token = JSON.parse(localStorage.getItem("accessToken"));
+  const accessToken = token.accessToken;
 
   useEffect(() => {
     dispatch(getSingleVideo(videoId));
@@ -23,6 +27,9 @@ const SingleVideo = () => {
     dispatch(getAllVideo());
   }, []);
 
+  useEffect(() => {
+    dispatch(createHistory({ videoId, accessToken }));
+  }, []);
   if (video.loading) return <Loading />;
   if (!video.singleVideo)
     return (

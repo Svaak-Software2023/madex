@@ -7,6 +7,7 @@ import { MdOutlineDownloading } from "react-icons/md";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { createDownload } from "../../redux/featurs/downloads";
 
 const VideoPlayer = ({ data }) => {
   const dispatch = useDispatch();
@@ -22,10 +23,6 @@ const VideoPlayer = ({ data }) => {
   };
 
   const [view, setView] = useState("");
-
-  const accessToken = JSON.parse(localStorage.getItem("accessToken"));
-  const token = accessToken.accessToken;
-  const videoId = data._id;
 
   useEffect(() => {
     if (data.views >= 1000 && data.views < 1000000)

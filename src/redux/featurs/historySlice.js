@@ -17,10 +17,12 @@ export const getAllHistory = createAsyncThunk(
 
 export const createHistory = createAsyncThunk(
   "history/createHistory",
-  async ({ token, id }) => {
-    console.log(id);
+  async ({ videoId, accessToken }) => {
+    console.log("Id:", videoId);
+    console.log("AccessToken:", accessToken);
     try {
-      const response = await api.createHistory({ token, id });
+      const response = await api.createHistory({ videoId, accessToken });
+      console.log(response);
       return response;
     } catch (error) {
       console.log(error);

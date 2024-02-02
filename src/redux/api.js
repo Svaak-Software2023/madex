@@ -85,14 +85,20 @@ export const deleteAllHistory = async (token) => {
   }
 };
 
-export const createHistory = async ({ token, id }) => {
+export const createHistory = async ({ videoId, accessToken }) => {
+  console.log("AccessToken:", accessToken);
   const headers = {
-    Authorization: `Bearer ${token}`,
+    Authorization: accessToken,
   };
   try {
-    const res = await API.post(`/history/${id}`, {
-      headers: headers,
-    });
+    const res = await API.post(
+      `/history/${videoId}`,
+      {},
+      {
+        headers: headers,
+      }
+    );
+    console.log(res);
     return res;
   } catch (error) {
     console.error("Error creating history:", error);
