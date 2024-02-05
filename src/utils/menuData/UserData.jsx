@@ -36,7 +36,7 @@ const menuData = [
     icon: <MdOutlineCardMembership />,
     line: true,
   },
- 
+
   {
     id: 4,
     url: "/your-channel",
@@ -64,7 +64,7 @@ const menuData = [
   },
   {
     id: 8,
-    url: "/",
+    url: "/playlist",
     text: "Playlist",
     icon: <MdHistoryEdu />,
     line: true,

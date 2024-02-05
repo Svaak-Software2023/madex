@@ -10,6 +10,7 @@ import WatchLater from "../pages/watchLater/WatchLater";
 import YourChannel from "../pages/yourChannel/YourChannel";
 import History from "../pages/history/History";
 import ShortsPlayer from "../components/shortsPlayer/ShortsPlayer";
+import Playlist from "../pages/playlist/Playlist";
 
 const UserRoutes = [
   { name: "404 Error", path: "*", element: <Error404 />, isPrivate: false },
@@ -64,6 +65,12 @@ const UserRoutes = [
     isPrivate: true,
   },
   { name: "History", path: "/cronicle", element: <History />, isPrivate: true },
+  {
+    name: "Playlist",
+    path: "/playlist",
+    element: <Playlist />,
+    isPrivate: true,
+  },
 ];
 
 export default UserRoutes;

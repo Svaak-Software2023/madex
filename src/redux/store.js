@@ -4,11 +4,11 @@ import videoSlice from "./featurs/videoSlice";
 import categorySlice from "./featurs/categorySlice";
 import channelSlice from "./featurs/channelSlice";
 import downloads from "./featurs/downloads";
-import watchLater from "./featurs/watchLater"
+import watchLater from "./featurs/watchLater";
 import GlobalFunctionSlice from "../utils/globalFunction/GlobalFunctionSlice";
 
 import historySlice from "./featurs/historySlice";
-import likeDislikeSlice from "./featurs/likeDislikeSlice";
+import playlistSlice from "./featurs/playlistSlice";
 
 const store = configureStore({
   reducer: {
@@ -18,9 +18,9 @@ const store = configureStore({
     category: categorySlice,
     channel: channelSlice,
     downloads: downloads,
-    watchLater:watchLater,
+    watchLater: watchLater,
     history: historySlice,
-    likeDislike:likeDislikeSlice
+    playlist: playlistSlice,
   },
 });
 
