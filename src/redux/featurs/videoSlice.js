@@ -1,10 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api";
 
-export const getAllVideo = createAsyncThunk("video/getAll", async () => {
+export const getAllVideo = createAsyncThunk("video/getAll", async (pageValue) => {
     try {
-        const response = await api.getAllVideo()
-        console.log("Video",response);
+        const response = await api.getAllVideo(pageValue)
         return response.data
     } catch (error) {
         throw error.response.data
@@ -64,6 +63,7 @@ const videoSlice = createSlice({
   name: "video",
   initialState: {
     videoData: null,
+    categoryVideoData:null,
     singleVideo: null,
     message: "",
     error: null,
@@ -133,8 +133,7 @@ const videoSlice = createSlice({
         (state.loading = true), (state.message = ""), (state.error = null);
       })
       .addCase(getAllCategoryVideo.fulfilled, (state, action) => {
-        console.log(action);
-        (state.loading = false), (state.videoData = action.payload.data);
+        (state.loading = false), (state.categoryVideoData = action.payload.data);
         (state.message = action.payload.message), (state.error = null);
       })
       .addCase(getAllCategoryVideo.rejected, (state, action) => {

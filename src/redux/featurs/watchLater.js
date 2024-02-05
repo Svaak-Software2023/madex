@@ -28,7 +28,7 @@ export const deleteWatchLater = createAsyncThunk("delete/watchLater", async ({ v
         toast.success(response.data.message)
         return response.data
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         throw error.response.data
     }
 })
@@ -39,7 +39,7 @@ export const deleteAllWatchLater = createAsyncThunk("deleteAll/watchLater", asyn
         toast.success(response.data.message)
         return response.data
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         throw error.response.data
     }
 })

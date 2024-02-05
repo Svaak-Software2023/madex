@@ -8,6 +8,7 @@ import watchLater from "./featurs/watchLater"
 import GlobalFunctionSlice from "../utils/globalFunction/GlobalFunctionSlice";
 
 import historySlice from "./featurs/historySlice";
+import likeDislikeSlice from "./featurs/likeDislikeSlice";
 
 const store = configureStore({
   reducer: {
@@ -19,6 +20,7 @@ const store = configureStore({
     downloads: downloads,
     watchLater:watchLater,
     history: historySlice,
+    likeDislike:likeDislikeSlice
   },
 });
 

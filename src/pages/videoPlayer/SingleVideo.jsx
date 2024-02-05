@@ -15,7 +15,7 @@ const SingleVideo = () => {
   const { pathname } = useLocation();
 
   const token = JSON.parse(localStorage.getItem("accessToken"));
-  const accessToken = token.accessToken;
+  const accessToken = token?.accessToken;
 
   useEffect(() => {
     dispatch(getSingleVideo(videoId));
@@ -28,8 +28,9 @@ const SingleVideo = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(createHistory({ videoId, accessToken }));
+    token&&dispatch(createHistory({ videoId, accessToken }));
   }, []);
+
   if (video.loading) return <Loading />;
   if (!video.singleVideo)
     return (

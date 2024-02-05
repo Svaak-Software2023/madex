@@ -6,6 +6,7 @@ import {
   getAllCategoryVideo,
   getAllVideo,
 } from "../../redux/featurs/videoSlice";
+import { useNavigate } from "react-router-dom";
 
 function CategoreyMenu() {
   // dispach for call redux function 
@@ -23,6 +24,11 @@ function CategoreyMenu() {
     category.categoryData&& setData(category.categoryData)
   },[])
 
+  // set category data 
+  useEffect(()=>{
+    category.categoryData&& setData(category.categoryData)
+  },[category.categoryData])
+
   // call video api acording the category 
   const handleClick=(categoryId)=>{
     dispatch(getAllCategoryVideo(categoryId))
@@ -30,8 +36,9 @@ function CategoreyMenu() {
   };
 
   // call get all video api 
+  const navigate=useNavigate()
   const handlAllData = () => {
-    dispatch(getAllVideo());
+    window.location.reload();
   };
   
   return (
@@ -40,8 +47,7 @@ function CategoreyMenu() {
         <div className="categorey-menu-item px-2" onClick={handlAllData}>
           <span>All</span>
         </div>
-        {data &&
-          data.map((item) => (
+        {data?.map((item) => (
             <div
               className="categorey-menu-item "
               key={item._id}

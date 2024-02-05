@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "https://moviefam.com/api/v1"
-    // baseURL: "http://localhost:8000/api/v1"
+    // baseURL: "https://moviefam.com/api/v1"
+    baseURL: "http://localhost:8000/api/v1"
 })
 
 //User API's
@@ -15,7 +15,7 @@ export const createAccount = (formData) =>
   });
 
 // Video API's 
-export const getAllVideo = () => API.get("/videos/all-videos")
+export const getAllVideo = (pageValue=1,limit=12) => API.get(`/videos/all-videos?page=${pageValue}&limit=${limit}`)
 export const getSingleVideo = (videoId) => API.get(`/videos/get-single-video/${videoId}`)
 export const videoUpload = ({formData,setPercentage}) => API.post("/videos/add-video", formData, {
     onUploadProgress: (progressEvent) => {
@@ -28,6 +28,21 @@ export const videoUpload = ({formData,setPercentage}) => API.post("/videos/add-v
 
 export const getAllChanelVideo = (channelId) => API.get(`/videos/getByChannelId/${channelId}`)
 export const getAllCategoryVideo = (categoryId) => API.get(`/videos/getByCategoryId/${categoryId}`)
+
+// video like deslike api 
+export const getlikes =(videoId)=>API.get(`/video/getAllLike/${videoId}`)
+export const createLike =({userId,videoId,accessToken})=>API.post(`/video/like/${videoId}/${userId}`,null,{
+  headers:{
+    Authorization:accessToken
+  }
+})
+
+export const createDisLike =({userId,videoId,accessToken})=>API.post(`/video/dislike/${videoId}/${userId}`,null,{
+  headers:{
+    Authorization:accessToken
+  }
+})
+
 
 // Category API
 export const getAllCategory = () => API.get("/category/get-category");
@@ -87,7 +102,6 @@ export const getHistory = async (token) => {
     const res = await API.get("/history/get-all-history", { headers: headers });
     return res.data;
   } catch (err) {
-    console.error("Error fetching history:", err);
     throw err;
   }
 };
@@ -102,7 +116,6 @@ export const deleteSingleHistory = async ({ token, id }) => {
     });
     return res.data;
   } catch (err) {
-    console.error("Error fetching history:", err);
     throw err;
   }
 };
@@ -117,14 +130,13 @@ export const deleteAllHistory = async (token) => {
     });
     return res.data;
   } catch (err) {
-    console.error("Error Deleting All history:", err);
+   
     throw err;
   }
 };
 
 // history
 export const createHistory = async ({ videoId, accessToken }) => {
-  console.log("AccessToken:", accessToken);
   const headers = {
     Authorization: accessToken,
   };
@@ -136,10 +148,10 @@ export const createHistory = async ({ videoId, accessToken }) => {
         headers: headers,
       }
     );
-    console.log(res);
+
     return res;
   } catch (error) {
-    console.error("Error creating history:", error);
+
     throw error;
   }
 };

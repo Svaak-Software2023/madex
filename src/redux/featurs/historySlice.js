@@ -6,10 +6,8 @@ export const getAllHistory = createAsyncThunk(
   async (token) => {
     try {
       const response = await api.getHistory(token);
-      console.log(response);
       return response;
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }
@@ -18,14 +16,10 @@ export const getAllHistory = createAsyncThunk(
 export const createHistory = createAsyncThunk(
   "history/createHistory",
   async ({ videoId, accessToken }) => {
-    console.log("Id:", videoId);
-    console.log("AccessToken:", accessToken);
     try {
       const response = await api.createHistory({ videoId, accessToken });
-      console.log(response);
       return response;
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }
@@ -34,13 +28,11 @@ export const createHistory = createAsyncThunk(
 export const deleteHistory = createAsyncThunk(
   "history/deleteHistory",
   async ({ token, id }) => {
-    console.log(id);
     try {
       const delResponse = await api.deleteSingleHistory({ token, id });
       const response = await api.getHistory(token);
       return response;
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }
@@ -51,11 +43,8 @@ export const deleteAllHistory = createAsyncThunk(
   async (token) => {
     try {
       const response = await api.deleteAllHistory(token);
-
-      console.log(response);
       return response;
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }
