@@ -57,18 +57,21 @@ const VideoPlayer = ({ data,pathname }) => {
   const navigate = useNavigate()
   const user = useSelector((state) => state.auth.user)
   const accessToken = useSelector((state) => state.auth.data?.accessToken)
-  const subscribed = useSelector((state) => state.subscriber.isSubscribed)
 
-
+  const[subscribed,setSubscribed]=useState(null)
+  const subscribeState = useSelector((state) => state.subscriber.isSubscribed)
+ 
 
   useEffect(() => {
     dispatch(getlikes(data?._id));
     user && isSubscribe(user?._id, data.channelData._id, accessToken)
+    subscribeState&&setSubscribed(subscribeState)
   }, []);
 
   useEffect(() => {
     dispatch(getlikes(data?._id));
     user && isSubscribe(user?._id, data.channelData._id, accessToken)
+    subscribeState&&setSubscribed(subscribeState)
   }, [pathname]);
 
   // like handler function 
@@ -93,6 +96,7 @@ const VideoPlayer = ({ data,pathname }) => {
 
   // handle subscribe function 
   const handlesubscribe = () => {
+    subscribeState&&setSubscribed(subscribeState)
     if (!user) navigate("/login")
     else dispatch(createSubscribe({ userId: user._id, channelId: data.channelData._id, accessToken }))
   }
