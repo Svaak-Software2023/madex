@@ -65,7 +65,7 @@ function VideoList({ data }) {
         {data &&
           data.map((item, i) => (
             <div key={i} className="video-list" style={style}>
-              <Link to={`/video/${item._id}`}>
+              <Link to={`/video/${item?._id}`}>
                 <div className="video-item">
                   <img
                     src={item.thumbnail}
@@ -82,21 +82,21 @@ function VideoList({ data }) {
                   </div>
                 )}
                 <div className="video-name">
-                  <Link to={`/video/${item._id}`}>
+                  <Link to={`/video/${item?._id}`}>
                     <h3>{item.title}</h3>
                   </Link>
                   {item.channelData && <p>{item.channelData.channelName}</p>}
                   <p>{item.views} views 3 hours ago</p>
                 </div>
                 <div className="video-more-option-button">
-                  <BsThreeDotsVertical onClick={() => openMore(item._id)} />
-                  {more === item._id && (
+                  <BsThreeDotsVertical onClick={() => openMore(item?._id)} />
+                  {more === item?._id && (
                     <div className="video-more-option">
                       <ul>
-                        <li onClick={() => handleWatchLater(item._id)}>
+                        <li onClick={() => handleWatchLater(item?._id)}>
                           Watch later
                         </li>
-                        <li onClick={() => openModal(item._id)}>
+                        <li onClick={() => openModal(item?._id)}>
                           Add to Playlist
                         </li>
 

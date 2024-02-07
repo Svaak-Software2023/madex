@@ -27,7 +27,7 @@ const PlaylistModal = (props) => {
   const dispatch = useDispatch();
 
   const accessToken = useSelector((state) => state.auth.data);
-  const userId = useSelector((state) => state.auth.user._id);
+  const userId = useSelector((state) => state.auth.user?._id);
 
   const { playlistData } = useSelector((state) => state.playlist);
 
