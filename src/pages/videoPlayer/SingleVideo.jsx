@@ -4,7 +4,7 @@ import RecommendList from "../../components/recommendList/recommendList";
 import CategoreyMenu from "../../components/categoreyMenu/CategoreyMenu";
 import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllVideo, getSingleVideo } from "../../redux/featurs/videoSlice";
+import { getAllVideo, getSingleVideo, viewCount } from "../../redux/featurs/videoSlice";
 import Loading from "../../assets/loader/Loading";
 import { createHistory } from "../../redux/featurs/historySlice";
 
@@ -20,15 +20,17 @@ const SingleVideo = () => {
   useEffect(() => {
     dispatch(getSingleVideo(videoId));
     dispatch(getAllVideo());
+    dispatch(viewCount(videoId))
+
   }, [pathname]);
 
   useEffect(() => {
-    dispatch(getSingleVideo(videoId));
+    dispatch(getSingleVideo(videoId))
     dispatch(getAllVideo());
   }, []);
 
   useEffect(() => {
-    token&&dispatch(createHistory({ videoId, accessToken }));
+    token && dispatch(createHistory({ videoId, accessToken }));
   }, []);
 
   if (video.loading) return <Loading />;
@@ -48,7 +50,7 @@ const SingleVideo = () => {
       <div className="">
         <div className="row m-0 p-0">
           <div className="videoPlayer col-lg-7 col-12 mt-3">
-            {video.singleVideo && <VideoPlayer data={video.singleVideo} />}
+            {video.singleVideo && <VideoPlayer data={video.singleVideo} pathname={pathname}/>}
           </div>
           <div className="video_list col-lg-5 col-12 m-0 p-0 mt-2">
             <CategoreyMenu />

@@ -9,19 +9,15 @@ import ReactPlayer from "react-player";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createDownload } from "../../redux/featurs/downloads";
-import {
-  createDisLike,
-  createLike,
-  getlikes,
-} from "../../redux/featurs/likeDislikeSlice";
+import { createDisLike, createLike, getlikes } from "../../redux/featurs/likeDislikeSlice";
+import { checkSubscribe, createSubscribe } from "../../redux/featurs/subscribeSlice";
 
-const VideoPlayer = ({ data }) => {
+const VideoPlayer = ({ data,pathname }) => {
   const dispatch = useDispatch();
 
   const handleDownload = (event) => {
     event.preventDefault();
     dispatch(createDownload(data._id));
-
     // Simulate download behavior
     const link = document.createElement("a");
     link.href = data.videoFile;
@@ -39,19 +35,43 @@ const VideoPlayer = ({ data }) => {
     else if (data.views > 1000000000)
       setView(`${Math.round(data.views / 1000000000)} B`);
     else setView(data.views);
-  }, []);
-  // like handler function
-
+  }, [data]);
+  
   const likeCount = useSelector((state) => state.likeDislike);
 
   useEffect(() => {
     dispatch(getlikes(data?._id));
   }, []);
 
-  const navigate = useNavigate();
-  const user = useSelector((state) => state.auth.user);
-  const accessToken = useSelector((state) => state.auth.data?.accessToken);
+  // check is subscribe or not function 
+  const isSubscribe = (userId, channelId, accessToken) => {
+    if (!user) {
+      navigate("/login")
+    }
+    else {
+      dispatch(checkSubscribe({ userId, channelId, accessToken }))
+    }
+  }
 
+
+  const navigate = useNavigate()
+  const user = useSelector((state) => state.auth.user)
+  const accessToken = useSelector((state) => state.auth.data?.accessToken)
+  const subscribed = useSelector((state) => state.subscriber.isSubscribed)
+
+
+
+  useEffect(() => {
+    dispatch(getlikes(data?._id));
+    user && isSubscribe(user?._id, data.channelData._id, accessToken)
+  }, []);
+
+  useEffect(() => {
+    dispatch(getlikes(data?._id));
+    user && isSubscribe(user?._id, data.channelData._id, accessToken)
+  }, [pathname]);
+
+  // like handler function 
   const likehandler = (videoId) => {
     !user && navigate("/login");
     dispatch(createLike({ userId: user._id, videoId, accessToken })).then(
@@ -61,6 +81,7 @@ const VideoPlayer = ({ data }) => {
     );
   };
 
+  // dislike handler function 
   const dislikehandler = (videoId) => {
     !user && navigate("/login");
     dispatch(createDisLike({ userId: user._id, videoId, accessToken })).then(
@@ -69,6 +90,18 @@ const VideoPlayer = ({ data }) => {
       }
     );
   };
+
+  // handle subscribe function 
+  const handlesubscribe = () => {
+    if (!user) navigate("/login")
+    else dispatch(createSubscribe({ userId: user._id, channelId: data.channelData._id, accessToken }))
+  }
+
+  // handle subscribe function 
+  const handleUnsubscribe = () => {
+    if (!user) navigate("/login")
+    else dispatch(createSubscribe({ userId: user._id, channelId: data.channelData._id, accessToken }))
+  }
 
   return (
     <>
@@ -97,9 +130,14 @@ const VideoPlayer = ({ data }) => {
               <h3>{data?.channelData.channelName}</h3>
               <p>{view} Views • 3 months ago</p>
             </div>
-            <div className="subscribe-button">
-              <p>Subscribe</p>
+           { subscribed
+           ?
+           <div className="subscribe-button" >
+              <p style={{background:"grey",color:"#fff"}} onClick={handleUnsubscribe}>Subscribed</p>
             </div>
+            :<div className="subscribe-button" >
+              <p onClick={handlesubscribe}>Subscribe</p>
+            </div>}
           </div>
           <div className="more-button-in-video">
             <div className="like-dislike ">

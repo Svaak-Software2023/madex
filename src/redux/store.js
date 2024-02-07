@@ -9,6 +9,8 @@ import GlobalFunctionSlice from "../utils/globalFunction/GlobalFunctionSlice";
 
 import historySlice from "./featurs/historySlice";
 import playlistSlice from "./featurs/playlistSlice";
+import likeDislikeSlice from "./featurs/likeDislikeSlice";
+import subscribeSlice from "./featurs/subscribeSlice";
 
 const store = configureStore({
   reducer: {
@@ -21,6 +23,8 @@ const store = configureStore({
     watchLater: watchLater,
     history: historySlice,
     playlist: playlistSlice,
+    likeDislike:likeDislikeSlice,
+    subscriber:subscribeSlice
   },
 });
 

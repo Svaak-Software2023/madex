@@ -56,7 +56,7 @@ const likeDislikeSlice = createSlice({
                 state.loading = true
             })
             .addCase(getlikes.fulfilled, (state, action) => {
-                state.like = action.payload.data[0].likes
+                state.like = action.payload?.data[0]?.likes
                 state.dislike = null
                 state.message = action.payload
                 state.error = null

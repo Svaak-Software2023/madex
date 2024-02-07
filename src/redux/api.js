@@ -49,6 +49,33 @@ export const createDisLike = ({ userId, videoId, accessToken }) =>
       Authorization: accessToken,
     },
   });
+// video view api 
+export const viewCount=(videoId)=>API.patch(`/videos/view/${videoId}`)
+
+
+
+
+// subccribe api 
+export const checkisSubscribe=({userId,channelId,accessToken})=>API.get(`/subscriptions/check-subscribe/${userId}/${channelId}`,null,
+{
+  headers:{
+    Authorization:accessToken
+  }
+})
+
+export const subscribe=({userId,channelId,accessToken})=>API.post(`/subscriptions/add-subscription/${userId}/${channelId}`,null,
+{
+  headers:{
+    Authorization:accessToken
+  }
+})
+
+export const unSubscribe=({userId,channelId,accessToken})=>API.post(`/subscriptions/add-subscription/${userId}/${channelId}`,null,
+{
+  headers:{
+    Authorization:accessToken
+  }
+})
 
 // Category API
 export const getAllCategory = () => API.get("/category/get-category");

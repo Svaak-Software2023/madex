@@ -2,12 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api";
 
 export const getAllVideo = createAsyncThunk("video/getAll", async (pageValue) => {
-    try {
-        const response = await api.getAllVideo(pageValue)
-        return response.data
-    } catch (error) {
-        throw error.response.data
-    }
+  try {
+    const response = await api.getAllVideo(pageValue)
+    return response.data
+  } catch (error) {
+    throw error.response.data
+  }
 })
 
 export const getSingleVideo = createAsyncThunk(
@@ -15,6 +15,18 @@ export const getSingleVideo = createAsyncThunk(
   async (videoId) => {
     try {
       const response = await api.getSingleVideo(videoId);
+      return response.data;
+    } catch (error) {
+      throw error.response.data;
+    }
+  }
+);
+
+export const viewCount = createAsyncThunk(
+  "video/view-count",
+  async (videoId) => {
+    try {
+      const response = await api.viewCount(videoId);
       return response.data;
     } catch (error) {
       throw error.response.data;
@@ -35,15 +47,15 @@ export const videoUpload = createAsyncThunk(
   }
 );
 
-export const getAllChanelVideo = createAsyncThunk("channel/video",async (chanelId)=>{
-    try {
-      const response = await api.getAllChanelVideo(chanelId);
-      // console.log(response);
-      return response.data;
-    } catch (error) {
-      throw error.response.data;
-    }
+export const getAllChanelVideo = createAsyncThunk("channel/video", async (chanelId) => {
+  try {
+    const response = await api.getAllChanelVideo(chanelId);
+    // console.log(response);
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
   }
+}
 );
 
 export const getAllCategoryVideo = createAsyncThunk(
@@ -63,7 +75,7 @@ const videoSlice = createSlice({
   name: "video",
   initialState: {
     videoData: null,
-    categoryVideoData:null,
+    categoryVideoData: null,
     singleVideo: null,
     message: "",
     error: null,
@@ -98,9 +110,21 @@ const videoSlice = createSlice({
         state.message = "";
         state.error = action.error;
       })
+      // view count 
+
+      .addCase(viewCount.pending, (state, action) => {
+        (state.loading = true), (state.message = ""), (state.error = null);
+      })
+      .addCase(viewCount.fulfilled, (state, action) => {
+        (state.message = action.payload.message), (state.error = null);
+      })
+      .addCase(viewCount.rejected, (state, action) => {
+        (state.loading = false), (state.videoData = null);
+        state.message = "";
+        state.error = action.error;
+      })
 
       // upload video
-
       .addCase(videoUpload.pending, (state, action) => {
         (state.loading = true), (state.message = ""), (state.error = null);
       })
