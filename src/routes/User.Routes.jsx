@@ -11,6 +11,7 @@ import YourChannel from "../pages/yourChannel/YourChannel";
 import History from "../pages/history/History";
 import ShortsPlayer from "../components/shortsPlayer/ShortsPlayer";
 import Playlist from "../pages/playlist/Playlist";
+import PlaylistVideo from "../pages/playlist/PlaylistVideo";
 
 const UserRoutes = [
   { name: "404 Error", path: "*", element: <Error404 />, isPrivate: false },
@@ -69,6 +70,12 @@ const UserRoutes = [
     name: "Playlist",
     path: "/playlist",
     element: <Playlist />,
+    isPrivate: true,
+  },
+  {
+    name: "Playlist videos",
+    path: "/playlistVideo/:playlistId",
+    element: <PlaylistVideo />,
     isPrivate: true,
   },
 ];

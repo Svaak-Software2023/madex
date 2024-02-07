@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api";
+import { toast } from "react-toastify";
 
 export const createPLaylist = createAsyncThunk(
   "create/playlist",
@@ -48,6 +49,35 @@ export const addVideoToPLaylist = createAsyncThunk(
   }
 );
 
+export const deletePlaylist = createAsyncThunk(
+  "delete/playlist",
+  async ({ playListId, accessToken }) => {
+    try {
+      const response = await api.deletePLaylist({ playListId, accessToken });
+      toast("Delete Successfully");
+      return response.data;
+    } catch (error) {
+      throw error.response;
+    }
+  }
+);
+
+export const updatePlaylist = createAsyncThunk(
+  "update/playlist",
+  async ({ playListId, playlistData, accessToken }) => {
+    try {
+      const response = await api.updatePLaylist({
+        playListId,
+        playlistData,
+        accessToken,
+      });
+      return response.data;
+    } catch (error) {
+      throw error.response;
+    }
+  }
+);
+
 const playlist = createSlice({
   name: "playlist",
   initialState: {
@@ -87,6 +117,28 @@ const playlist = createSlice({
         state.loading = false;
       })
       .addCase(addVideoToPLaylist.rejected, (state, action) => {
+        (state.loading = false),
+          (state.error = action.error),
+          (state.message = action.payload?.statusCode.message);
+      })
+      .addCase(deletePlaylist.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deletePlaylist.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(deletePlaylist.rejected, (state, action) => {
+        (state.loading = false),
+          (state.error = action.error),
+          (state.message = action.payload?.statusCode.message);
+      })
+      .addCase(updatePlaylist.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(updatePlaylist.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(updatePlaylist.rejected, (state, action) => {
         (state.loading = false),
           (state.error = action.error),
           (state.message = action.payload?.statusCode.message);

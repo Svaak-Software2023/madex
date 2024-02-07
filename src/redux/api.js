@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 import axios from "axios";
 
 const API = axios.create({
@@ -179,6 +180,24 @@ export const addVideoPLaylist = ({ playlistId, videoId, accessToken }) =>
   API.post(
     `/playlists/${playlistId}/videos`,
     { videoId },
+    {
+      headers: {
+        Authorization: accessToken,
+      },
+    }
+  );
+
+export const deletePLaylist = ({ playListId, accessToken }) =>
+  API.delete(`/playlists/${playListId}`, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });
+
+export const updatePLaylist = ({ playListId, playlistData, accessToken }) =>
+  API.patch(
+    `/playlists/${playListId}`,
+    { playlistData },
     {
       headers: {
         Authorization: accessToken,

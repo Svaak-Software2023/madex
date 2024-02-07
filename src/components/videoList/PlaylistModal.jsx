@@ -22,12 +22,12 @@ const customStyles = {
 };
 
 const PlaylistModal = (props) => {
+  // eslint-disable-next-line react/prop-types
   const { closeModal, afterOpenModal, modalIsOpen, videoId } = props;
   const dispatch = useDispatch();
 
   const accessToken = useSelector((state) => state.auth.data);
   const userId = useSelector((state) => state.auth.user._id);
-  console.log(userId);
 
   const { playlistData } = useSelector((state) => state.playlist);
 

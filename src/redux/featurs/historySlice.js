@@ -8,7 +8,7 @@ export const getAllHistory = createAsyncThunk(
       const response = await api.getHistory(token);
       return response;
     } catch (error) {
-      throw error;
+      throw error.response;
     }
   }
 );
@@ -20,7 +20,7 @@ export const createHistory = createAsyncThunk(
       const response = await api.createHistory({ videoId, accessToken });
       return response;
     } catch (error) {
-      throw error;
+      throw error.response;
     }
   }
 );
@@ -30,10 +30,11 @@ export const deleteHistory = createAsyncThunk(
   async ({ token, id }) => {
     try {
       const delResponse = await api.deleteSingleHistory({ token, id });
+      console.log(delResponse);
       const response = await api.getHistory(token);
       return response;
     } catch (error) {
-      throw error;
+      throw error.response;
     }
   }
 );
@@ -45,7 +46,7 @@ export const deleteAllHistory = createAsyncThunk(
       const response = await api.deleteAllHistory(token);
       return response;
     } catch (error) {
-      throw error;
+      throw error.response;
     }
   }
 );
@@ -67,7 +68,7 @@ const historySlice = createSlice({
       })
       .addCase(getAllHistory.fulfilled, (state, action) => {
         state.loading = false;
-        state.historyData = action.payload.data.history;
+        state.historyData = action.payload?.data.history;
         state.error = null;
       })
       .addCase(getAllHistory.rejected, (state, action) => {
@@ -85,14 +86,14 @@ const historySlice = createSlice({
       })
       .addCase(deleteHistory.rejected, (state, action) => {
         state.loading = false;
-        state.historyData =null;
+        state.historyData = null;
         state.error = action.error;
       })
       .addCase(deleteAllHistory.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(deleteAllHistory.fulfilled, (state, action) => {
+      .addCase(deleteAllHistory.fulfilled, (state) => {
         state.loading = false;
         state.historyData = null;
         state.error = null;
@@ -107,7 +108,7 @@ const historySlice = createSlice({
       })
       .addCase(createHistory.fulfilled, (state, action) => {
         state.loading = false;
-        state.historyData = action.payload.data.history;
+        state.historyData = action.payload?.data.history;
         state.error = null;
       })
       .addCase(createHistory.rejected, (state, action) => {
