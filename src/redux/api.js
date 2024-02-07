@@ -16,7 +16,7 @@ export const createAccount = (formData) =>
   });
 
 // Video API's
-export const getAllVideo = () => API.get("/videos/all-videos");
+export const getAllVideo = (pageValue=1,limit=12) => API.get(`/videos/all-videos?page=${pageValue}&limit=${limit}`);
 export const getSingleVideo = (videoId) =>
   API.get(`/videos/get-single-video/${videoId}`);
 export const videoUpload = ({ formData, setPercentage }) =>
