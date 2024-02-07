@@ -1,4 +1,4 @@
-.container {
+.modal-container {
   padding-block: 20px;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@
   cursor: pointer;
 }
 
-.container .playlist_list {
+.modal-container .playlist_list {
   list-style: none;
   padding: 0;
   padding-left: 10px;
@@ -29,40 +29,40 @@
   flex-direction: column;
   gap: 12px;
 }
-.container .playlist_list .playlist_item {
+.modal-container .playlist_list .playlist_item {
   line-height: 30px;
 }
 
-.container form {
+.modal-container form {
   display: flex;
   flex-direction: column;
 }
-.container form label {
+.modal-container form label {
   font-size: 0.9rem;
   font-weight: 500;
   color: black;
 }
-.container form input {
+.modal-container form input {
   outline: none;
   border: none;
   border-bottom: 1px solid #646161;
 }
-.container form input::placeholder {
+.modal-container form input::placeholder {
   font-size: 0.9rem;
   color: #999;
   transition: color 0.3s ease;
 }
-.container form input:focus {
+.modal-container form input:focus {
   border-bottom: 2px solid #4f4e4e;
 }
-.container form input:focus::placeholder {
+.modal-container form input:focus::placeholder {
   color: white;
 }
-.container button {
+.modal-container button {
   border: none;
   background-color: transparent;
 }
-.container .create_button {
+.modal-container .create_button {
   color: red;
   text-align: end;
 }

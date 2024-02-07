@@ -95,7 +95,7 @@ const PlaylistModal = (props) => {
         style={customStyles}
         contentLabel="Channel Modal"
       >
-        <div className="container">
+        <div className="modal-container">
           <div className="modal_header">
             <p>Add Video to...</p>
             <MdClose onClick={closeModal} />

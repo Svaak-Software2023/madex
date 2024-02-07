@@ -93,12 +93,14 @@ function VideoList({ data }) {
                   {more === item?._id && (
                     <div className="video-more-option">
                       <ul>
+                       {accessToken&& <>
                         <li onClick={() => handleWatchLater(item?._id)}>
                           Watch later
                         </li>
                         <li onClick={() => openModal(item?._id)}>
                           Add to Playlist
                         </li>
+                       </>}
 
                         <li>Share</li>
                       </ul>
