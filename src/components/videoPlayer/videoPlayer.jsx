@@ -15,15 +15,39 @@ import { checkSubscribe, createSubscribe } from "../../redux/featurs/subscribeSl
 const VideoPlayer = ({ data, pathname }) => {
   const dispatch = useDispatch();
 
-  const handleDownload = (event) => {
+  const handleDownload = async (event) => {
     event.preventDefault();
     dispatch(createDownload(data._id));
-    // Simulate download behavior
-    const link = document.createElement("a");
-    link.href = data.videoFile;
-    link.download = data.title;
-    link.click();
+  
+    try {
+      // Fetch the media file
+      const response = await fetch(data.videoFile);
+      const blob = await response.blob();
+  
+      // Create a temporary URL for the Blob
+      const url = window.URL.createObjectURL(blob);
+  
+      // Create a hidden anchor element
+      const link = document.createElement("a");
+      link.href = url;
+      link.download =`${data.title}.mp4`;
+  
+      // Append the link to the document body
+      document.body.appendChild(link);
+  
+      // Trigger the click event on the link
+      link.click();
+  
+      // Remove the link and revoke the URL after download starts
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error downloading media file:", error);
+    }
   };
+  
+  
+  
 
   const [view, setView] = useState("");
 
@@ -70,7 +94,6 @@ const VideoPlayer = ({ data, pathname }) => {
   useEffect(() => {
     dispatch(getlikes(data?._id));
     isSubscribe(user?._id, data.channelData._id, accessToken)
-    alert("click")
   }, []);
 
   useEffect(() => {
@@ -170,13 +193,6 @@ const VideoPlayer = ({ data, pathname }) => {
                 </>
               )}
             </div>
-
-            {/* <a download={data.title} href={data.videoFile} type="video/mp4">
-              <div className="download-video">
-                <MdOutlineDownloading />
-                <span>Download</span>
-              </div>
-            </a> */}
             <Link to="#" onClick={handleDownload}>
               <div className="download-video">
                 <MdOutlineDownloading />

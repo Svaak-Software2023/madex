@@ -29,8 +29,7 @@ export const deleteHistory = createAsyncThunk(
   "history/deleteHistory",
   async ({ token, id }) => {
     try {
-      const delResponse = await api.deleteSingleHistory({ token, id });
-      // console.log(delResponse);
+      const delResponse = await api.deleteSingleHistory( token, id );
       const response = await api.getHistory(token);
       return response;
     } catch (error) {
@@ -43,9 +42,11 @@ export const deleteAllHistory = createAsyncThunk(
   "history/deleteAllHistory",
   async (token) => {
     try {
+      console.log(token);
       const response = await api.deleteAllHistory(token);
       return response;
     } catch (error) {
+      console.log(error);
       throw error.response;
     }
   }
@@ -75,13 +76,27 @@ const historySlice = createSlice({
         state.loading = false;
         state.error = action.error;
       })
+      
+      .addCase(createHistory.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(createHistory.fulfilled, (state, action) => {
+        state.loading = false;
+        state.historyData = action.payload?.data.history;
+        state.error = null;
+      })
+      .addCase(createHistory.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error;
+      })
       .addCase(deleteHistory.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(deleteHistory.fulfilled, (state, action) => {
         state.loading = false;
-        state.historyData = action.payload.data.history;
+        state.historyData = action.payload?.data.history;
         state.error = null;
       })
       .addCase(deleteHistory.rejected, (state, action) => {
@@ -102,19 +117,6 @@ const historySlice = createSlice({
         state.loading = false;
         state.error = action.error;
       })
-      .addCase(createHistory.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(createHistory.fulfilled, (state, action) => {
-        state.loading = false;
-        state.historyData = action.payload?.data.history;
-        state.error = null;
-      })
-      .addCase(createHistory.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error;
-      });
   },
 });
 

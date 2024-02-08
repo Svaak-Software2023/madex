@@ -6,7 +6,6 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import UserRoutes from './routes/User.Routes'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from './redux/featurs/authSlice'
-// import AdminRouting from './Admin/AdminRouting'
 import PrivateRoute from './auth/PrivateRoute'
 import { setmenu } from './utils/globalFunction/GlobalFunctionSlice'
 import { ToastContainer} from 'react-toastify';
@@ -26,7 +25,7 @@ function App() {
 
   const openSidebar = () => {
     dispatch(setmenu(!isSidebarOpen));
-    console.log("called:",isSidebarOpen);
+    // console.log("called:",isSidebarOpen);
   };
 
   // set login user value

@@ -1,9 +1,8 @@
-/* eslint-disable no-useless-catch */
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://moviefam.com/api/v1"
-  // baseURL: "http://localhost:8000/api/v1",
+  // baseURL: "https://moviefam.com/api/v1"
+  baseURL: "http://localhost:8000/api/v1",
 });
 
 //User API's
@@ -16,7 +15,8 @@ export const createAccount = (formData) =>
   });
 
 // Video API's
-export const getAllVideo = (pageValue=1,limit=12) => API.get(`/videos/all-videos?page=${pageValue}&limit=${limit}`);
+export const getAllVideo = (pageValue = 1, limit = 12) =>
+  API.get(`/videos/all-videos?page=${pageValue}&limit=${limit}`);
 export const getSingleVideo = (videoId) =>
   API.get(`/videos/get-single-video/${videoId}`);
 export const videoUpload = ({ formData, setPercentage }) =>
@@ -49,33 +49,30 @@ export const createDisLike = ({ userId, videoId, accessToken }) =>
       Authorization: accessToken,
     },
   });
-// video view api 
-export const viewCount=(videoId)=>API.patch(`/videos/view/${videoId}`)
+// video view api
+export const viewCount = (videoId) => API.patch(`/videos/view/${videoId}`);
 
+// subccribe api
+export const checkisSubscribe = ({ userId, channelId, accessToken }) =>
+  API.get(`/subscriptions/check-subscribe/${userId}/${channelId}`,{
+    headers: {
+      Authorization: accessToken,
+    },
+  });
 
+export const subscribe = ({ userId, channelId, accessToken }) =>
+  API.post(`/subscriptions/add-subscription/${userId}/${channelId}`, null, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });
 
-
-// subccribe api 
-export const checkisSubscribe=({userId,channelId,accessToken})=>API.get(`/subscriptions/check-subscribe/${userId}/${channelId}`,null,
-{
-  headers:{
-    Authorization:accessToken
-  }
-})
-
-export const subscribe=({userId,channelId,accessToken})=>API.post(`/subscriptions/add-subscription/${userId}/${channelId}`,null,
-{
-  headers:{
-    Authorization:accessToken
-  }
-})
-
-export const unSubscribe=({userId,channelId,accessToken})=>API.post(`/subscriptions/add-subscription/${userId}/${channelId}`,null,
-{
-  headers:{
-    Authorization:accessToken
-  }
-})
+export const unSubscribe = ({ userId, channelId, accessToken }) =>
+  API.post(`/subscriptions/add-subscription/${userId}/${channelId}`, null, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });
 
 // Category API
 export const getAllCategory = () => API.get("/category/get-category");
@@ -142,77 +139,47 @@ export const getHistory = async (token) => {
   }
 };
 
-export const deleteSingleHistory = async ({ token, id }) => {
-  const headers = {
-    Authorization: `Bearer ${token}`,
-  };
-  try {
-    const res = await API.delete(`/history/deleteByHistoryId/${id}`, {
-      headers: headers,
-    });
-    return res.data;
-  } catch (err) {
-    throw err;
+export const deleteSingleHistory = (accessToken,id) => API.delete(`/history/deleteByHistoryId/${id}`, {
+  headers: {
+    Authorization: accessToken,
   }
-};
+});
 
-export const deleteAllHistory = async (token) => {
-  const headers = {
-    Authorization: `Bearer ${token}`,
-  };
-  try {
-    const res = await API.delete(`/history/delete-all-history`, {
-      headers: headers,
-    });
-    return res.data;
-  } catch (err) {
-    throw err;
+
+export const deleteAllHistory = (accessToken) => API.delete(`/history/delete-all-history`, {
+  headers: {
+    Authorization: accessToken,
   }
-};
+});
 
 // history
-export const createHistory = async ({ videoId, accessToken }) => {
-  const headers = {
-    Authorization: accessToken,
-  };
-  try {
-    const res = await API.post(
-      `/history/${videoId}`,
-      {},
-      {
-        headers: headers,
-      }
-    );
-
-    return res;
-  } catch (error) {
-    throw error;
-  }
-};
-
-//PLaylist
-export const createPaylist = ({ videoId, accessToken, formData }) =>
-  API.post(`/playlists/videos/${videoId}`, formData, {
+export const createHistory = ({ videoId, accessToken }) => API.post(`/history/${videoId}`, null,
+  {
     headers: {
       Authorization: accessToken,
-    },
+    }
   });
+
+//PLaylist
+export const createPaylist = ({ videoId, accessToken, formData }) => API.post(`/playlists/videos/${videoId}`, formData, {
+  headers: {
+    Authorization: accessToken,
+  },
+});
 
 //Get PLaylist Data
 export const getPlaylist = ({ userId }) =>
   API.get(`/playlists/users/${userId}`);
 
 //Add Video To Playlist
-export const addVideoPLaylist = ({ playlistId, videoId, accessToken }) =>
-  API.post(
-    `/playlists/${playlistId}/videos`,
-    { videoId },
-    {
-      headers: {
-        Authorization: accessToken,
-      },
-    }
-  );
+export const addVideoPLaylist = ({ playlistId, videoId, accessToken }) => API.post(`/playlists/${playlistId}/videos`,
+  { videoId },
+  {
+    headers: {
+      Authorization: accessToken,
+    },
+  }
+);
 
 export const deletePLaylist = ({ playListId, accessToken }) =>
   API.delete(`/playlists/${playListId}`, {
