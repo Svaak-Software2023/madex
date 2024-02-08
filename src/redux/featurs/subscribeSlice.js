@@ -26,11 +26,11 @@ export const createSubscribe = createAsyncThunk("create/subscribe", async ({ use
 export const unSubscribe = createAsyncThunk("delete/subscribe", async ({ userId, channelId, accessToken }) => {
     try {
         const response = await api.unSubscribe({ userId, channelId, accessToken })
-        console.log("response", response);
+        // console.log("response", response);
         return response.data
     } catch (error) {
     //   toast.error(error.response.data.statusCode.message)
-    console.log("error", error);
+    // console.log("error", error);
     
         throw error
     }
