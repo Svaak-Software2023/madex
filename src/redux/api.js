@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  // baseURL: "https://moviefam.com/api/v1"
-  baseURL: "http://localhost:8000/api/v1",
+  baseURL: "https://moviefam.com/api/v1"
+  // baseURL: "http://localhost:8000/api/v1",
 });
 
 //User API's
@@ -68,7 +68,7 @@ export const subscribe = ({ userId, channelId, accessToken }) =>
   });
 
 export const unSubscribe = ({ userId, channelId, accessToken }) =>
-  API.post(`/subscriptions/add-subscription/${userId}/${channelId}`, null, {
+  API.delete(`/subscriptions/unsubscribe/${userId}/${channelId}`, {
     headers: {
       Authorization: accessToken,
     },

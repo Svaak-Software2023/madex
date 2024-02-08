@@ -22,6 +22,19 @@ export const createSubscribe = createAsyncThunk("create/subscribe", async ({ use
         throw error
     }
 })
+
+export const unSubscribe = createAsyncThunk("delete/subscribe", async ({ userId, channelId, accessToken }) => {
+    try {
+        const response = await api.unSubscribe({ userId, channelId, accessToken })
+        console.log("response", response);
+        return response.data
+    } catch (error) {
+    //   toast.error(error.response.data.statusCode.message)
+    console.log("error", error);
+    
+        throw error
+    }
+})
 const subscribeSlice = createSlice({
     name: "subscribe",
     initialState: {
@@ -59,6 +72,22 @@ const subscribeSlice = createSlice({
                 state.loading = false
             })
             .addCase(checkSubscribe.rejected, (state, action) => {
+                state.message = null
+                state.error = action.error.message
+                state.loading = false
+            })
+            .addCase(unSubscribe.pending, (state, action) => {
+                state.message = null
+                state.error = null
+                state.loading = true
+            })
+            .addCase(unSubscribe.fulfilled, (state, action) => {
+                // state.isSubscribed=action.payload.data.isSubscribed
+                state.message = action.payload
+                state.error = null
+                state.loading = false
+            })
+            .addCase(unSubscribe.rejected, (state, action) => {
                 state.message = null
                 state.error = action.error.message
                 state.loading = false

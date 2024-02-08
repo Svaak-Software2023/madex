@@ -14,7 +14,7 @@ export const getDownload = createAsyncThunk("get/download", async () => {
     }
 })
 
-export const createDownload = createAsyncThunk("create/download", async (videoId) => {
+export const createDownload = createAsyncThunk("create/download", async ({videoId,accessToken}) => {
    
     try {
         const response = await api.createDownloads({videoId,accessToken})

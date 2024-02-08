@@ -10,34 +10,38 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createDownload } from "../../redux/featurs/downloads";
 import { createDisLike, createLike, getlikes } from "../../redux/featurs/likeDislikeSlice";
-import { checkSubscribe, createSubscribe } from "../../redux/featurs/subscribeSlice";
+import { checkSubscribe, createSubscribe, unSubscribe } from "../../redux/featurs/subscribeSlice";
 
 const VideoPlayer = ({ data, pathname }) => {
   const dispatch = useDispatch();
 
+  const navigate = useNavigate()
+  const user = useSelector((state) => state.auth.user)
+  const accessToken = useSelector((state) => state.auth.data?.accessToken)
+
   const handleDownload = async (event) => {
     event.preventDefault();
-    dispatch(createDownload(data._id));
-  
+    accessToken && dispatch(createDownload({ videoId: data._id, accessToken }));
+    if (!accessToken) return navigate("/login")
     try {
       // Fetch the media file
       const response = await fetch(data.videoFile);
       const blob = await response.blob();
-  
+
       // Create a temporary URL for the Blob
       const url = window.URL.createObjectURL(blob);
-  
+
       // Create a hidden anchor element
       const link = document.createElement("a");
       link.href = url;
-      link.download =`${data.title}.mp4`;
-  
+      link.download = `${data.title}.mp4`;
+
       // Append the link to the document body
       document.body.appendChild(link);
-  
+
       // Trigger the click event on the link
       link.click();
-  
+
       // Remove the link and revoke the URL after download starts
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
@@ -45,9 +49,7 @@ const VideoPlayer = ({ data, pathname }) => {
       console.error("Error downloading media file:", error);
     }
   };
-  
-  
-  
+
 
   const [view, setView] = useState("");
 
@@ -69,26 +71,20 @@ const VideoPlayer = ({ data, pathname }) => {
 
   // check is subscribe or not function 
   const isSubscribe = (userId, channelId, accessToken) => {
-    if (!user) {
-      navigate("/login")
-    }
-    else {
+    if (user) {
       dispatch(checkSubscribe({ userId, channelId, accessToken })).then(() => {
-        setSubscribed(subscribeState)
+        setSubscribed(subscribeState.isSubscribed)
       })
     }
+    else {
+      setSubscribed(null)
+    }
   }
-
-
-  const navigate = useNavigate()
-  const user = useSelector((state) => state.auth.user)
-  const accessToken = useSelector((state) => state.auth.data?.accessToken)
-
   const [subscribed, setSubscribed] = useState(null)
-  const subscribeState = useSelector((state) => state.subscriber.isSubscribed)
+  const subscribeState = useSelector((state) => state.subscriber)
 
   useEffect(() => {
-    subscribeState && setSubscribed(subscribeState)
+    subscribeState.isSubscribed && setSubscribed(subscribeState.isSubscribed)
   })
 
   useEffect(() => {
@@ -125,15 +121,20 @@ const VideoPlayer = ({ data, pathname }) => {
 
   // handle subscribe function 
   const handlesubscribe = () => {
-    subscribeState && setSubscribed(subscribeState)
+    subscribeState.isSubscribed && setSubscribed(subscribeState.isSubscribed)
     if (!user) navigate("/login")
-    else dispatch(createSubscribe({ userId: user._id, channelId: data.channelData._id, accessToken }))
+    else dispatch(createSubscribe({ userId: user._id, channelId: data.channelData._id, accessToken })).then(() => {
+      setSubscribed(true)
+    })
   }
 
-  // handle subscribe function 
+  // handle unSubscribe function 
   const handleUnsubscribe = () => {
+
     if (!user) navigate("/login")
-    else dispatch(createSubscribe({ userId: user._id, channelId: data.channelData._id, accessToken }))
+    else dispatch(unSubscribe({ userId: user._id, channelId: data.channelData._id, accessToken })).then(() => {
+      setSubscribed(false)
+    })
   }
 
   return (
@@ -163,14 +164,15 @@ const VideoPlayer = ({ data, pathname }) => {
               <h3>{data?.channelData.channelName}</h3>
               <p>{view} Views • 3 months ago</p>
             </div>
-            {subscribed
-              ?
-              <div className="subscribe-button" >
-                <p style={{ background: "grey", color: "#fff" }} onClick={handleUnsubscribe}>Subscribed</p>
-              </div>
-              : <div className="subscribe-button" >
-                <p onClick={handlesubscribe}>Subscribe</p>
-              </div>}
+            {
+              subscribed
+                ?
+                <div className="subscribe-button" >
+                  <p style={{ background: "grey", color: "#fff" }} onClick={handleUnsubscribe}>Subscribed</p>
+                </div>
+                : <div className="subscribe-button" >
+                  <p onClick={handlesubscribe}>Subscribe</p>
+                </div>}
           </div>
           <div className="more-button-in-video">
             <div className="like-dislike ">
