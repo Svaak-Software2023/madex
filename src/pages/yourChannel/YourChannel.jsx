@@ -31,7 +31,7 @@ const YourChannel = () => {
   );
 
   const [activeTab, setActiveTab] = useState(1);
-  console.log("Active Tab:", activeTab);
+  // console.log("Active Tab:", activeTab);
 
   const handleTabClick = (tabNumber) => {
     setActiveTab(tabNumber);

@@ -5,10 +5,8 @@ import { toast } from "react-toastify";
 export const checkSubscribe = createAsyncThunk("get/subscribe", async ({ userId, channelId, accessToken }) => {
     try {
         const response = await api.checkisSubscribe({ userId, channelId, accessToken })
-        console.log("userId:",userId, "channelId:",channelId, "accessToken:",accessToken,"this is response", response);
         return response.data
     } catch (error) {
-        console.log("userId:",userId, "channelId:",channelId, "accessToken:",accessToken,"error",error);
       toast.error(error.response.data.statusCode.message)
         throw error.response.data
     }

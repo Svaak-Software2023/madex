@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player'
 import { useSelector } from 'react-redux'
 function ShortsPlayer({data}) {
 const shortVideo=useSelector((state)=>state.video.singleVideo)
-console.log(shortVideo);
+// console.log(shortVideo);
     return (
         <>
             <div style={{ width: "100%" }}>

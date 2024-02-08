@@ -6,7 +6,7 @@ export const getlikes = createAsyncThunk("get/like", async ( videoId) => {
     try {
         const response = await api.getlikes(videoId)
         // toast.success(response.data.message)
-        console.log("videoId",response.data);
+        // console.log("videoId",response.data);
         return response.data
     } catch (error) {
         // toast.error(error.response.data.statusCode.message)
