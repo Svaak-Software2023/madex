@@ -30,7 +30,7 @@ export const deleteHistory = createAsyncThunk(
   async ({ token, id }) => {
     try {
       const delResponse = await api.deleteSingleHistory({ token, id });
-      console.log(delResponse);
+      // console.log(delResponse);
       const response = await api.getHistory(token);
       return response;
     } catch (error) {

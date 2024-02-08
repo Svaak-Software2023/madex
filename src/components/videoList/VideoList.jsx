@@ -19,7 +19,7 @@ function VideoList({ data }) {
   const [more, setMore] = useState(null);
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [videoId, setVideoId] = useState(null);
-  console.log("Video ID: ", videoId);
+  // console.log("Video ID: ", videoId);
 
   // handle more option
   const openMore = (id) => {

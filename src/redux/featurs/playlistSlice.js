@@ -39,11 +39,11 @@ export const addVideoToPLaylist = createAsyncThunk(
         videoId,
         accessToken,
       });
-      console.log(response);
+      // console.log(response);
 
       return response.data;
     } catch (error) {
-      console.log(error.response);
+      // console.log(error.response);
       throw error.response;
     }
   }

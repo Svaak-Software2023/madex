@@ -44,7 +44,7 @@ const ChannelModal = (props) => {
   const channel = useSelector((state) => state.channel);
 
   const getChannelData = (userId) => {
-    console.log("User Id",userId);
+    // console.log("User Id",userId);
     dispatch(getChannel(userId));
   };
 
