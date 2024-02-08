@@ -5,7 +5,6 @@ import {
   getPlaylistData,
 } from "../../redux/featurs/playlistSlice";
 import { MdOutlinePlaylistPlay } from "react-icons/md";
-// import VideoList from "../../components/videoList/VideoList";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -13,6 +12,7 @@ import { useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdOutlineModeEdit } from "react-icons/md";
 import Loading from "../../assets/loader/Loading";
+import UpdatePlaylistModal from "../playlist/UpdatePLaylistModal";
 
 const Playlist = () => {
   const dispatch = useDispatch();
@@ -21,6 +21,8 @@ const Playlist = () => {
   const { playlistData, loading } = useSelector((state) => state.playlist);
   const userId = useSelector((state) => state.auth.user._id);
   const accessToken = useSelector((state) => state.auth.data);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [listId, setListId] = useState(null);
 
   const openMore = (id) => {
     if (!more) {
@@ -29,6 +31,16 @@ const Playlist = () => {
       setMore(id);
     } else setMore(null);
   };
+
+  function openModal(id) {
+    setIsOpen(true);
+    setMore(null);
+    setListId(id);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   const handleDeletePLaylist = (playListId) => {
     dispatch(
@@ -75,7 +87,7 @@ const Playlist = () => {
                           <RiDeleteBin6Line />
                           &nbsp; Delete
                         </li>
-                        <li>
+                        <li onClick={() => openModal(item?._id)}>
                           <MdOutlineModeEdit /> &nbsp; Edit
                         </li>
                       </ul>
@@ -87,6 +99,13 @@ const Playlist = () => {
           ))}
         </div>
       </div>
+
+      <UpdatePlaylistModal
+        modalIsOpen={modalIsOpen}
+        openModal={openModal}
+        closeModal={closeModal}
+        playListId={listId}
+      />
     </>
   );
 };
