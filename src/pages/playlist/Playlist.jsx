@@ -54,6 +54,14 @@ const Playlist = () => {
   }, [dispatch]);
   if (loading) return <Loading />;
 
+  if (!playlistData || playlistData.length === 0) {
+    return (
+      <>
+        <h4 className="text-center mt-5">No playlist yet</h4>;
+      </>
+    );
+  }
+
   return (
     <>
       <div className="conatiner">

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://moviefam.com/api/v1"
+  baseURL: "https://moviefam.com/api/v1",
   // baseURL: "http://localhost:8000/api/v1",
 });
 
@@ -54,7 +54,7 @@ export const viewCount = (videoId) => API.patch(`/videos/view/${videoId}`);
 
 // subccribe api
 export const checkisSubscribe = ({ userId, channelId, accessToken }) =>
-  API.get(`/subscriptions/check-subscribe/${userId}/${channelId}`,{
+  API.get(`/subscriptions/check-subscribe/${userId}/${channelId}`, {
     headers: {
       Authorization: accessToken,
     },
@@ -139,47 +139,51 @@ export const getHistory = async (token) => {
   }
 };
 
-export const deleteSingleHistory = (accessToken,id) => API.delete(`/history/deleteByHistoryId/${id}`, {
-  headers: {
-    Authorization: accessToken,
-  }
-});
-
-
-export const deleteAllHistory = (accessToken) => API.delete(`/history/delete-all-history`, {
-  headers: {
-    Authorization: accessToken,
-  }
-});
-
-// history
-export const createHistory = ({ videoId, accessToken }) => API.post(`/history/${videoId}`, null,
-  {
+export const deleteSingleHistory = (accessToken, id) =>
+  API.delete(`/history/deleteByHistoryId/${id}`, {
     headers: {
       Authorization: accessToken,
-    }
+    },
+  });
+
+export const deleteAllHistory = (accessToken) =>
+  API.delete(`/history/delete-all-history`, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });
+
+// history
+export const createHistory = ({ videoId, accessToken }) =>
+  API.post(`/history/${videoId}`, null, {
+    headers: {
+      Authorization: accessToken,
+    },
   });
 
 //PLaylist
-export const createPaylist = ({ videoId, accessToken, formData }) => API.post(`/playlists/videos/${videoId}`, formData, {
-  headers: {
-    Authorization: accessToken,
-  },
-});
+export const createPaylist = ({ videoId, accessToken, formData }) =>
+  API.post(`/playlists/videos/${videoId}`, formData, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });
 
 //Get PLaylist Data
 export const getPlaylist = ({ userId }) =>
   API.get(`/playlists/users/${userId}`);
 
 //Add Video To Playlist
-export const addVideoPLaylist = ({ playlistId, videoId, accessToken }) => API.post(`/playlists/${playlistId}/videos`,
-  { videoId },
-  {
-    headers: {
-      Authorization: accessToken,
-    },
-  }
-);
+export const addVideoPLaylist = ({ playlistId, videoId, accessToken }) =>
+  API.post(
+    `/playlists/${playlistId}/videos`,
+    { videoId },
+    {
+      headers: {
+        Authorization: accessToken,
+      },
+    }
+  );
 
 export const deletePLaylist = ({ playListId, accessToken }) =>
   API.delete(`/playlists/${playListId}`, {
@@ -188,13 +192,16 @@ export const deletePLaylist = ({ playListId, accessToken }) =>
     },
   });
 
-export const updatePLaylist = ({ playListId, playlistData, accessToken }) =>
-  API.patch(
-    `/playlists/${playListId}`,
-    { playlistData },
-    {
-      headers: {
-        Authorization: accessToken,
-      },
-    }
-  );
+export const updatePLaylist = ({ playListId, formData, accessToken }) =>
+  API.patch(`/playlists/${playListId}`, formData, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });
+
+export const deletPLaylistVideo = ({ videoId, playListId, accessToken }) =>
+  API.delete(`/playlists/${playListId}/videos/${videoId}`, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });

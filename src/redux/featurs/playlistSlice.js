@@ -40,7 +40,7 @@ export const addVideoToPLaylist = createAsyncThunk(
         accessToken,
       });
       // console.log(response);
-
+      toast.success("Added Successfully", { autoClose: 700 });
       return response.data;
     } catch (error) {
       // console.log(error.response);
@@ -64,15 +64,39 @@ export const deletePlaylist = createAsyncThunk(
 
 export const updatePlaylist = createAsyncThunk(
   "update/playlist",
-  async ({ playListId, playlistData, accessToken }) => {
+  async ({ playListId, formData, accessToken, userId }) => {
     try {
-      const response = await api.updatePLaylist({
+      const updatedResponse = await api.updatePLaylist({
         playListId,
-        playlistData,
+        formData,
         accessToken,
       });
+      console.log(updatedResponse);
+      toast.success("Update Successfully", { autoClose: 700 });
+      const response = await api.getPlaylist({ userId });
       return response.data;
     } catch (error) {
+      console.log("Error:", error.response);
+      throw error.response;
+    }
+  }
+);
+
+export const deletePlaylistVideo = createAsyncThunk(
+  "delete/playlist/video",
+  async ({ videoId, playListId, accessToken, userId }) => {
+    try {
+      const deleteresponse = await api.deletPLaylistVideo({
+        videoId,
+        playListId,
+        accessToken,
+      });
+      console.log(deleteresponse);
+      const response = await api.getPlaylist({ userId });
+      toast.success("Video Removed", { autoClose: 700 });
+      return response.data;
+    } catch (error) {
+      console.log(error.response);
       throw error.response;
     }
   }
@@ -135,13 +159,25 @@ const playlist = createSlice({
       .addCase(updatePlaylist.pending, (state) => {
         state.loading = true;
       })
-      .addCase(updatePlaylist.fulfilled, (state) => {
+      .addCase(updatePlaylist.fulfilled, (state, action) => {
         state.loading = false;
+        state.playlistData = action.payload.data;
       })
       .addCase(updatePlaylist.rejected, (state, action) => {
         (state.loading = false),
           (state.error = action.error),
           (state.message = action.payload?.statusCode.message);
+      })
+      .addCase(deletePlaylistVideo.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deletePlaylistVideo.fulfilled, (state, action) => {
+        state.loading = false;
+        state.playlistData = action.payload.data;
+      })
+      .addCase(deletePlaylistVideo.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error;
       });
   },
 });

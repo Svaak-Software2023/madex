@@ -18,6 +18,7 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     borderRadius: "10px",
+    zIndex: "10000",
   },
 };
 
@@ -76,6 +77,7 @@ const PlaylistModal = (props) => {
       description: "",
     });
     setPlaylistId(null);
+    setShowForm(false);
   };
 
   const openForm = () => {

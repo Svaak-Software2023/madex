@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 import React, { useState } from "react";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +10,7 @@ import { createWatchLater } from "../../redux/featurs/watchLater";
 import { toast } from "react-toastify";
 import Loading from "../../assets/loader/Loading";
 import PlaylistModal from "./PlaylistModal";
+import { deletePlaylistVideo } from "../../redux/featurs/playlistSlice";
 
 function VideoList({ data }) {
   const isSidebarOpen = useSelector((state) => state.globalFunction.isMenuOpen);
@@ -33,8 +36,16 @@ function VideoList({ data }) {
   // handle watch later
   const dispatch = useDispatch();
 
-  // create watch later api call
+  const location = useLocation();
+  const playlistLocation = location.pathname.split("/")[1];
+  const playListId = location.pathname.split("/")[2];
+
   const accessToken = useSelector((state) => state.auth.data);
+
+  const userId = accessToken.user._id;
+  console.log(userId);
+
+  // create watch later api call
   const handleWatchLater = (videoId) => {
     accessToken.accessToken &&
       dispatch(
@@ -56,6 +67,18 @@ function VideoList({ data }) {
   function closeModal() {
     setIsOpen(false);
   }
+
+  const removePlaylistVideo = (videoId) => {
+    dispatch(
+      deletePlaylistVideo({
+        videoId,
+        playListId,
+        userId,
+        accessToken: accessToken.accessToken,
+      })
+    );
+    setMore(null);
+  };
 
   const watchtLoading = useSelector((state) => state.watchLater.loading);
   if (watchtLoading) return <Loading />;
@@ -93,14 +116,24 @@ function VideoList({ data }) {
                   {more === item?._id && (
                     <div className="video-more-option">
                       <ul>
-                       {accessToken&& <>
-                        <li onClick={() => handleWatchLater(item?._id)}>
-                          Watch later
-                        </li>
-                        <li onClick={() => openModal(item?._id)}>
-                          Add to Playlist
-                        </li>
-                       </>}
+                        {accessToken && (
+                          <>
+                            <li onClick={() => handleWatchLater(item?._id)}>
+                              Watch later
+                            </li>
+                            {playlistLocation == "playlistVideo" ? (
+                              <li
+                                onClick={() => removePlaylistVideo(item?._id)}
+                              >
+                                Remove Video
+                              </li>
+                            ) : (
+                              <li onClick={() => openModal(item?._id)}>
+                                Add to Playlist
+                              </li>
+                            )}
+                          </>
+                        )}
 
                         <li>Share</li>
                       </ul>
