@@ -1,0 +1,125 @@
+.comment-container {
+  padding-inline: 15px;
+}
+.comment-container .user-comment-container {
+  display: flex;
+  gap: 10px;
+}
+.comment-container .comment-count {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.comment-container .comment-actions {
+  display: flex;
+  justify-content: end;
+  gap: 5px;
+  line-height: 21px;
+  margin: 10px;
+}
+
+.comment-container .comment-actions > button {
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 18px;
+}
+
+.comment-container .comment-actions .comment-unsave {
+  color: #717171;
+  background: rgb(0 0 0 / 10%);
+  cursor: default;
+}
+.comment-container .comment-actions .comment-save {
+  color: #0f0f0f;
+
+  background: #3393e8;
+}
+.comment-container .comment-actions .comment-save:hover {
+  background-color: #3ea6ff;
+}
+.comment-container .comment-actions .comment-cancel:hover {
+  background: rgba(5, 5, 5, 0.1);
+}
+
+/* comment list */
+.comment_details {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  gap: 15px;
+}
+.user_avatar {
+  height: 45px;
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid #e3e3e3;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.user_avatar img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.comment_details .comment_content {
+  flex: 1;
+}
+.comment_details .comment_action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.comment_details .comment_action .comment_more_option {
+  position: absolute;
+  top: 25px;
+  right: 5px;
+  background: white;
+  border: 1px solid #817f7f;
+  z-index: 2;
+  border-radius: 5px;
+}
+.comment_details .comment_action .comment_more_option ul {
+  list-style: none !important;
+  margin: 0;
+  padding: 0;
+}
+.comment_details .comment_action .comment_more_option ul > li {
+  padding: 8px;
+  padding-inline: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.comment_details .comment_action .comment_more_option ul > li:hover {
+  cursor: pointer;
+  background: rgb(170, 167, 167);
+  color: #fff;
+}
+.comment_details .comment_action .username {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.comment_details .comment_action svg {
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.comment_details .comment_action span {
+  color: #939292;
+  font-size: 0.8rem;
+  margin-left: 8px;
+  font-weight: 400;
+  position: relative;
+}
+
+.comment_details .comment_message p {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #0f0f0f;
+}
+.comment_edit_container {
+  margin-top: 10px;
+}

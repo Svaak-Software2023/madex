@@ -3,19 +3,20 @@
   align-items: center;
   padding: 20px;
 }
-.channel_profile .profile_img {
-  /* margin-top: 15px; */
-  height: 100px;
-  width: 100px;
-  border: 1px solid #e3dfdf;
-  border-radius: 50%;
+.channel_profile .profile_container {
+  height: 125px;
+  width: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
 }
 
-.channel_profile .profile_img img {
+.channel_profile img {
   height: 100%;
   width: 100%;
-  object-fit: fill;
-  border-radius: 50%;
+  object-fit: cover;
+  border-radius: inherit;
 }
 
 .channel_profile .profile_details {
@@ -113,7 +114,7 @@
 
 .videos_list {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 .videos_list .create_content {

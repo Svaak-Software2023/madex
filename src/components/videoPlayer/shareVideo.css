@@ -1,0 +1,7 @@
+.share-container p {
+  font-weight: 500;
+}
+.social-media-list {
+  display: flex;
+  gap: 10px;
+}

@@ -18,6 +18,7 @@ export const createHistory = createAsyncThunk(
   async ({ videoId, accessToken }) => {
     try {
       const response = await api.createHistory({ videoId, accessToken });
+      console.log("History:", response.data);
       return response;
     } catch (error) {
       throw error.response;
@@ -29,7 +30,7 @@ export const deleteHistory = createAsyncThunk(
   "history/deleteHistory",
   async ({ token, id }) => {
     try {
-      const delResponse = await api.deleteSingleHistory( token, id );
+      const delResponse = await api.deleteSingleHistory(token, id);
       const response = await api.getHistory(token);
       return response;
     } catch (error) {
@@ -55,8 +56,8 @@ export const deleteAllHistory = createAsyncThunk(
 const historySlice = createSlice({
   name: "history",
   initialState: {
-    historyData: [],
     message: "",
+    historyData: null,
     error: null,
     loading: false,
   },
@@ -69,14 +70,14 @@ const historySlice = createSlice({
       })
       .addCase(getAllHistory.fulfilled, (state, action) => {
         state.loading = false;
-        state.historyData = action.payload?.data.history;
-        state.error = null;
+        state.historyData = action.payload.data.history;
+        state.message = "History Get Successful";
       })
       .addCase(getAllHistory.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error;
       })
-      
+
       .addCase(createHistory.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -116,7 +117,7 @@ const historySlice = createSlice({
       .addCase(deleteAllHistory.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error;
-      })
+      });
   },
 });
 

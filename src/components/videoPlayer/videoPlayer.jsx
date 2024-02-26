@@ -1,10 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import "./style.css";
-import { BiDislike, BiLike } from "react-icons/bi";
 // import { IoShareSocialOutline } from 'react-icons/io5';
 import { HiDotsHorizontal } from "react-icons/hi";
-import { MdOutlineDownloading } from "react-icons/md";
 import ReactPlayer from "react-player";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,14 +19,21 @@ import {
   createSubscribe,
   unSubscribe,
 } from "../../redux/featurs/subscribeSlice";
+import CommentSection from "../commentSection/CommentSection";
+import ShareVideoModal from "./ShareVideoModal";
+import moment from "moment";
 
 const VideoPlayer = ({ data, pathname }) => {
   const dispatch = useDispatch();
   const { videoId } = useParams();
-
+  console.log("DATE:", data);
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
   const accessToken = useSelector((state) => state.auth.data?.accessToken);
+  const restrictionMode = useSelector(
+    (state) => state.globalFunction.restrictedMode
+  );
+  const [videoMore, setVideoMore] = useState(false);
 
   const handleDownload = async (event) => {
     event.preventDefault();
@@ -60,6 +65,16 @@ const VideoPlayer = ({ data, pathname }) => {
       console.error("Error downloading media file:", error);
     }
   };
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+    setVideoMore(false);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   const [view, setView] = useState("");
 
@@ -159,7 +174,7 @@ const VideoPlayer = ({ data, pathname }) => {
 
   useEffect(() => {
     accessToken && dispatch(createHistory({ videoId, accessToken }));
-  }, []);
+  }, [videoId, accessToken, dispatch]);
 
   return (
     <>
@@ -186,20 +201,18 @@ const VideoPlayer = ({ data, pathname }) => {
             </div>
             <div className="channel_name">
               <h3>{data?.channelData.channelName}</h3>
-              <p>{view} Views • 3 months ago</p>
+              {/* <p>{view} Views • 3 months ago</p> */}
+              <p>
+                {view} Views • {moment(data.createdAt).fromNow()}
+              </p>
             </div>
             {subscribed ? (
               <div className="subscribe-button">
-                <p
-                  style={{ background: "grey", color: "#fff" }}
-                  onClick={handleUnsubscribe}
-                >
-                  Subscribed
-                </p>
+                <p onClick={handleUnsubscribe}>Fanscribed</p>
               </div>
             ) : (
               <div className="subscribe-button">
-                <p onClick={handlesubscribe}>Subscribe</p>
+                <p onClick={handlesubscribe}>Fanscribe</p>
               </div>
             )}
           </div>
@@ -215,25 +228,66 @@ const VideoPlayer = ({ data, pathname }) => {
               ) : (
                 <>
                   <div className="like-button">
-                    <BiLike onClick={() => likehandler(data?._id)} />
+                    <img
+                      src="/assets/icons/upvote.png"
+                      onClick={() => likehandler(data?._id)}
+                    />
                     <span>{likeCount?.like}</span>
                   </div>
                   <div className="dis-button">
-                    <BiDislike onClick={() => dislikehandler(data?._id)} />
+                    <img
+                      src="/assets/icons/downvote.png"
+                      onClick={() => dislikehandler(data?._id)}
+                    />
                   </div>
                 </>
               )}
             </div>
             <Link to="#" onClick={handleDownload}>
               <div className="download-video">
-                <MdOutlineDownloading />
+                {/* <MdOutlineDownloading /> */}
+                <img src="/assets/icons/download.png" alt="" />
                 <span>Download</span>
               </div>
             </Link>
 
-            <div className="more-option-video">
+            <div
+              className="more-option-video"
+              onClick={() => setVideoMore(!videoMore)}
+            >
               <HiDotsHorizontal />
             </div>
+            {videoMore && (
+              <div className="more-option-video-list">
+                <ul>
+                  <li>
+                    <div className="more-option-icon">
+                      <img src="/assets/icons/share.png" alt="" />
+                    </div>
+                    <p onClick={openModal}>share</p>
+                  </li>
+                  <li>
+                    <div className="more-option-icon">
+                      <img src="/assets/icons/thanks.png" alt="" />
+                    </div>
+                    <p>Thanks</p>
+                  </li>
+
+                  <li>
+                    <div className="more-option-icon">
+                      <img src="/assets/icons/storeVideo.png" alt="" />
+                    </div>
+                    <p>Store Video</p>
+                  </li>
+                  <li>
+                    <div className="more-option-icon">
+                      <img src="/assets/icons/complaint.png" alt="" />
+                    </div>
+                    <p>Complaint</p>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -241,6 +295,24 @@ const VideoPlayer = ({ data, pathname }) => {
         <h3 className="video_title">Description</h3>
         {data.description}
       </div>
+      <div className="comment-container">
+        {!restrictionMode ? (
+          <CommentSection
+            userId={user?._id}
+            videoId={videoId}
+            accessToken={accessToken}
+          />
+        ) : (
+          <p style={{ textAlign: "center", fontWeight: "500" }}>
+            Restricted Mode has hidden comments for this video.
+          </p>
+        )}
+      </div>
+      <ShareVideoModal
+        modalIsOpen={modalIsOpen}
+        openModal={openModal}
+        closeModal={closeModal}
+      />
     </>
   );
 };

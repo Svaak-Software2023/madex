@@ -10,7 +10,6 @@ import {
   viewCount,
 } from "../../redux/featurs/videoSlice";
 import Loading from "../../assets/loader/Loading";
-// import { createHistory } from "../../redux/featurs/historySlice";
 
 const SingleVideo = () => {
   const { videoId } = useParams();
@@ -32,10 +31,6 @@ const SingleVideo = () => {
     dispatch(getAllVideo());
   }, []);
 
-  // useEffect(() => {
-  //   token && dispatch(createHistory({ videoId, accessToken }));
-  // }, []);
-
   if (video.loading) return <Loading />;
   if (!video.singleVideo)
     return (
@@ -44,7 +39,6 @@ const SingleVideo = () => {
       </h4>
     );
 
-  // const [recommendData,setRecommendData]=useState()
   const recommendData =
     video.videoData &&
     video.videoData.filter((item) => item._id !== video.singleVideo._id);

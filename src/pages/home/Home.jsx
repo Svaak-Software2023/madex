@@ -1,12 +1,13 @@
-import React from 'react';
-import Splash from './splash/Splash';
-import VideoList from '../../components/videoList/VideoList';
-function Home(){
+// import Splash from "./splash/Splash";
+// import VideoList from '../../components/videoList/VideoList';
+import Circle from "./Circle/Circle";
+function Home() {
   return (
     <>
-    <div style={{overflowX:"hidden"}}>
-      <Splash />
-    </div>
+      <div className=" circle-container">
+        {/* <Splash /> */}
+        <Circle />
+      </div>
     </>
   );
 }

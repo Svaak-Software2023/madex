@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Modal from "react-modal";
 import { IoCloseOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
@@ -5,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { createChannel } from "../../redux/featurs/channelSlice";
 import Loading from "../../assets/loader/Loading";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { getChannel } from "../../redux/featurs/channelSlice";
 
 const customStyles = {
@@ -22,7 +22,6 @@ const customStyles = {
 
 const ChannelModal = (props) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const { closeModal, afterOpenModal, modalIsOpen } = props;
   const user = useSelector((state) => state.auth.user);
@@ -49,9 +48,8 @@ const ChannelModal = (props) => {
   };
 
   useEffect(() => {
-    user&&getChannelData(user?._id);
+    user && getChannelData(user?._id);
   }, [user]);
-
 
   if (channel.loading) return <Loading />;
   return (
@@ -69,6 +67,12 @@ const ChannelModal = (props) => {
           </button>
 
           <div className="channel_profile d-flex flex-column justify-content-center align-items-center">
+            <h3>
+              Welcome{" "}
+              <span style={{ color: "#065FD4", textTransform: "capitalize" }}>
+                {user && user.fullName}
+              </span>
+            </h3>
             <div className="profile_container">
               <img src={user && user.avatar} />
             </div>
@@ -88,7 +92,7 @@ const ChannelModal = (props) => {
               )}
               <input
                 type="text"
-                placeholder="Description"
+                placeholder="Handle"
                 {...register("description", { required: true })}
               />
               {errors.description && (
@@ -97,11 +101,10 @@ const ChannelModal = (props) => {
                 </span>
               )}
               <p>
-                By clicking Create Station you agree to
-                <span>YouTubea&apos;s Terms of Service</span>. Changes made to
-                your name and profile
-                <br /> picture are visible only on YouTube and not other Google
-                services. <span>Learn more</span>
+                By selecting create station you agree to the site&apos;s terms
+                of services.
+                <br /> Any changes made to your personal account will be on
+                visible on the Madextube site
               </p>
             </div>
             <div className="buttons">

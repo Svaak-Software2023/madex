@@ -1,9 +1,7 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import { IoPersonCircleOutline, IoSearch } from "react-icons/io5";
-import { GiRingingBell } from "react-icons/gi";
-import { RiVideoAddFill } from "react-icons/ri";
-import { IoMdMic } from "react-icons/io";
+import { IoSearch } from "react-icons/io5";
 import { PiSignOutBold } from "react-icons/pi";
 import { FaExclamationTriangle } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -19,12 +17,18 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogout } from "../../redux/featurs/authSlice";
 import ChannelModal from "./ChannelModal";
+import { setRestrictedMode } from "../../utils/globalFunction/GlobalFunctionSlice";
 
 function Header({ toggle }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [dropdown, setDropdown] = useState(false);
+  const [dropdown2, setDropdown2] = useState(false);
+
   const user = useSelector((state) => state.auth.user);
+  const restrictionMode = useSelector(
+    (state) => state.globalFunction.restrictedMode
+  );
   const logout = () => {
     dispatch(setLogout());
     setDropdown(false);
@@ -73,22 +77,34 @@ function Header({ toggle }) {
             </div>
           </Link>
         </div>
-        <div className="header-search-box">
-          <input type="text" placeholder="Search" />
-          <IoSearch />
-        </div>
-        <div className="header-voice-search">
-          <IoMdMic />
+        <div className="search_content">
+          <div className="header-search-box">
+            <input type="text" placeholder="Search" />
+            <IoSearch />
+          </div>
+          <div className="header-voice-search">
+            {/* <IoMdMic /> */}
+            <img src="/assets/icons/mic.png" alt="" />
+          </div>
         </div>
         <div className="header-right">
           {user ? (
             <>
               <div className="header-three-dot">
-                <GiRingingBell />
+                <img
+                  src="assets/icons/camera.png"
+                  alt=""
+                  onClick={() => navigate("/upload-video")}
+                />
               </div>
               <div className="header-three-dot">
-                <RiVideoAddFill onClick={() => navigate("/upload-video")} />
+                <img src="assets/icons/chat.png" alt="" />
               </div>
+              <div className="header-three-dot">
+                <img src="assets/icons/notification.png" alt="" />
+                {/* <GiRingingBell /> */}
+              </div>
+
               <div className="user-profile-logo">
                 <img
                   src={user.avatar}
@@ -99,13 +115,48 @@ function Header({ toggle }) {
             </>
           ) : (
             <>
-              <div className="header-three-dot">
-                <BsThreeDotsVertical />
+              <div className="header-moreOption-dot">
+                <BsThreeDotsVertical onClick={() => setDropdown2(!dropdown2)} />
               </div>
+              {dropdown2 && (
+                <div className="dropdown2-menus">
+                  <div className="container">
+                    <ul className="mt-3 dropdown-menu-list">
+                      <li>
+                        <div className="dropdown-option">
+                          <MdOutlineSettingsBrightness />
+                          &nbsp;
+                          <p>Appearance: Dark</p>
+                        </div>
+                        <div
+                          className="dropdown-option"
+                          onClick={() => dispatch(setRestrictedMode())}
+                        >
+                          <FaExclamationTriangle />
+                          &nbsp;
+                          <p>
+                            Restricted Mode:
+                            {restrictionMode === false ? "Off" : "On"}
+                          </p>
+                        </div>
+                      </li>
+                      <li>
+                        <Link to="/pages/account/setting">
+                          <div className="dropdown-option">
+                            <MdOutlineSettings />
+                            &nbsp; <p>Settings</p>
+                          </div>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              )}
               <Link to="login">
                 <div className="user-profile">
-                  <IoPersonCircleOutline />
-                  <span>Sign in</span>
+                  <img src="/assets/login/loginLogo.png" alt="" />
+                  {/* <IoPersonCircleOutline />
+                  <span>Sign in</span> */}
                 </div>
               </Link>
             </>
@@ -113,7 +164,7 @@ function Header({ toggle }) {
           {dropdown && (
             <div className="login-user-details">
               <h3 className="dropdown-back">
-                <IoMdArrowRoundBack onClick={() => setDropdown(!dropdown)} />{" "}
+                <IoMdArrowRoundBack onClick={() => setDropdown(!dropdown)} />
                 <span>Accounts</span>
               </h3>
 
@@ -148,8 +199,15 @@ function Header({ toggle }) {
                   <div className="dropdown-option">
                     <MdOutlineSettingsBrightness /> <p>Appearance: Dark</p>
                   </div>
-                  <div className="dropdown-option">
-                    <FaExclamationTriangle /> <p>Restricted Mode: Off</p>
+                  <div
+                    className="dropdown-option"
+                    onClick={() => dispatch(setRestrictedMode())}
+                  >
+                    <FaExclamationTriangle />{" "}
+                    <p>
+                      Restricted Mode:
+                      {restrictionMode === false ? "Off" : "On"}
+                    </p>
                   </div>
                 </li>
                 <li>

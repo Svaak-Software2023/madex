@@ -9,7 +9,7 @@
   height: 100% !important;
   object-fit: fill;
 }
-.video_title{
+.video_title {
   font-size: 1.2rem;
   width: 100%;
 }
@@ -17,7 +17,6 @@
   display: flex;
   align-items: center;
 }
-
 
 .channel-profile-details {
   display: flex;
@@ -46,7 +45,7 @@
 }
 
 .channel_name p {
-  font-size: .79rem;
+  font-size: 0.79rem;
   font-weight: 600;
   line-height: 5px;
 }
@@ -58,23 +57,25 @@
 }
 
 .subscribe-button p {
-  padding: 5px 15px;
-  background-color: #cecece;
+  padding: 8px 15px;
+  background: black;
+  color: red;
   border-radius: 20px;
+  font-weight: 500;
   cursor: pointer;
-
 }
-
+/* 
 .subscribe-button p:hover {
-  background-color: #a9a7a7;
-  color: #ffff;
-}
+  background-color: #000000;
+  color: #f80000;
+} */
 
 .more-button-in-video {
   display: flex;
   align-items: center;
   justify-content: end;
   width: 50%;
+  position: relative;
   /* background-color: aqua; */
 }
 
@@ -118,8 +119,8 @@
   cursor: pointer;
 }
 
-.share-video span{
-margin-left: 3px;
+.share-video span {
+  margin-left: 3px;
 }
 
 .download-video {
@@ -132,12 +133,12 @@ margin-left: 3px;
   cursor: pointer;
 }
 
-.download-video span{
+.download-video span {
   text-align: center;
-margin-left: 3px;
+  margin-left: 3px;
 }
 
-.more-option-video{
+.more-option-video {
   margin-left: 10px;
   background-color: #cecece;
   padding: 10px 10px;
@@ -146,9 +147,41 @@ margin-left: 3px;
   align-items: center;
   cursor: pointer;
 }
+.more-option-video-list {
+  position: absolute;
+  background: #e5e5e5;
+  top: 45px;
+  right: 10px;
+  border-radius: 8px;
+}
+.more-option-video-list > ul {
+  margin: 0;
+  padding: 0;
+}
+.more-option-video-list > ul > li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-block: 8px;
+  padding-inline: 20px;
+  cursor: pointer;
+}
+.more-option-video-list > ul > li:hover {
+  background: white;
+}
+.more-option-video-list .more-option-icon {
+  height: 28px;
+  width: 28px;
+}
+.more-option-video-list .more-option-icon img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
 
-.more-option-videospan{
-margin-left: 3px;
+.more-option-video span {
+  margin-left: 3px;
 }
 
 @media screen and (max-width: 1150px) {
@@ -177,7 +210,7 @@ margin-left: 3px;
     width: 100%;
   }
 
-  .more-button-in-video{
+  .more-button-in-video {
     margin-top: 15px;
     display: flex;
     justify-content: space-between;
@@ -197,11 +230,11 @@ margin-left: 3px;
   .download-video {
     padding: 8px 10px;
   }
-  .more-option-video{
+  .more-option-video {
     padding: 10px;
   }
 
-  .more-button-in-video span{
+  .more-button-in-video span {
     /* display: none; */
     font-size: 12px;
   }

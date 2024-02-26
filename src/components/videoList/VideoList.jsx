@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import Loading from "../../assets/loader/Loading";
 import PlaylistModal from "./PlaylistModal";
 import { deletePlaylistVideo } from "../../redux/featurs/playlistSlice";
+import moment from "moment";
 
 function VideoList({ data }) {
   const isSidebarOpen = useSelector((state) => state.globalFunction.isMenuOpen);
@@ -22,7 +23,6 @@ function VideoList({ data }) {
   const [more, setMore] = useState(null);
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [videoId, setVideoId] = useState(null);
-  // console.log("Video ID: ", videoId);
 
   // handle more option
   const openMore = (id) => {
@@ -42,8 +42,7 @@ function VideoList({ data }) {
 
   const accessToken = useSelector((state) => state.auth.data);
 
-  const userId = accessToken.user._id;
-  console.log(userId);
+  const userId = accessToken?.user._id;
 
   // create watch later api call
   const handleWatchLater = (videoId) => {
@@ -109,7 +108,9 @@ function VideoList({ data }) {
                     <h3>{item.title}</h3>
                   </Link>
                   {item.channelData && <p>{item.channelData.channelName}</p>}
-                  <p>{item.views} views 3 hours ago</p>
+                  <p>
+                    {item.views} views {moment(item.createdAt).fromNow()}
+                  </p>
                 </div>
                 <div className="video-more-option-button">
                   <BsThreeDotsVertical onClick={() => openMore(item?._id)} />

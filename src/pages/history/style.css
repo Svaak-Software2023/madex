@@ -1,0 +1,23 @@
+.page-heading {
+  display: flex;
+  align-items: center;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+}
+.page-heading .heading-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.page-heading .heading-img-container {
+  height: 50px;
+  width: 50px;
+  background: #3f4178;
+  border-radius: 50%;
+  padding: 10px;
+}
+.page-heading .heading-img-container img {
+  height: 100%;
+  width: 100%;
+  border: inherit;
+}

@@ -1,15 +1,14 @@
 .header-main {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding: 20px 30px;
+  padding: 15px 30px;
   position: relative;
   border-bottom: 1px solid #d3d3d3;
   position: sticky;
   top: 0;
   left: 0;
-  /* width: 90%; */
-  z-index: 5;
+  z-index: 20;
   background-color: #fff;
   margin: 0;
 }
@@ -19,10 +18,7 @@
 }
 
 .menu-bar {
-  position: absolute;
-  /* top: 15px; */
-  left: 20px;
-  font-size: 35px;
+  font-size: 30px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -30,7 +26,7 @@
 
 .logo {
   width: 200px;
-  margin-left: 15px;
+  margin-left: 5px;
 }
 
 .logo img {
@@ -38,7 +34,13 @@
   height: auto;
   object-fit: cover;
 }
-
+.header-main .search_content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40rem;
+  gap: 8px;
+}
 .header-search-box {
   background-color: #fff;
   padding: 0px 15px;
@@ -46,7 +48,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  width: 500px;
+  width: 90%;
   border: 1px solid #d3d3d3;
 }
 
@@ -69,56 +71,82 @@
 }
 
 .header-voice-search {
+  height: 50px;
+  width: 50px;
   padding: 12px;
   border-radius: 50%;
-  background-color: #d3d3d3;
-  margin-left: 8px;
+  background-color: #ededed;
   cursor: pointer;
   display: flex;
   align-items: center;
 }
+.header-voice-search img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
 
 .header-right {
-  position: absolute;
   right: 20px;
   display: flex;
   align-items: center;
+  gap: 8px;
 }
 
 .header-three-dot {
   cursor: pointer;
-  margin-right: 15px;
-  font-size: 25px;
+  border-radius: 10px;
+  border: 1px solid #bbb5b5;
+  background: #fff;
+  padding: 5px;
 }
-
-.user-profile {
+.header-three-dot img {
+  height: 30px;
+}
+.header-moreOption-dot {
+  cursor: pointer;
   display: flex;
-  align-items: center;
-  color: #065fd4;
-  padding: 3px 6px;
-  border: 1px solid #d3d3d3;
-  border-radius: 20px;
+  padding: 5px;
+}
+.header-moreOption-dot svg {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: auto;
+}
+.header-moreOption-dot:hover {
+  background: #dedede;
+  border-radius: 50%;
+}
+.user-profile {
+  width: 50px;
+  border-radius: 50%;
   cursor: pointer;
 }
-
-.user-profile svg {
-  font-size: 25px;
-}
-
-.user-profile span {
-  font-size: 12px;
+.user-profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .user-profile-logo {
   width: 50px;
   height: 50px;
+
+  border-style: 5px solid black;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid #e3e3e3;
+  overflow: hidden;
+  background: #fff;
 }
 
 .user-profile-logo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
   cursor: pointer;
 }
 
@@ -211,10 +239,6 @@
   padding: 8px 0px;
 }
 
-/* .dropdown-menu-list li .dropdown-option svg{
-    
-} */
-
 .dropdown-menu-list li .dropdown-option p {
   font-size: 14px;
   font-style: normal;
@@ -222,32 +246,43 @@
   line-height: normal;
 }
 
+.dropdown2-menus {
+  position: absolute;
+  top: 58px;
+  right: 80px;
+  border-radius: 15px;
+  background: #f3f3f3;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 220px;
+}
+
 @media screen and (max-width: 768px) {
   .header-main {
-    padding: 20px 55px;
+    padding: 15px 5px;
   }
+
   .menu-bar {
-    top: 6px;
-    left: 10px;
+    font-size: 25px;
   }
 
   .logo {
-    display: none;
+    width: 150px;
+    margin-left: 10px;
   }
 
-  .header-search-box {
-    margin-left: 20px;
-  }
-
+ 
   .header-search-box input {
-    padding: 3px;
+    padding: 2px;
   }
 
   .header-voice-search {
     padding: 10px;
     margin-left: 8px;
-    /* display: none; */
-    visibility: hidden;
+    display: none;
+  }
+  .user-profile-logo {
+    width: 45px;
+    height: 45px;
   }
 
   .user-profile {
@@ -270,7 +305,7 @@
     width: 100vw;
   }
 }
-
+/* ------------------------------------------------------------------------------ */
 /* Modal Style */
 .channel_modal {
   overflow-y: auto;

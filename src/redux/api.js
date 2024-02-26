@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://moviefam.com/api/v1",
-  // baseURL: "http://localhost:8000/api/v1",
+  // baseURL: "https://moviefam.com/api/v1",
+  baseURL: "http://localhost:8000/api/v1",
 });
 
 //User API's
@@ -19,15 +19,26 @@ export const getAllVideo = (pageValue = 1, limit = 12) =>
   API.get(`/videos/all-videos?page=${pageValue}&limit=${limit}`);
 export const getSingleVideo = (videoId) =>
   API.get(`/videos/get-single-video/${videoId}`);
-export const videoUpload = ({ formData, setPercentage }) =>
-  API.post("/videos/add-video", formData, {
-    onUploadProgress: (progressEvent) => {
-      const percentage = Math.round(
-        (progressEvent.loaded / progressEvent.total) * 100
-      );
-      setPercentage(percentage);
+
+// Upload New Video
+export const videoUpload = ({ formData, setPercentage, accessToken }) =>
+  API.post(
+    "/videos/add-video",
+    formData,
+    {
+      headers: {
+        Authorization: accessToken,
+      },
     },
-  });
+    {
+      onUploadProgress: (progressEvent) => {
+        const percentage = Math.round(
+          (progressEvent.loaded / progressEvent.total) * 100
+        );
+        setPercentage(percentage);
+      },
+    }
+  );
 
 export const getAllChanelVideo = (channelId) =>
   API.get(`/videos/getByChannelId/${channelId}`);
@@ -127,6 +138,13 @@ export const deleteAllWatchLater = ({ accessToken, userId }) =>
   });
 
 //History API
+// export const getHistory = async (token) =>
+//   API.get("/history/get-all-history", {
+//     headers: {
+//       Authorization: token,
+//     },
+//   });
+
 export const getHistory = async (token) => {
   const headers = {
     Authorization: `Bearer ${token}`,
@@ -201,6 +219,44 @@ export const updatePLaylist = ({ playListId, formData, accessToken }) =>
 
 export const deletPLaylistVideo = ({ videoId, playListId, accessToken }) =>
   API.delete(`/playlists/${playListId}/videos/${videoId}`, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });
+
+// -----------------------Comments -------------------- //
+
+export const createComment = ({ content, videoId, userId, accessToken }) =>
+  API.post(
+    `/comments/users/${userId}/videos/${videoId}`,
+    { content },
+    {
+      headers: {
+        Authorization: accessToken,
+      },
+    }
+  );
+
+export const getAllComments = ({ videoId }) =>
+  API.get(`/comments/videos/${videoId}`);
+
+export const updateComment = ({ commentId, accessToken, content }) => {
+  console.log("id", commentId);
+  console.log("Content", content);
+
+  API.patch(
+    `/comments/${commentId}`,
+    { content },
+    {
+      headers: {
+        Authorization: accessToken,
+      },
+    }
+  );
+};
+
+export const deleteComment = ({ commentId, accessToken }) =>
+  API.delete(`/comments/${commentId}`, {
     headers: {
       Authorization: accessToken,
     },

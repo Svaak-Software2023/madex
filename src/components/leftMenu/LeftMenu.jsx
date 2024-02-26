@@ -1,4 +1,5 @@
-import { FaRegUserCircle } from "react-icons/fa";
+/* eslint-disable react/prop-types */
+
 import menuData from "../../utils/menuData/UserData";
 import "./sidebar.css";
 import { Link } from "react-router-dom";
@@ -20,22 +21,30 @@ const LeftMenu = ({ data }) => {
                       {heading && <div className="heading">{heading}</div>}
                       {url && (
                         <Link to={url}>
-                          {icon}
+                          <div className="menu_image">
+                            <img src={icon} alt="" />
+                          </div>
+                          {/* {icon}   */}
                           {text}
                         </Link>
                       )}
                       {line && <hr />}
                       {!user && signIn ? (
                         <>
-                          <div className="signIn_message">
-                            <p>
-                              Sign in to like videos, comment, and subscribe.
-                            </p>
-                            <button className="signIn_button mt-2">
-                              <FaRegUserCircle />
-                              Sign in
-                            </button>
-                          </div>
+                          <Link to="login">
+                            <div className="signIn_message">
+                              <p>
+                                login to upvote videos, Share opinions,Fanscribe
+                                and much more
+                              </p>
+
+                              <img
+                                src="/assets/login/loginLogo.png"
+                                alt=""
+                                style={{ width: "50px", margin: "auto" }}
+                              />
+                            </div>
+                          </Link>
                           <hr />
                         </>
                       ) : (
