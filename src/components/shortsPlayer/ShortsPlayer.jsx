@@ -26,7 +26,7 @@ function ShortsPlayer() {
             <div className="shorts-main mb-3" key={i} >
               <ReactPlayer
                 url={item?.videoFile}
-                controls
+                // controls
                 playing={playingIndex === i}
                 width={500}
                 height={600}
