@@ -9,10 +9,10 @@ import SingleVideo from "../pages/videoPlayer/SingleVideo";
 import WatchLater from "../pages/watchLater/WatchLater";
 import YourChannel from "../pages/yourChannel/YourChannel";
 import History from "../pages/history/History";
-import ShortsPlayer from "../components/shortsPlayer/ShortsPlayer";
 import Playlist from "../pages/playlist/Playlist";
 import PlaylistVideo from "../pages/playlist/PlaylistVideo";
 import MiniClips from "../components/miniClips/MiniClips";
+import FavoriteVideo from "../pages/favoriteVideo/FavoriteVideo";
 
 const UserRoutes = [
   { name: "404 Error", path: "*", element: <Error404 />, isPrivate: false },
@@ -77,6 +77,12 @@ const UserRoutes = [
     name: "Playlist videos",
     path: "/playlistVideo/:playlistId",
     element: <PlaylistVideo />,
+    isPrivate: true,
+  },
+  {
+    name: "Favorite videos",
+    path: "/favoriteVideo",
+    element: <FavoriteVideo />,
     isPrivate: true,
   },
 ];

@@ -12,7 +12,7 @@ import playlistSlice from "./featurs/playlistSlice";
 import likeDislikeSlice from "./featurs/likeDislikeSlice";
 import subscribeSlice from "./featurs/subscribeSlice";
 import commentSlice from "./featurs/commentSlice";
-
+import likesVideoSlice from "./featurs/likesVideo";
 const store = configureStore({
   reducer: {
     globalFunction: GlobalFunctionSlice,
@@ -27,6 +27,7 @@ const store = configureStore({
     likeDislike: likeDislikeSlice,
     subscriber: subscribeSlice,
     comment: commentSlice,
+    likedVideos: likesVideoSlice,
   },
 });
 

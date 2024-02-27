@@ -68,7 +68,7 @@ const ChannelModal = (props) => {
 
           <div className="channel_profile d-flex flex-column justify-content-center align-items-center">
             <h3>
-              Welcome{" "}
+              Welcome
               <span style={{ color: "#065FD4", textTransform: "capitalize" }}>
                 {user && user.fullName}
               </span>

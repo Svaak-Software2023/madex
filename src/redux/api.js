@@ -261,3 +261,10 @@ export const deleteComment = ({ commentId, accessToken }) =>
       Authorization: accessToken,
     },
   });
+
+export const getLikedVideos = ({ userId, accessToken }) =>
+  API.get(`/videos/liked-videos/users/${userId}`, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });

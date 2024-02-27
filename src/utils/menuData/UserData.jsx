@@ -111,7 +111,7 @@ const menuData = [
   },
   {
     id: 9,
-    url: "/",
+    url: "/favoriteVideo",
     text: "Favorite Video",
     icon: FavoriteVideo,
   },
