@@ -4,9 +4,11 @@ import * as api from "../api"
 export const getShorts= createAsyncThunk("/getShorts",async()=>{
     try{
         const response = await api.getShorts();
+        console.log("response",response);
         return response.data
     }
     catch(err){
+        console.log("error",err);
         throw err
     }
 })

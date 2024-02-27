@@ -13,6 +13,7 @@ import Playlist from "../pages/playlist/Playlist";
 import PlaylistVideo from "../pages/playlist/PlaylistVideo";
 import MiniClips from "../components/miniClips/MiniClips";
 import FavoriteVideo from "../pages/favoriteVideo/FavoriteVideo";
+import ShortsPlayer from "../components/shortsPlayer/ShortsPlayer";
 
 const UserRoutes = [
   { name: "404 Error", path: "*", element: <Error404 />, isPrivate: false },
@@ -32,7 +33,7 @@ const UserRoutes = [
   {
     name: "Mini Clips",
     path: "/mini-clips",
-    element: <MiniClips />,
+    element: <ShortsPlayer />,
     isPrivate: false,
   },
   { name: "Login", path: "/login", element: <Login />, isPrivate: false },
