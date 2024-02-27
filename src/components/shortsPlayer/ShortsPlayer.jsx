@@ -22,8 +22,8 @@ function ShortsPlayer() {
     <>
       {
         shortVideo?.map((item, i) =>
-          <div style={{ width: "100%" }} onMouseEnter={() => handleVideoClick(i)}>
-            <div className="shorts-main mb-3" key={i} >
+          <div style={{ width: "100%" }} key={i} onMouseEnter={() => handleVideoClick(i)}>
+            <div className="shorts-main mb-3"  >
               <ReactPlayer
                 url={item?.videoFile}
                 // controls
