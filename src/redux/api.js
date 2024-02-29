@@ -2,8 +2,8 @@ import axios from "axios";
 import shortsSlice from "./featurs/shortsSlice";
 
 const API = axios.create({
-  // baseURL: "https://moviefam.com/api/v1",
-  baseURL: "http://localhost:8000/api/v1",
+  baseURL: "https://moviefam.com/api/v1",
+  // baseURL: "http://localhost:8000/api/v1",
 });
 
 //User API's
