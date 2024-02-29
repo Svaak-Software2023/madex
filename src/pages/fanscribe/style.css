@@ -1,0 +1,60 @@
+.stations_lists {
+  width: 85%;
+  margin: auto;
+}
+
+.single_stations {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+
+  transition: all 0.8s ease;
+
+  /* background: rgba(255, 255, 255, 0.25); */
+  box-shadow: 0 8px 32px 0 rgb(233, 233, 233);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(227, 222, 222, 0.897);
+}
+/* .single_stations:hover {
+  border-radius: 10px;
+  border: 0.1rem solid #7e7e7e;
+} */
+.single_stations .staion_profile {
+  width: 150px;
+  height: 120px;
+  border-radius: 10px;
+  border: 1px solid #a5a5a5;
+  overflow: hidden;
+}
+.single_stations .staion_profile img {
+  height: 100%;
+  width: 100%;
+}
+.single_stations .station_info {
+  width: 80%;
+}
+.single_stations .station_info span {
+  color: rgb(85, 93, 102);
+}
+.single_stations .station_info p {
+  color: rgb(85, 93, 102);
+  font-size: 0.8rem;
+}
+.fanscribe_button {
+  display: flex;
+  align-items: center;
+}
+.fanscribe_button button {
+  padding: 8px 15px;
+  background: black;
+  color: red;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}

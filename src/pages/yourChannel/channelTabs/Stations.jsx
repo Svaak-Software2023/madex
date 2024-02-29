@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getUserStationProfile } from "../../../redux/featurs/channelSlice";
 import { IoIosArrowForward } from "react-icons/io";
-import { FaSearch } from "react-icons/fa";
-import Loading from "../../assets/loader/Loading";
-import { getChannel } from "../../redux/featurs/channelSlice";
-import { getAllChanelVideo } from "../../redux/featurs/videoSlice";
-import "./style.css";
-// import Playlist from "../playlist/Playlist";
-import HomeContent from "./channelTabs/HomeContent";
-import PLaylisyList from "../playlist/PLaylistList";
+import HomeContent from "./HomeContent";
+import PLaylistList from "../../playlist/PLaylistList";
+import VideoList from "../../../components/videoList/VideoList";
+import Playlist from "../../playlist/Playlist";
 
 const menus = [
   {
@@ -25,11 +23,12 @@ const menus = [
   },
 ];
 
-const YourChannel = () => {
-  const { user, loading: authLoading } = useSelector((state) => state.auth);
-  const { data: channelData, loading: channelLoading } = useSelector(
-    (state) => state.channel
-  );
+const Stations = () => {
+  const { username } = useParams();
+  const dispatch = useDispatch();
+  const accessToken = useSelector((state) => state.auth.data.accessToken);
+  const stationProfile = useSelector((state) => state.channel.channelProfile);
+  console.log(stationProfile);
 
   const [activeTab, setActiveTab] = useState(1);
 
@@ -37,26 +36,16 @@ const YourChannel = () => {
     setActiveTab(tabNumber);
   };
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    user && dispatch(getChannel(user._id));
-
-    channelData && dispatch(getAllChanelVideo(channelData._id));
+    dispatch(getUserStationProfile({ username, accessToken }));
   }, []);
-
-  useEffect(() => {
-    channelData && dispatch(getAllChanelVideo(channelData._id));
-  }, [channelData]);
-
-  if (authLoading || channelLoading) return <Loading />;
 
   const renderTabContent = () => {
     switch (activeTab) {
       case 1:
-        return <HomeContent />;
+        return <VideoList data={stationProfile?.videosData} />;
       case 2:
-        return <PLaylisyList />;
+        return <Playlist stationProfileUserId={stationProfile?._id} />;
       case 3:
         return <h6>No Mini clips yet</h6>;
       default:
@@ -65,23 +54,28 @@ const YourChannel = () => {
   };
 
   return (
-    user && (
+    <>
       <div className="px-sm-3">
         <div className="channel_profile">
           <div className="profile_container">
-            <img src={user.avatar} alt="User Avatar" />
+            <img src={stationProfile?.avatar} alt="User Avatar" />
           </div>
           <div className="profile_details">
-            <h3>{channelData?.channelName}</h3>
-            <span>@{user.username}</span>
+            <h3>{stationProfile?.channelData.channelName}</h3>
+            <span>@{stationProfile?.username}</span>
             <p>
               More about this station <IoIosArrowForward />
             </p>
 
-            <div className="profile_buttons">
-              <button>Customize station</button>
-              <button>Manage videos</button>
-            </div>
+            {stationProfile?.subscribed ? (
+              <div className="subscribe-button">
+                <p>Fanscribed</p>
+              </div>
+            ) : (
+              <div className="subscribe-button">
+                <p>Fanscribe</p>
+              </div>
+            )}
           </div>
         </div>
 
@@ -101,14 +95,14 @@ const YourChannel = () => {
               );
             })}
 
-            <FaSearch className="search_icon" />
+            {/* <FaSearch className="search_icon" /> */}
           </div>
 
           <div className="videos_list mb-3">{renderTabContent()}</div>
         </div>
       </div>
-    )
+    </>
   );
 };
 
-export default YourChannel;
+export default Stations;

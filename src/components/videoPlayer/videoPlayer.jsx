@@ -26,7 +26,6 @@ import moment from "moment";
 const VideoPlayer = ({ data, pathname }) => {
   const dispatch = useDispatch();
   const { videoId } = useParams();
-  console.log("DATE:", data);
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
   const accessToken = useSelector((state) => state.auth.data?.accessToken);

@@ -4,29 +4,38 @@ import { getPlaylistData } from "../../redux/featurs/playlistSlice";
 import "./style.css";
 
 import Loading from "../../assets/loader/Loading";
-import PLaylisyList from "./PLaylisyList";
+import PLaylistList from "./PLaylistList";
+import NoDataFound from "../../components/Error/NoDataFound";
 
-const Playlist = () => {
+const Playlist = ({ stationProfileUserId }) => {
+  // const { stationProfileUserId } = props;
+  console.log("Id:", stationProfileUserId);
   const dispatch = useDispatch();
 
   const { playlistData, loading } = useSelector((state) => state.playlist);
   const userId = useSelector((state) => state.auth.user._id);
 
   useEffect(() => {
-    dispatch(getPlaylistData({ userId }));
-  }, [dispatch]);
+    if (stationProfileUserId) {
+      dispatch(getPlaylistData({ userId: stationProfileUserId }));
+    } else {
+      dispatch(getPlaylistData({ userId }));
+    }
+  }, [stationProfileUserId]);
   if (loading) return <Loading />;
 
   if (!playlistData || playlistData.length === 0) {
     return (
       <>
-        <div className="page-heading">
-          <div className="heading-img-container">
-            <img src="/assets/icons/playlist.png" alt="" />
+        {!stationProfileUserId && (
+          <div className="page-heading">
+            <div className="heading-img-container">
+              <img src="/assets/icons/playlist.png" alt="" />
+            </div>
+            <h3 className="heading-name">Playlists</h3>
           </div>
-          <h3 className="heading-name">Download</h3>
-        </div>
-        <h4 className="text-center mt-5">No playlist yet</h4>;
+        )}
+        <NoDataFound />
       </>
     );
   }
@@ -34,13 +43,15 @@ const Playlist = () => {
   return (
     <>
       <div className="conatiner">
-        <div className="page-heading">
-          <div className="heading-img-container">
-            <img src="/assets/icons/playlist.png" alt="" />
+        {!stationProfileUserId && (
+          <div className="page-heading">
+            <div className="heading-img-container">
+              <img src="/assets/icons/playlist.png" alt="" />
+            </div>
+            <h3 className="heading-name">Playlists</h3>
           </div>
-          <h3 className="heading-name">Playlists</h3>
-        </div>
-        <PLaylisyList />
+        )}
+        <PLaylistList />
       </div>
     </>
   );

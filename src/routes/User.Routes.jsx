@@ -11,9 +11,11 @@ import YourChannel from "../pages/yourChannel/YourChannel";
 import History from "../pages/history/History";
 import Playlist from "../pages/playlist/Playlist";
 import PlaylistVideo from "../pages/playlist/PlaylistVideo";
-import MiniClips from "../components/miniClips/MiniClips";
+// import MiniClips from "../components/miniClips/MiniClips";
 import FavoriteVideo from "../pages/favoriteVideo/FavoriteVideo";
 import ShortsPlayer from "../components/shortsPlayer/ShortsPlayer";
+import Fanscribe from "../pages/fanscribe/Fanscribe";
+import Station from "../pages/yourChannel/channelTabs/Stations";
 
 const UserRoutes = [
   { name: "404 Error", path: "*", element: <Error404 />, isPrivate: false },
@@ -84,6 +86,18 @@ const UserRoutes = [
     name: "Favorite videos",
     path: "/favoriteVideo",
     element: <FavoriteVideo />,
+    isPrivate: true,
+  },
+  {
+    name: "Fanscribe",
+    path: "/fanscribe",
+    element: <Fanscribe />,
+    isPrivate: true,
+  },
+  {
+    name: "Yuor Channel",
+    path: "/fanscribeStation/:username",
+    element: <Station />,
     isPrivate: true,
   },
 ];

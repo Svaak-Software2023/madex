@@ -8,10 +8,10 @@ import {
   getPlaylistData,
 } from "../../redux/featurs/playlistSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UpdatePLaylistModal from "./UpdatePLaylistModal";
 
-const PLaylisyList = () => {
+const PLaylistList = () => {
   const { playlistData } = useSelector((state) => state.playlist);
   const userId = useSelector((state) => state.auth.user._id);
   const accessToken = useSelector((state) => state.auth.data);
@@ -46,6 +46,11 @@ const PLaylisyList = () => {
   function closeModal() {
     setIsOpen(false);
   }
+  // useEffect(() => {
+  //   if (stationProfileUserId) {
+  //     dispatch(getPlaylistData(stationProfileUserId));
+  //   }
+  // }, []);
   return (
     <>
       <div className="playlist_list">
@@ -98,4 +103,4 @@ const PLaylisyList = () => {
   );
 };
 
-export default PLaylisyList;
+export default PLaylistList;

@@ -2,8 +2,8 @@ import axios from "axios";
 import shortsSlice from "./featurs/shortsSlice";
 
 const API = axios.create({
-  baseURL: "https://moviefam.com/api/v1",
-  // baseURL: "http://localhost:8000/api/v1",
+  // baseURL: "https://moviefam.com/api/v1",
+  baseURL: "http://localhost:8000/api/v1",
 });
 
 //User API's
@@ -62,10 +62,8 @@ export const createDisLike = ({ userId, videoId, accessToken }) =>
     },
   });
 
-
-  // shortsSlice
-  export const getShorts = () =>
-  API.get("/videos/shorts");
+// shortsSlice
+export const getShorts = () => API.get("/videos/shorts");
 // video view api
 export const viewCount = (videoId) => API.patch(`/videos/view/${videoId}`);
 
@@ -268,8 +266,24 @@ export const deleteComment = ({ commentId, accessToken }) =>
     },
   });
 
+// Get Liked Videos for User Login
 export const getLikedVideos = ({ userId, accessToken }) =>
   API.get(`/videos/liked-videos/users/${userId}`, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });
+
+// Get Channel List of user
+export const getAllChannelList = ({ accessToken }) =>
+  API.get("/subscriptions/subscribed-videos", {
+    headers: {
+      Authorization: accessToken,
+    },
+  });
+
+export const getUserStationProfile = ({ username, accessToken }) =>
+  API.get(`http://localhost:8000/api/v1/users/channel/${username}`, {
     headers: {
       Authorization: accessToken,
     },

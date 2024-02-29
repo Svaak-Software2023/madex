@@ -84,6 +84,7 @@ const videoSlice = createSlice({
   name: "video",
   initialState: {
     videoData: null,
+    channelVideoData: null,
     categoryVideoData: null,
     singleVideo: null,
     message: "",
@@ -152,7 +153,7 @@ const videoSlice = createSlice({
         (state.loading = true), (state.message = ""), (state.error = null);
       })
       .addCase(getAllChanelVideo.fulfilled, (state, action) => {
-        (state.loading = false), (state.videoData = action.payload.data);
+        (state.loading = false), (state.channelVideoData = action.payload.data);
         (state.message = action.payload.message), (state.error = null);
       })
       .addCase(getAllChanelVideo.rejected, (state, action) => {

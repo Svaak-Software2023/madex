@@ -7,6 +7,7 @@ import {
 import HistoryList from "./historyList/HistoryList";
 import Loading from "../../assets/loader/Loading";
 import "./style.css";
+import NoDataFound from "../../components/Error/NoDataFound";
 
 const History = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const History = () => {
           </div>
           <h3 className="heading-name">Chronicle</h3>
         </div>
-        <h4 className="text-center mt-5">No History Found</h4>
+        <NoDataFound />
       </>
     );
   }

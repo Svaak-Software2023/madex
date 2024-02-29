@@ -24,10 +24,42 @@ export const getChannel = createAsyncThunk("channel/get", async (userId) => {
     throw error.response.data.statusCode;
   }
 });
+
+export const getAllChannelList = createAsyncThunk(
+  "channel/getAllChannel",
+  async ({ accessToken }) => {
+    try {
+      const response = await api.getAllChannelList({ accessToken });
+      console.log(response.data);
+
+      return response.data;
+    } catch (error) {
+      throw error.response.data;
+    }
+  }
+);
+
+export const getUserStationProfile = createAsyncThunk(
+  "channel/getStationDetails",
+  async ({ username, accessToken }) => {
+    try {
+      const response = await api.getUserStationProfile({
+        username,
+        accessToken,
+      });
+      return response.data;
+    } catch (error) {
+      throw error.response.data;
+    }
+  }
+);
+
 const channelSlice = createSlice({
   name: "channel",
   initialState: {
     data: null,
+    channelList: null,
+    channelProfile: null,
     loading: false,
     message: "",
     error: {},
@@ -68,6 +100,28 @@ const channelSlice = createSlice({
         state.data = null;
         state.message = "";
         state.error = action.error; // Use action.error.message or whatever property holds the error message
+      })
+      .addCase(getAllChannelList.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getAllChannelList.fulfilled, (state, action) => {
+        state.loading = false;
+        state.channelList = action.payload.data;
+      })
+      .addCase(getAllChannelList.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error;
+      })
+      .addCase(getUserStationProfile.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getUserStationProfile.fulfilled, (state, action) => {
+        state.loading = false;
+        state.channelProfile = action.payload.data;
+      })
+      .addCase(getUserStationProfile.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error;
       });
   },
 });

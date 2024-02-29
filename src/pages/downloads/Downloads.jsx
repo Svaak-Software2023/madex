@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDownload } from "../../redux/featurs/downloads";
 import { Link } from "react-router-dom";
+import NoDataFound from "../../components/Error/NoDataFound";
 // import Loading from "../../assets/loader/Loading";
 
 function Downloads() {
@@ -22,7 +23,8 @@ function Downloads() {
 
   if (!download || download.length === 0)
     return (
-      <h3 className="text-center pt-5 mt-5">Sorry, No Download Records !</h3>
+      <NoDataFound />
+      // <h3 className="text-center pt-5 mt-5">Sorry, No Download Records !</h3>
     );
   return (
     <>

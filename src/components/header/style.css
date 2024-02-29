@@ -245,6 +245,9 @@
   font-weight: 500;
   line-height: normal;
 }
+.dropdown-menu-list li .dropdown-option svg {
+  color: #065fd4;
+}
 
 .dropdown2-menus {
   position: absolute;
@@ -270,7 +273,6 @@
     margin-left: 10px;
   }
 
- 
   .header-search-box input {
     padding: 2px;
   }

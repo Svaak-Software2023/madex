@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteAllWatchLater,
@@ -10,6 +10,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { toast } from "react-toastify";
 import Loading from "../../assets/loader/Loading";
 import "./style.css";
+import NoDataFound from "../../components/Error/NoDataFound";
 function WatchLater() {
   const isSidebarOpen = useSelector((state) => state.globalFunction.isMenuOpen);
   const style = {
@@ -81,7 +82,7 @@ function WatchLater() {
           </div>
           <h3 className="heading-name">Continue Later</h3>
         </div>
-        <h4 className="text-center mt-5">No Watch Later Found</h4>
+        <NoDataFound />
       </>
     );
   }

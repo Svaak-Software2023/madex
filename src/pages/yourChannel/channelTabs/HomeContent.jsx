@@ -3,18 +3,18 @@ import VideoList from "../../../components/videoList/VideoList";
 import { Link } from "react-router-dom";
 
 const HomeContent = () => {
-  const videoData = useSelector((state) => state.video.videoData);
+  const channelVideoData = useSelector((state) => state.video.channelVideoData);
 
   return (
     <>
-      {videoData ? (
+      {channelVideoData ? (
         <div className="my-3 w-100">
-          <VideoList data={videoData} />
+          <VideoList data={channelVideoData} />
         </div>
       ) : (
         <div className="d-flex justify-content-center align-items-center">
           <Link to="/upload-video">
-            <div className="create_content">
+            <div className="create_content d-flex justify-content-center align-items-center">
               <div className="content_img">
                 <img src="/assets/channel/create_content.svg" alt="" />
               </div>

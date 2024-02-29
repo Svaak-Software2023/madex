@@ -186,7 +186,7 @@ function Header({ toggle }) {
                   </div>
                 ) : (
                   <div className="view-chanel-option" onClick={openModal}>
-                    Create your station
+                    Develop station
                   </div>
                 )}
                 <li>
@@ -197,7 +197,7 @@ function Header({ toggle }) {
                 </li>
                 <li>
                   <div className="dropdown-option">
-                    <MdOutlineSettingsBrightness /> <p>Appearance: Dark</p>
+                    <MdOutlineSettingsBrightness /> <p>Appearance : Dark</p>
                   </div>
                   <div
                     className="dropdown-option"
@@ -205,7 +205,7 @@ function Header({ toggle }) {
                   >
                     <FaExclamationTriangle />{" "}
                     <p>
-                      Restricted Mode:
+                      Restricted Mode : &nbsp;
                       {restrictionMode === false ? "Off" : "On"}
                     </p>
                   </div>
