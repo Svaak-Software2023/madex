@@ -51,7 +51,14 @@ import FunBox from "/assets/icons/funBox.png";
 import PrankBase from "/assets/icons/prankBase.png";
 import ChatRoom from "/assets/icons/chatRoom.png";
 import ClipGenesis from "/assets/icons/clipGenesis.png";
-import InstantMessage from "/assets/icons/instantMessage.png";
+// import InstantMessage from "/assets/icons/instantMessage.png";
+import Sports from "/assets/icons/sports.png";
+import unfiltered from "/assets/icons/unfiltered.png";
+import filtered from "/assets/icons/filtered.png";
+import liveHQ from "/assets/icons/liveHQ.png";
+import podcast from "/assets/icons/podcast.png";
+import MoviesAndEntertainment from "/assets/icons/movie&entertainment.png";
+import My from "/assets/icons/my.png";
 // import  from "/assets/icons/.png";
 
 // import My from "/assets/icons/my.png";
@@ -88,7 +95,8 @@ const menuData = [
     url: "/your-channel",
     text: "My Stations",
     icon: MyStation,
-    heading: "My >",
+    heading: "My ",
+    headingIcon: My,
   },
   {
     id: 6,
@@ -98,7 +106,7 @@ const menuData = [
   },
   {
     id: 7,
-    url: "/myVideos",
+    url: "/HomeContent",
     text: "My Videos",
     icon: Videos,
   },
@@ -155,7 +163,7 @@ const menuData = [
   {
     id: 16,
     url: "/live",
-    text: "Live",
+    text: "The Epic Stream",
     icon: Live,
   },
   {
@@ -184,113 +192,144 @@ const menuData = [
   },
   {
     id: 21,
+    url: "/podcast",
+    text: "Podcast",
+    icon: podcast,
+  },
+  {
+    id: 22,
     url: "/politics",
     text: "Politics",
     icon: Politics,
   },
   {
-    id: 22,
+    id: 23,
     url: "/funBox",
     text: "Fun Box",
     icon: FunBox,
   },
   {
-    id: 23,
+    id: 24,
     url: "/prankBase",
     text: "PrankBase",
     icon: PrankBase,
   },
   {
-    id: 24,
+    id: 25,
     url: "/chatRoom",
     text: "Chatroom",
     icon: ChatRoom,
   },
   {
-    id: 25,
-    url: "/clipGenesis",
-    text: "Clip Genesis",
-    icon: ClipGenesis,
-  },
-  {
     id: 26,
-    url: "/instantMessage",
-    text: "Instant Message",
-    icon: InstantMessage,
-    line: true,
+    url: "/livehQ",
+    text: "LiveHQ",
+    icon: liveHQ,
   },
   {
     id: 27,
+    url: "/MoviesandEntertainments",
+    text: "Movie and Entertainment",
+    icon: MoviesAndEntertainment,
+  },
+  {
+    id: 28,
+    url: "/clipGenesis",
+    text: "Clip Genesis",
+    icon: ClipGenesis,
+    line: true,
+  },
+
+  {
+    id: 29,
     url: "/",
     text: "Marketplace",
     icon: MarketPlace,
     heading: "Tour/Search",
   },
   {
-    id: 28,
+    id: 30,
     url: "/entertainment",
     text: "Entertainment",
     icon: Entertainment,
   },
   {
-    id: 29,
+    id: 31,
     url: "/cinema",
     text: "Cinema",
     icon: Cinema,
   },
   {
-    id: 30,
+    id: 32,
     url: "/liveLens",
     text: "Livelens/OnAir",
     icon: LiveLens,
     line: true,
   },
   {
-    id: 31,
+    id: 33,
     url: "/madeXElite",
     text: "MadeX Elite",
     icon: MadeXElite,
     heading: "More from MadeXtube",
   },
   {
-    id: 32,
+    id: 34,
     url: "/madeXStudio",
     text: "MadeX Studio",
     icon: MadeXStudio,
   },
   {
-    id: 33,
+    id: 35,
     url: "/madeXmcue",
     text: "MadeX Mcue Music",
     icon: MadeXMcueMusic,
   },
   {
-    id: 34,
+    id: 36,
     url: "/madeXJunior",
     text: "MadeX Junior",
     icon: MadeXJunior,
+  },
+  {
+    id: 37,
+    url: "/filtered",
+    text: "filtered content",
+    icon: filtered,
+  },
+  {
+    id: 38,
+    url: "/unfiltered",
+    text: "Unfiltered content",
+    icon: unfiltered,
+  },
+  {
+    id: 39,
+    url: "/madeXJunior",
+    text: "Sports",
+    icon: Sports,
     line: true,
   },
   {
-    id: 35,
+    id: 40,
     url: "/pages/login",
     text: "Stage Settings",
     icon: StageSettings,
   },
   {
-    id: 36,
+    id: 41,
     url: "/complaintHistory",
     text: "Complaint History",
     icon: ComplaintHistory,
   },
   {
-    id: 37,
+    id: 42,
     url: "/assistant",
     text: "Assistance/Support",
     icon: AssistanceSupport,
   },
   {
-    id: 38,
+    id: 43,
     url: "/sendObservation",
     text: "Send Observation",
     icon: SendObservation,

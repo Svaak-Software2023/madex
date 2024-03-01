@@ -15,10 +15,24 @@ const LeftMenu = ({ data }) => {
             <div className="sidebar_list">
               <ul className="links">
                 {menuData.map((link) => {
-                  const { id, url, text, icon, line, signIn, heading } = link;
+                  const {
+                    id,
+                    url,
+                    text,
+                    icon,
+                    line,
+                    signIn,
+                    heading,
+                    headingIcon,
+                  } = link;
                   return (
                     <li key={id}>
-                      {heading && <div className="heading">{heading}</div>}
+                      {heading && (
+                        <div className="heading d-flex align-items-center">
+                          {heading}&nbsp;
+                          {headingIcon && <img src={headingIcon} height={15} />}
+                        </div>
+                      )}
                       {url && (
                         <Link to={url}>
                           <div className="menu_image">

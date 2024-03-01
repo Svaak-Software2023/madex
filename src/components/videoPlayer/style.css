@@ -10,7 +10,7 @@
   object-fit: fill;
 }
 .video_title {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   width: 100%;
 }
 .video_content {
@@ -25,8 +25,8 @@
 
 .channel-profile {
   margin-right: 10px;
-  height: 60px;
-  width: 60px;
+  height: 50px;
+  width: 50px;
 }
 
 .channel-profile img {
@@ -64,11 +64,6 @@
   font-weight: 500;
   cursor: pointer;
 }
-/* 
-.subscribe-button p:hover {
-  background-color: #000000;
-  color: #f80000;
-} */
 
 .more-button-in-video {
   display: flex;
@@ -76,13 +71,14 @@
   justify-content: end;
   width: 50%;
   position: relative;
+  gap: 5px;
   /* background-color: aqua; */
 }
 
 .like-dislike {
   display: flex;
   justify-content: center;
-  background-color: #cecece;
+  background-color: #e3e3e3;
   padding: 0px 15px;
   border-radius: 20px;
 }
@@ -96,7 +92,7 @@
   display: flex;
   align-items: center;
   padding: 5px 8px;
-  border-right: 1px solid rgb(217, 213, 213);
+  border-right: 1px solid rgb(0, 0, 0);
 }
 
 .like-dislike .like-button span {
@@ -182,6 +178,17 @@
 
 .more-option-video span {
   margin-left: 3px;
+}
+
+.description {
+  background: #eeeeee;
+  padding-block: 15px;
+  padding-inline: 30px;
+  border-radius: 10px;
+}
+.description .views-time {
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 @media screen and (max-width: 1150px) {

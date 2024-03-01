@@ -5,7 +5,6 @@ function Home() {
   return (
     <>
       <div className=" circle-container">
-        {/* <Splash /> */}
         <Circle />
       </div>
     </>

@@ -134,15 +134,15 @@ picture {
     var(--throb-play-state, running);
 }
 .orbit li > div {
-  background-color: #e7d672;
+  background-color: #c8c8c8;
 }
 .orbit li > a {
-  background: #9f903c;
+  background: #848481;
   transition: opacity 500ms;
   opacity: 0;
   font-size: 0.8rem;
   font-weight: 600;
-  color: white;
+  color: black;
   text-transform: capitalize;
 }
 .orbit li:hover > a {

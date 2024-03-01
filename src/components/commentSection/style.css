@@ -1,4 +1,5 @@
 .comment-container {
+  margin-top: 10px;
   padding-inline: 15px;
 }
 .comment-container .user-comment-container {
@@ -45,7 +46,7 @@
 .comment_details {
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 10px;
   gap: 15px;
 }
 .user_avatar {

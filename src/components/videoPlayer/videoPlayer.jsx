@@ -193,17 +193,15 @@ const VideoPlayer = ({ data, pathname }) => {
             <div className="channel-profile">
               <img
                 src={data?.channelData.owner.avatar}
-                height={100}
-                width={100}
+                height={80}
+                width={80}
                 alt="profile"
               />
             </div>
             <div className="channel_name">
               <h3>{data?.channelData.channelName}</h3>
+              <p> 1.3M Fanscribers</p>
               {/* <p>{view} Views • 3 months ago</p> */}
-              <p>
-                {view} Views • {moment(data.createdAt).fromNow()}
-              </p>
             </div>
             {subscribed ? (
               <div className="subscribe-button">
@@ -215,7 +213,17 @@ const VideoPlayer = ({ data, pathname }) => {
               </div>
             )}
           </div>
+
           <div className="more-button-in-video">
+            <div className="header-three-dot">
+              <img src="assets/icons/chat.png" alt="" />
+            </div>
+            <div className="header-three-dot">
+              <img src="assets/icons/marketPlace.png" alt="" />
+            </div>
+            <div className="header-three-dot">
+              <img src="assets/icons/chatRoom.png" alt="" />
+            </div>
             <div className="like-dislike ">
               {likeCount?.loading ? (
                 <div className="py-1 px-3">
@@ -242,13 +250,21 @@ const VideoPlayer = ({ data, pathname }) => {
                 </>
               )}
             </div>
+            <div className="header-three-dot" onClick={openModal}>
+              <img src="assets/icons/share.png" alt="" />
+            </div>
             <Link to="#" onClick={handleDownload}>
-              <div className="download-video">
-                {/* <MdOutlineDownloading /> */}
+              <div className="header-three-dot">
                 <img src="/assets/icons/download.png" alt="" />
-                <span>Download</span>
               </div>
             </Link>
+            <div className="header-three-dot">
+              <img src="assets/icons/cutVideo.png" alt="" />
+            </div>
+
+            <div className="header-three-dot">
+              <img src="assets/icons/watchLater.png" alt="" />
+            </div>
 
             <div
               className="more-option-video"
@@ -259,12 +275,6 @@ const VideoPlayer = ({ data, pathname }) => {
             {videoMore && (
               <div className="more-option-video-list">
                 <ul>
-                  <li>
-                    <div className="more-option-icon">
-                      <img src="/assets/icons/share.png" alt="" />
-                    </div>
-                    <p onClick={openModal}>share</p>
-                  </li>
                   <li>
                     <div className="more-option-icon">
                       <img src="/assets/icons/thanks.png" alt="" />
@@ -290,8 +300,10 @@ const VideoPlayer = ({ data, pathname }) => {
           </div>
         </div>
       </div>
-      <div className="description my-3">
-        <h3 className="video_title">Description</h3>
+      <div className="description mt-2">
+        <p className="views-time">
+          {view} Views • {moment(data.createdAt).fromNow()}
+        </p>
         {data.description}
       </div>
       <div className="comment-container">

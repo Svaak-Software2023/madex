@@ -82,10 +82,12 @@ function Header({ toggle }) {
             <input type="text" placeholder="Search" />
             <IoSearch />
           </div>
-          <div className="header-voice-search">
-            {/* <IoMdMic /> */}
-            <img src="/assets/icons/mic.png" alt="" />
+          <div className="header-three-dot">
+            <img src="assets/icons/mic.png" alt="" />
           </div>
+          {/* <div className="header-voice-search">
+            <img src="/assets/icons/mic.png" alt="" />
+          </div> */}
         </div>
         <div className="header-right">
           {user ? (
@@ -97,12 +99,18 @@ function Header({ toggle }) {
                   onClick={() => navigate("/upload-video")}
                 />
               </div>
+
               <div className="header-three-dot">
-                <img src="assets/icons/chat.png" alt="" />
+                <img src="assets/icons/chatRoom.png" alt="" />
+              </div>
+              <div className="header-three-dot">
+                <img src="assets/icons/standCamera.png" alt="" />
               </div>
               <div className="header-three-dot">
                 <img src="assets/icons/notification.png" alt="" />
-                {/* <GiRingingBell /> */}
+              </div>
+              <div className="header-three-dot">
+                <img src="assets/icons/chat.png" alt="" />
               </div>
 
               <div className="user-profile-logo">

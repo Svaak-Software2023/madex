@@ -16,6 +16,7 @@ import FavoriteVideo from "../pages/favoriteVideo/FavoriteVideo";
 import ShortsPlayer from "../components/shortsPlayer/ShortsPlayer";
 import Fanscribe from "../pages/fanscribe/Fanscribe";
 import Station from "../pages/yourChannel/channelTabs/Stations";
+import HomeContent from "../pages/yourChannel/channelTabs/HomeContent";
 
 const UserRoutes = [
   { name: "404 Error", path: "*", element: <Error404 />, isPrivate: false },
@@ -100,6 +101,12 @@ const UserRoutes = [
     element: <Station />,
     isPrivate: true,
   },
+  // {
+  //   name: "My Video",
+  //   path: "/HomeContent",
+  //   element: <HomeContent />,
+  //   isPrivate: true,
+  // },
 ];
 
 export default UserRoutes;
