@@ -106,7 +106,7 @@ const menuData = [
   },
   {
     id: 7,
-    url: "/HomeContent",
+    url: "/myVideos",
     text: "My Videos",
     icon: Videos,
   },
