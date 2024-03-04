@@ -7,6 +7,7 @@ import {
 import { useEffect, useState } from "react";
 import "./style.css";
 import CommentsList from "./CommentsList";
+import LogoutUser from "/assets/login/logout_user.png";
 
 const CommentSection = ({ userId, videoId, accessToken }) => {
   const dispatch = useDispatch();
@@ -28,9 +29,15 @@ const CommentSection = ({ userId, videoId, accessToken }) => {
     <>
       <div className="comment-container">
         <div className="user-comment-container">
-          <div className="user_avatar" style={{ marginTop: "5px" }}>
-            <img src={userProfile?.avatar} alt="" />
-          </div>
+          {userProfile ? (
+            <div className="user_avatar" style={{ marginTop: "5px" }}>
+              <img src={userProfile?.avatar} alt="" />
+            </div>
+          ) : (
+            <div className="user_avatar" style={{ marginTop: "5px" }}>
+              <img src={LogoutUser} alt="" />
+            </div>
+          )}
           <div style={{ flex: "1" }}>
             <p className="comment-count">{commentData?.length} Opinions</p>
             <form onSubmit={handleCreateComment}>

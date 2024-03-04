@@ -1,0 +1,14 @@
+.subscribe-button {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.subscribe-button p {
+  padding: 8px 15px;
+  background: black;
+  color: red;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}

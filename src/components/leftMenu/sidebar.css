@@ -13,7 +13,7 @@
 .left-menu-width {
   position: relative;
   width: 300px !important;
-  z-index: 1000;
+  /* z-index: 1000; */
 }
 .sidebar {
   height: 90vh;

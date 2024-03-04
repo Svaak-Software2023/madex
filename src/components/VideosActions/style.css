@@ -1,0 +1,215 @@
+.video_content {
+  /* display: flex;
+  align-items: center; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.channel-profile-details {
+  display: flex;
+  /* width: 50%; */
+}
+.Video_channel_profile {
+  display: flex;
+  align-items: center;
+}
+
+.channel-img {
+  margin-right: 10px;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid #e3e3e3;
+  overflow: hidden;
+  background: #fff;
+}
+
+.channel-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border: 1px solid #a0a0a0;
+}
+
+.channel_name h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 3px;
+}
+
+.channel_name .fanscribe_count {
+  font-size: 0.79rem;
+  font-weight: 600;
+  line-height: 5px;
+}
+
+.more-button-in-video {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  /* width: 50%; */
+  position: relative;
+  gap: 5px;
+  /* background-color: aqua; */
+}
+
+.like-dislike {
+  display: flex;
+  justify-content: center;
+  background-color: #e3e3e3;
+  padding: 0px 15px;
+  border-radius: 20px;
+}
+
+.like-dislike svg {
+  font-size: large;
+  cursor: pointer;
+}
+
+.like-dislike .like-button {
+  display: flex;
+  align-items: center;
+  padding: 5px 8px;
+  border-right: 1px solid rgb(0, 0, 0);
+}
+
+.like-dislike .like-button span {
+  margin-left: 5px;
+}
+
+.like-dislike .dis-button {
+  display: flex;
+  align-items: center;
+  padding: 5px 8px;
+}
+
+.more-option-video {
+  margin-left: 10px;
+  background-color: #cecece;
+  padding: 10px 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.more-option-video-list {
+  position: absolute;
+  background: #e5e5e5;
+  top: 45px;
+  right: 10px;
+  border-radius: 8px;
+}
+.more-option-video-list > ul {
+  margin: 0;
+  padding: 0;
+}
+.more-option-video-list > ul > li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-block: 4px;
+  padding-inline: 20px;
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+.more-option-video-list > ul > li > a {
+  gap: 10px;
+
+  display: flex;
+  align-items: center;
+}
+.more-option-video-list > ul > li > p {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.more-option-video-list > ul > li:hover {
+  background: white;
+}
+.more-option-video-list .more-option-icon {
+  height: 25px;
+  width: 25px;
+}
+.more-option-video-list .more-option-icon img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.more-option-video span {
+  margin-left: 3px;
+}
+@media screen and (max-width: 1150px) {
+  .video_content {
+    /* display: block; */
+  }
+  .channel-profile-details {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* .video_content {
+    display: block;
+  } */
+  .channel-profile-details {
+    width: 100%;
+    /* gap: 20px; */
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .more-button-in-video {
+    margin: auto;
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  .like-dislike .like-button {
+    padding: 8px 5px;
+  }
+
+  .like-dislike .dis-button {
+    padding: 8px 5px;
+  }
+
+  .more-option-video {
+    padding: 10px;
+  }
+
+  .more-button-in-video span {
+    /* display: none; */
+    font-size: 12px;
+  }
+  .header-three-dot-video-option {
+    display: flex;
+    gap: 10px;
+  }
+  .channel_name h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 3px;
+  }
+  .channel_name .fanscribe_count {
+    font-size: 0.8rem;
+  }
+}
+
+/* For Mobile Portrait View */
+@media screen and (max-device-width: 480px) {
+  .video_content {
+    display: block;
+  }
+  .channel_name h3 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 3px;
+  }
+  .channel_name .fanscribe_count {
+    font-size: 0.6rem;
+  }
+}

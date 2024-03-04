@@ -124,3 +124,10 @@
 .comment_edit_container {
   margin-top: 10px;
 }
+
+@media screen and (max-width: 768px) {
+}
+
+/* For Mobile Portrait View */
+@media screen and (max-device-width: 480px) {
+}

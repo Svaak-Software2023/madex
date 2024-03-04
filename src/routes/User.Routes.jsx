@@ -16,7 +16,6 @@ import FavoriteVideo from "../pages/favoriteVideo/FavoriteVideo";
 import ShortsPlayer from "../components/shortsPlayer/ShortsPlayer";
 import Fanscribe from "../pages/fanscribe/Fanscribe";
 import Station from "../pages/yourChannel/channelTabs/Stations";
-import HomeContent from "../pages/yourChannel/channelTabs/HomeContent";
 import MyVideos from "../pages/myVideos/MyVideos";
 
 const UserRoutes = [

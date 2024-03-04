@@ -29,19 +29,20 @@ function CategoreyMenu() {
   // call video api acording the category
   const handleClick = (categoryId) => {
     dispatch(getAllCategoryVideo(categoryId));
-    // alert("called")
   };
 
   // call get all video api
   // const navigate=useNavigate()
-  const handlAllData = () => {
-    window.location.reload();
-  };
+  // const handlAllData = () => {
+  //    const defaultRecommendData =
+  //      video.videoData &&
+  //      video.videoData.filter((item) => item._id !== video.singleVideo._id);
+  // };
 
   return (
     <div className="categorey-menu-main mt-0">
       <div className="categotrey-menu-list">
-        <div className="categorey-menu-item px-2" onClick={handlAllData}>
+        <div className="categorey-menu-item px-2">
           <span>All</span>
         </div>
         {data?.map((item) => (

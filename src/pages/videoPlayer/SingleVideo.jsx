@@ -9,7 +9,7 @@ import {
   getSingleVideo,
   viewCount,
 } from "../../redux/featurs/videoSlice";
-import Loading from "../../assets/loader/Loading";
+// import Loading from "../../assets/loader/Loading";
 
 const SingleVideo = () => {
   const { videoId } = useParams();
@@ -31,7 +31,7 @@ const SingleVideo = () => {
     dispatch(getAllVideo());
   }, []);
 
-  if (video.loading) return <Loading />;
+  // if (video.loading) return <Loading />;
   if (!video.singleVideo)
     return (
       <h4 className="text-center mt-5">
@@ -39,7 +39,15 @@ const SingleVideo = () => {
       </h4>
     );
 
+  console.log("Category Video :", video.categoryVideoData);
+
   const recommendData =
+    video.categoryVideoData &&
+    video.categoryVideoData.filter(
+      (item) => item._id !== video.categoryVideoData._id
+    );
+
+  const defaultRecommendData =
     video.videoData &&
     video.videoData.filter((item) => item._id !== video.singleVideo._id);
   return (
@@ -53,7 +61,9 @@ const SingleVideo = () => {
           </div>
           <div className="video_list col-lg-5 col-12 m-0 p-0 mt-2">
             <CategoreyMenu />
-            <RecommendList data={recommendData} />
+            <RecommendList
+              data={recommendData ? recommendData : defaultRecommendData}
+            />
           </div>
         </div>
       </div>
