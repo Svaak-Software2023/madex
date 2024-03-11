@@ -226,3 +226,78 @@
 .video_uploader_modal .desc span {
   color: #065fd4;
 }
+
+@media screen and (max-width: 768px) {
+  .channel_profile .profile_container {
+    height: 115px;
+    width: 115px;
+  }
+  .channel_profile .profile_details h3 {
+    font-size: 1.1rem;
+    margin-top: 8px;
+    line-height: 10px;
+  }
+  .channel_profile .profile_details span {
+    font-size: 1rem;
+    line-height: 12px;
+    margin: 2px 0px 5px;
+  }
+  .profile_details p {
+    font-size: 1.1rem;
+  }
+
+  .channel_profile .profile_details .profile_buttons {
+    display: flex;
+    gap: 5px;
+  }
+  .channel_profile .profile_details .profile_buttons button {
+    padding: 7px;
+    border-radius: 10px;
+    background: #efefef;
+    color: #000;
+    font-size: 12px;
+    font-weight: 400;
+    outline: none;
+    border: 0;
+  }
+  .job-btn {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .channel_profile .profile_container {
+    height: 100px;
+    width: 100px;
+  }
+  .channel_profile .profile_details h3 {
+    font-size: 1.1rem;
+    margin-top: 5px;
+    line-height: 8px;
+  }
+  .channel_profile .profile_details span {
+    font-size: 0.9rem;
+    line-height: 10px;
+    margin: 2px 0px 5px;
+  }
+  .profile_details p {
+    font-size: 0.9rem;
+  }
+  .channel_profile .profile_details .profile_buttons {
+    display: flex;
+    gap: 5px;
+  }
+  .channel_profile .profile_details .profile_buttons button {
+    padding: 7px;
+    border-radius: 10px;
+    background: #efefef;
+    color: #000;
+    font-size: 10px;
+    font-weight: 500;
+    outline: none;
+    border: 0;
+  }
+  .job-btn {
+    font-size: 0.9rem;
+  }
+}

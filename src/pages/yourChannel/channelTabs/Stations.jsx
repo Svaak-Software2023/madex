@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { getUserStationProfile } from "../../../redux/featurs/channelSlice";
 import { IoIosArrowForward } from "react-icons/io";
 import HomeContent from "./HomeContent";
-import PLaylistList from "../../playlist/PLaylistList";
+// import PLaylistList from "../../playlist/PLaylistList";
 import VideoList from "../../../components/videoList/VideoList";
 import Playlist from "../../playlist/Playlist";
 
@@ -28,7 +28,6 @@ const Stations = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((state) => state.auth.data.accessToken);
   const stationProfile = useSelector((state) => state.channel.channelProfile);
-  console.log(stationProfile);
 
   const [activeTab, setActiveTab] = useState(1);
 

@@ -17,6 +17,9 @@ import ShortsPlayer from "../components/shortsPlayer/ShortsPlayer";
 import Fanscribe from "../pages/fanscribe/Fanscribe";
 import Station from "../pages/yourChannel/channelTabs/Stations";
 import MyVideos from "../pages/myVideos/MyVideos";
+import Setting from "../pages/account/Setting";
+import CustomizeStation from "../pages/customizeStation/CustomizeStation";
+import MadeXStudio from "../pages/madexStudio/MadeXStudio";
 
 const UserRoutes = [
   { name: "404 Error", path: "*", element: <Error404 />, isPrivate: false },
@@ -105,6 +108,24 @@ const UserRoutes = [
     name: "My Video",
     path: "/myVideos",
     element: <MyVideos />,
+    isPrivate: true,
+  },
+  {
+    name: "Setting",
+    path: "/setting",
+    element: <Setting />,
+    isPrivate: true,
+  },
+  {
+    name: "Customize Station",
+    path: "/customize-station",
+    element: <CustomizeStation />,
+    isPrivate: true,
+  },
+  {
+    name: "Manage Videos",
+    path: "/manage-video",
+    element: <MadeXStudio />,
     isPrivate: true,
   },
 ];

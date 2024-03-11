@@ -1,0 +1,14 @@
+.menu-header {
+  display: flex;
+  gap: 25px;
+  border-bottom: 1px solid #999;
+  padding-bottom: 10px;
+}
+.menu-btn {
+  color: #454242;
+  font-weight: 500;
+}
+.menu-active-btn {
+  color: #065fd4;
+  border-bottom: 1px solid #065fd4;
+}

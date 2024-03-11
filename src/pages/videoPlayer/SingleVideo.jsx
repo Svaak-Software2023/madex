@@ -39,7 +39,7 @@ const SingleVideo = () => {
       </h4>
     );
 
-  console.log("Category Video :", video.categoryVideoData);
+  console.log("Category Video :", video.singleVideo);
 
   const recommendData =
     video.categoryVideoData &&

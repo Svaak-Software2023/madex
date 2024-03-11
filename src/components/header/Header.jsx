@@ -104,7 +104,7 @@ function Header({ toggle }) {
                 <img src="assets/icons/chatRoom.png" alt="" />
               </div>
               <div className="header-three-dot">
-                <img src="assets/icons/standCamera.png" alt="" />
+                <img src="assets/icons/standCamera2.png" alt="" />
               </div>
               <div className="header-three-dot">
                 <img src="assets/icons/notification.png" alt="" />
@@ -219,7 +219,7 @@ function Header({ toggle }) {
                   </div>
                 </li>
                 <li>
-                  <Link to="/pages/account/setting">
+                  <Link to="/setting">
                     <div className="dropdown-option">
                       <MdOutlineSettings /> <p>Settings</p>
                     </div>

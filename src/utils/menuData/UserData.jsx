@@ -15,7 +15,7 @@ import Download from "/assets/icons/download.png";
 
 import PLaylist from "/assets/icons/playlist.png";
 
-import MarketPlace from "/assets/icons/marketPlace.png";
+import MarketPlace from "/assets/icons/marketplace.jpg";
 
 import Entertainment from "/assets/icons/entertainment.png";
 
@@ -275,7 +275,7 @@ const menuData = [
   },
   {
     id: 34,
-    url: "/madeXStudio",
+    url: "/manage-video",
     text: "MadeX Studio",
     icon: MadeXStudio,
   },
@@ -312,7 +312,7 @@ const menuData = [
   },
   {
     id: 40,
-    url: "/pages/login",
+    url: "/setting",
     text: "Stage Settings",
     icon: StageSettings,
   },

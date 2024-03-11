@@ -1,139 +1,148 @@
 .video-list-main {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    /* background-color: #737070; */
-    justify-content:start;
-    width: 100%;
-    margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* background-color: #737070; */
+  justify-content: start;
+  width: 100%;
+  margin: auto;
 }
 
 .video-list {
-    /* width: calc(100%/4); */
-    padding: 10px;
-    margin-bottom: 15px;
+  /* width: calc(100%/4); */
+  padding: 10px;
+  margin-bottom: 15px;
 }
 
 .video-item {
-    width: 100%;
-    height: 220px;
-    position: relative;
+  width: 100%;
+  height: 220px;
+  position: relative;
 }
 
 .video-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
 }
 
 .video-item span {
-    position: absolute;
-    right: 5px;
-    bottom: 5px;
-    padding: 2px 5px;
-    background-color: rgba(74, 73, 73, 0.658);
-    color: #ffff;
-    font-weight: 600;
-    font-size: 14px;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  padding: 2px 5px;
+  background-color: rgba(74, 73, 73, 0.658);
+  color: #ffff;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .video-details {
-    display: flex;
-    padding-top: 8px;
-    position: relative;
+  display: flex;
+  padding-top: 8px;
+  position: relative;
 }
 
 .video-logo-img {
-    width: 50px !important;
-    height: 50px !important;
-    background-color: blue;
-    margin-right: 10px;
-    border-radius: 50%;
+  width: 50px !important;
+  height: 50px !important;
+  background-color: blue;
+  margin-right: 10px;
+  border-radius: 50%;
 }
 
 .video-logo-img img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .video-name {
-
-    width: calc(100% - 50px);
+  width: calc(100% - 50px);
 }
 
 .video-name a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .video-name h3 {
-    color: #000;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    margin: 0;
-    padding-bottom: 5px;
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+  padding-bottom: 5px;
 }
 
 .video-name p {
-    margin: 0;
-    color: #737070;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    padding-bottom: 3px;
+  margin: 0;
+  color: #737070;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding-bottom: 3px;
 }
 
-.video-more-option-button{
-    /* background-color: #000; */
-    display: flex;
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
+.video-more-option-button {
+  /* background-color: #000; */
+  display: flex;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
 }
 
-.video-more-option-button svg{
-    font-size: 20px;
-    font-weight: 500;
-    cursor: pointer;
+.video-more-option-button svg {
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-.video-more-option{
-    position: absolute;
-    background-color: #ffff;
-   box-shadow: 5px 8px 16px 5px rgba(3, 3, 3, 0.2);
-    top: 30px;
-    right: 0;
-    width: 200px;
-    padding: 10px;
-    z-index: 1;
+.video-more-option {
+  position: absolute;
+  background-color: #ffff;
+  box-shadow: 5px 8px 16px 5px rgba(3, 3, 3, 0.2);
+  top: 30px;
+  right: 0;
+  width: 200px;
+  padding: 10px;
+  z-index: 1;
 }
 
-.video-more-option ul{
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.video-more-option ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
-.video-more-option ul li{
-   /* background-color: aqua; */
-   padding: 5px 8px;
-   margin: 3px 0px;
-   cursor: pointer;
-   /* border-bottom: 1px solid ; */
+.video-more-option ul li {
+  /* background-color: aqua; */
+  padding: 5px 8px;
+  margin: 3px 0px;
+  cursor: pointer;
+  /* border-bottom: 1px solid ; */
 }
-.video-more-option ul li:hover{
-    background-color: #fceded;
+.video-more-option ul li:hover {
+  background-color: #fceded;
 }
 @media screen and (max-width: 768px) {
-    .video-list-main {
-        justify-content: center;
-    }
+  .video-list-main {
+    justify-content: center;
+  }
 
-    .video-list {
-        width: 100% !important;
-        padding: 10px 5px;
-    }
+  .video-list {
+    width: 100% !important;
+    padding: 10px 150px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .video-list-main {
+    justify-content: center;
+  }
+
+  .video-list {
+    width: 100% !important;
+    padding: 10px 12px;
+  }
 }

@@ -38,6 +38,7 @@ const ChannelModal = (props) => {
     dispatch(createChannel(dataWithId));
     // Reset the form after successful submission
     reset();
+    closeModal();
   };
 
   const channel = useSelector((state) => state.channel);

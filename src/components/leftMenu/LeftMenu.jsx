@@ -3,9 +3,24 @@
 import menuData from "../../utils/menuData/UserData";
 import "./sidebar.css";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setmenu } from "../../utils/globalFunction/GlobalFunctionSlice";
+
 const LeftMenu = ({ data }) => {
+  const dispatch = useDispatch();
+
   const user = useSelector((state) => state.auth.user);
+  const isSidebarOpen = useSelector((state) => state.globalFunction.isMenuOpen);
+
+  const openSidebar = () => {
+    dispatch(setmenu(!isSidebarOpen));
+    // console.log("called:",isSidebarOpen);
+  };
+
+  const forMobileResponse = window.screen.width;
+  {
+    forMobileResponse > 769 ? <br /> : "";
+  }
 
   return (
     <>
@@ -34,7 +49,10 @@ const LeftMenu = ({ data }) => {
                         </div>
                       )}
                       {url && (
-                        <Link to={url}>
+                        <Link
+                          to={url}
+                          onClick={forMobileResponse < 769 ? openSidebar : ""}
+                        >
                           <div className="menu_image">
                             <img src={icon} alt="" />
                           </div>

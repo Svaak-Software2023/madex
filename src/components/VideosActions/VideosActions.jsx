@@ -234,7 +234,7 @@ const VideosActions = ({ data }) => {
                 )}
                 <li>
                   <div className="more-option-icon">
-                    <img src="/assets/icons/thanks.png" alt="" />
+                    <img src="/assets/icons/tipBox.png" alt="" />
                   </div>
                   <p>Thanks</p>
                 </li>

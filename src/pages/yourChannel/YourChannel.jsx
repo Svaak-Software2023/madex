@@ -9,6 +9,7 @@ import "./style.css";
 // import Playlist from "../playlist/Playlist";
 import HomeContent from "./channelTabs/HomeContent";
 import PLaylisyList from "../playlist/PLaylistList";
+import { Link } from "react-router-dom";
 
 const menus = [
   {
@@ -21,7 +22,7 @@ const menus = [
   },
   {
     id: 3,
-    name: "Shorts",
+    name: "Mini Clips",
   },
 ];
 
@@ -79,8 +80,12 @@ const YourChannel = () => {
             </p>
 
             <div className="profile_buttons">
-              <button>Customize station</button>
-              <button>Manage videos</button>
+              <Link to="/customize-station">
+                <button>Customize station</button>
+              </Link>
+              <Link to="/manage-video">
+                <button>Manage videos</button>
+              </Link>
             </div>
           </div>
         </div>
