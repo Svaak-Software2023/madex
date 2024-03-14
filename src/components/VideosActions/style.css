@@ -19,8 +19,8 @@
 
 .channel-img {
   margin-right: 10px;
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,13 +38,13 @@
 }
 
 .channel_name h3 {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   margin-top: 3px;
 }
 
 .channel_name .fanscribe_count {
-  font-size: 0.79rem;
+  font-size: 0.75rem;
   font-weight: 600;
   line-height: 5px;
 }

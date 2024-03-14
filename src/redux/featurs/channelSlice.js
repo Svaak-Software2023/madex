@@ -17,11 +17,11 @@ export const createChannel = createAsyncThunk(
 export const getChannel = createAsyncThunk("channel/get", async (userId) => {
   try {
     const response = await api.getChannel(userId);
+    console.log("Check Channel:", response.data);
     return response.data;
   } catch (error) {
-    // console.log("this is the error",error);
-    // Instead of throwing error.response, throw the entire error object
-    throw error.response.data.statusCode;
+    console.log(error.response.data.statusCode);
+    throw error.response.data.statusCode.statusCode;
   }
 });
 
@@ -60,11 +60,13 @@ const channelSlice = createSlice({
     data: null,
     channelList: null,
     channelProfile: null,
+    channelNotExit: null,
     loading: false,
     message: "",
     error: {},
   },
   reducers: {},
+
   extraReducers: (builder) => {
     builder
       .addCase(createChannel.pending, (state) => {
@@ -99,6 +101,7 @@ const channelSlice = createSlice({
         state.loading = false;
         state.data = null;
         state.message = "";
+        state.channelNotExit = action.error;
         state.error = action.error; // Use action.error.message or whatever property holds the error message
       })
       .addCase(getAllChannelList.pending, (state) => {

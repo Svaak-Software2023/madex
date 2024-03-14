@@ -15,7 +15,7 @@
 }
 
 .video_title {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
   width: 100%;
 }
@@ -31,7 +31,7 @@
   font-weight: 500;
 }
 .description .description_data {
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 400;
 }
 

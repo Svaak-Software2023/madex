@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://moviefam.com/api/v1",
-  // baseURL: "http://localhost:8000/api/v1",
+  // baseURL: "https://moviefam.com/api/v1",
+  baseURL: "http://localhost:8000/api/v1",
 });
 
 //User API's
@@ -67,12 +67,12 @@ export const getShorts = () => API.get("/videos/shorts");
 export const viewCount = (videoId) => API.patch(`/videos/view/${videoId}`);
 
 // subccribe api
-export const checkisSubscribe = ({ userId, channelId, accessToken }) =>
-  API.get(`/subscriptions/check-subscribe/${userId}/${channelId}`, {
-    headers: {
-      Authorization: accessToken,
-    },
-  });
+// export const checkisSubscribe = ({ userId, channelId, accessToken }) =>
+//   API.get(`/subscriptions/check-subscribe/${userId}/${channelId}`, {
+//     headers: {
+//       Authorization: accessToken,
+//     },
+//   });
 
 export const subscribe = ({ userId, channelId, accessToken }) =>
   API.post(`/subscriptions/add-subscription/${userId}/${channelId}`, null, {

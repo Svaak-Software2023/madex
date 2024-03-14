@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./style.css";
 import { IoSearch } from "react-icons/io5";
 import { PiSignOutBold } from "react-icons/pi";
@@ -170,7 +170,7 @@ function Header({ toggle }) {
             </>
           )}
           {dropdown && (
-            <div className="login-user-details">
+            <div className="login-user-details ">
               <h3 className="dropdown-back">
                 <IoMdArrowRoundBack onClick={() => setDropdown(!dropdown)} />
                 <span>Accounts</span>

@@ -9,6 +9,7 @@ import {
   getSingleVideo,
   viewCount,
 } from "../../redux/featurs/videoSlice";
+import Loading from "../../assets/loader/Loading";
 // import Loading from "../../assets/loader/Loading";
 
 const SingleVideo = () => {
@@ -32,19 +33,14 @@ const SingleVideo = () => {
   }, []);
 
   // if (video.loading) return <Loading />;
-  if (!video.singleVideo)
-    return (
-      <h4 className="text-center mt-5">
-        Sorry, the video data could not be found
-      </h4>
-    );
+  if (!video.singleVideo) return <Loading />;
 
   console.log("Category Video :", video.singleVideo);
 
   const recommendData =
     video.categoryVideoData &&
     video.categoryVideoData.filter(
-      (item) => item._id !== video.categoryVideoData._id
+      (item) => item?._id !== video?.categoryVideoData?._id
     );
 
   const defaultRecommendData =

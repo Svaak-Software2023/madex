@@ -4,17 +4,14 @@ import { toast } from "react-toastify";
 
 export const checkSubscribe = createAsyncThunk(
   "get/subscribe",
-  async ({ userId, channelId, accessToken }) => {
+  async ({ username, accessToken }) => {
     try {
-      const response = await api.checkisSubscribe({
-        userId,
-        channelId,
+      const response = await api.getUserStationProfile({
+        username,
         accessToken,
       });
-      console.log("Check is subscribed:", response.data);
       return response.data;
     } catch (error) {
-      toast.error(error.response.data.statusCode.message);
       throw error.response.data;
     }
   }
@@ -22,11 +19,23 @@ export const checkSubscribe = createAsyncThunk(
 
 export const createSubscribe = createAsyncThunk(
   "create/subscribe",
-  async ({ userId, channelId, accessToken }) => {
+  async ({ userId, username, channelId, accessToken }) => {
     try {
-      const response = await api.subscribe({ userId, channelId, accessToken });
-      console.log("Subscribe a Channel response", response.data);
-      return response.data;
+      const messageResponse = await api.subscribe({
+        userId,
+        channelId,
+        accessToken,
+      });
+
+      const dataResponse = await api.getUserStationProfile({
+        username,
+        accessToken,
+      });
+
+      return {
+        messageRes: messageResponse.data,
+        dataRes: dataResponse.data,
+      };
     } catch (error) {
       toast.error(error.response.data.statusCode.message);
       throw error;
@@ -36,19 +45,25 @@ export const createSubscribe = createAsyncThunk(
 
 export const unSubscribe = createAsyncThunk(
   "delete/subscribe",
-  async ({ userId, channelId, accessToken }) => {
+  async ({ userId, username, channelId, accessToken }) => {
+    // eslint-disable-next-line no-useless-catch
     try {
-      const response = await api.unSubscribe({
+      const messageResponse = await api.unSubscribe({
         userId,
         channelId,
         accessToken,
       });
-      console.log("response", response);
-      return response.data;
-    } catch (error) {
-      //   toast.error(error.response.data.statusCode.message)
-      // console.log("error", error);
 
+      const dataResponse = await api.getUserStationProfile({
+        username,
+        accessToken,
+      });
+
+      return {
+        messageRes: messageResponse.data,
+        dataRes: dataResponse.data,
+      };
+    } catch (error) {
       throw error;
     }
   }
@@ -56,37 +71,39 @@ export const unSubscribe = createAsyncThunk(
 const subscribeSlice = createSlice({
   name: "subscribe",
   initialState: {
-    isSubscribed: null,
+    checkIsSubscribed: null,
     message: null,
     error: null,
     loading: false,
   },
   extraReducers: (builder) => {
     builder
-      .addCase(createSubscribe.pending, (state, action) => {
+      // Subscribe a Channel
+      .addCase(createSubscribe.pending, (state) => {
         state.message = null;
         state.error = null;
         state.loading = true;
       })
       .addCase(createSubscribe.fulfilled, (state, action) => {
-        state.message = action.payload;
+        state.checkIsSubscribed = action.payload.dataRes.data.isSubscribed;
+        state.message = action.payload.messageRes.message;
         state.error = null;
         state.loading = false;
       })
+
       .addCase(createSubscribe.rejected, (state, action) => {
-        state.message = null;
+        state.message = action.payload.dataRes.statusCode.message;
         state.error = action.error;
         state.loading = false;
       })
-      .addCase(checkSubscribe.pending, (state, action) => {
+      // Check IS Subscribed
+      .addCase(checkSubscribe.pending, (state) => {
         state.message = null;
-        state.error = null;
         state.loading = true;
       })
       .addCase(checkSubscribe.fulfilled, (state, action) => {
-        state.isSubscribed = action.payload.data.isSubscribed;
+        state.checkIsSubscribed = action.payload.data.isSubscribed;
         state.message = action.payload.data.message;
-        state.error = null;
         state.loading = false;
       })
       .addCase(checkSubscribe.rejected, (state, action) => {
@@ -94,15 +111,13 @@ const subscribeSlice = createSlice({
         state.error = action.error.message;
         state.loading = false;
       })
-      .addCase(unSubscribe.pending, (state, action) => {
-        state.message = null;
-        state.error = null;
+      // Unscribe A Channel
+      .addCase(unSubscribe.pending, (state) => {
         state.loading = true;
       })
       .addCase(unSubscribe.fulfilled, (state, action) => {
-        // state.isSubscribed=action.payload.data.isSubscribed
-        state.message = action.payload;
-        state.error = null;
+        state.checkIsSubscribed = action.payload.dataRes.data.isSubscribed;
+        state.message = action.payload.messageRes.message;
         state.loading = false;
       })
       .addCase(unSubscribe.rejected, (state, action) => {

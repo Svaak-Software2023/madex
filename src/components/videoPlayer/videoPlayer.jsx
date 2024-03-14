@@ -9,11 +9,11 @@ import { createHistory } from "../../redux/featurs/historySlice";
 import CommentSection from "../commentSection/CommentSection";
 import moment from "moment";
 import VideosActions from "../VideosActions/VideosActions";
-import { getUserStationProfile } from "../../redux/featurs/channelSlice";
+// import { getUserStationProfile } from "../../redux/featurs/channelSlice";
+import { checkSubscribe } from "../../redux/featurs/subscribeSlice";
 
 const VideoPlayer = ({ data }) => {
-  const username = data?.channelData?.owner.username;
-  console.log(username);
+  const { username } = data?.channelData?.owner || {};
 
   const dispatch = useDispatch();
   const { videoId } = useParams();
@@ -39,9 +39,13 @@ const VideoPlayer = ({ data }) => {
     accessToken && dispatch(createHistory({ videoId, accessToken }));
   }, [videoId, accessToken, dispatch]);
 
+  // useEffect(() => {
+  //   dispatch(getUserStationProfile({ username, accessToken }));
+  // }, [username, accessToken, dispatch]);
+
   useEffect(() => {
-    dispatch(getUserStationProfile({ username, accessToken }));
-  }, [username, accessToken]);
+    dispatch(checkSubscribe({ username, accessToken }));
+  }, [username, accessToken, dispatch]);
 
   return (
     <>

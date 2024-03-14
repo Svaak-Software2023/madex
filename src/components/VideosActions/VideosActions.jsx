@@ -7,13 +7,17 @@ import {
   getlikes,
 } from "../../redux/featurs/likeDislikeSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { createDownload } from "../../redux/featurs/downloads";
 import { HiDotsHorizontal } from "react-icons/hi";
 import "./style.css";
 import ShareVideoModal from "../videoPlayer/ShareVideoModal";
+// import { checkSubscribe } from "../../redux/featurs/subscribeSlice";
 
 const VideosActions = ({ data }) => {
+  // const username = data?.channelData?.owner.username;
+  const pathname = useLocation();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
@@ -68,7 +72,7 @@ const VideosActions = ({ data }) => {
 
   useEffect(() => {
     dispatch(getlikes(data?._id));
-  }, []);
+  }, [pathname]);
 
   // like handler function
   const likehandler = (videoId) => {
@@ -89,6 +93,10 @@ const VideosActions = ({ data }) => {
       }
     );
   };
+
+  // useEffect(() => {
+  //   dispatch(checkSubscribe({ username, accessToken }));
+  // }, [username, accessToken, dispatch]);
 
   return (
     <>

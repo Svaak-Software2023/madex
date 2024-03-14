@@ -44,11 +44,12 @@
 }
 
 .video-logo-img {
-  width: 50px !important;
-  height: 50px !important;
-  background-color: blue;
+  width: 40px !important;
+  height: 40px !important;
+  border: 1px solid #acacac;
+  /* background-color: blue; */
   margin-right: 10px;
-  border-radius: 50%;
+  border-radius: 10px;
 }
 
 .video-logo-img img {

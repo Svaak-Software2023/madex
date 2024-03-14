@@ -21,12 +21,15 @@
   font-family: "Roboto", Arial;
   font-size: 14px;
   font-weight: 500;
-  height: 55px;
+  /* height: 55px; */
+  /* width: 190px; */
+  width: 150px;
+  height: 50px;
+
   outline: none;
   overflow: hidden;
   padding: 0 10px;
   position: relative;
-  width: 190px;
   z-index: 1;
   /* background: #1f2335 !important; */
   background: linear-gradient(
@@ -51,36 +54,36 @@
   position: absolute;
   left: 0;
   top: 0;
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
 }
 .pacman-non {
   display: none;
 }
 .pacman .eye {
   position: absolute;
-  top: 10px;
-  left: 30px;
-  height: 7px;
-  width: 7px;
-  border-radius: 7px;
+  top: 5px;
+  left: 20px;
+  height: 5px;
+  width: 5px;
+  border-radius: 3px;
   background-color: #d7d7d8;
 }
 .pacman span {
   position: absolute;
   top: 0;
   left: 0;
-  height: 60px;
-  width: 60px;
+  height: 40px;
+  width: 40px;
 }
 .pacman span::before {
   content: "";
   position: absolute;
   left: 0;
-  height: 30px;
-  width: 60px;
+  height: 20px;
+  width: 40px;
   /* background-color: #fffb16; */
-  background-color: #000626;
+  background-color: #061565;
 
   z-index: 100;
 }
@@ -96,8 +99,8 @@
 }
 .pacman .left::before {
   bottom: 0;
-  height: 60px;
-  width: 30px;
+  height: 40px;
+  width: 20px;
   border-radius: 60px 0px 0px 60px;
   z-index: 100;
 }
@@ -151,5 +154,57 @@
   50% {
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+}
+
+/* For Mobile Portrait View */
+@media screen and (max-device-width: 480px) {
+  .fanscription-button {
+    width: 115px;
+    height: 30px;
+  }
+  .fanscription-button .message span {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .pacman {
+    height: 20px;
+    width: 20px;
+  }
+
+  .pacman .eye {
+    top: 5px;
+    left: 30px;
+    height: 2px;
+    width: 2px;
+    border-radius: 3px;
+  }
+  .pacman span {
+    height: 20px;
+    width: 20px;
+  }
+  .pacman span::before {
+    height: 10px;
+    width: 20px;
+  }
+  .pacman .top::before {
+    top: 0;
+    border-radius: 60px 60px 0px 0px;
+    z-index: 100;
+  }
+  .pacman .bottom::before {
+    bottom: 0;
+    border-radius: 0px 0px 60px 60px;
+    z-index: 100;
+  }
+  .pacman .left::before {
+    bottom: 0;
+    height: 20px;
+    width: 10px;
+    border-radius: 60px 0px 0px 60px;
+    z-index: 100;
   }
 }

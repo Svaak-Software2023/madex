@@ -87,6 +87,8 @@
   border-bottom: 1.8px solid #999;
 }
 .job-btn {
+  display: flex;
+  gap: 10px;
   background: transparent;
   border-color: transparent;
   text-transform: capitalize;

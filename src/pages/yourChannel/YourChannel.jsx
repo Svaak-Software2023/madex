@@ -10,27 +10,82 @@ import "./style.css";
 import HomeContent from "./channelTabs/HomeContent";
 import PLaylisyList from "../playlist/PLaylistList";
 import { Link } from "react-router-dom";
+import Compass from "/assets/icons/compass.png";
+import MiniClip from "/assets/icons/miniClips.png";
+import FavoriteVideo from "/assets/icons/favoriteVideo.png";
+import LiveLens from "/assets/icons/livelensOnAir.png";
+import MadeXStudio from "/assets/icons/madeXStudio.png";
+import FanMade from "/assets/icons/fanMade.png";
+import InstantMessage from "/assets/icons/instantMessage.png";
+import ChatRoom from "/assets/icons/chatRoom.png";
+import Marketplace from "/assets/icons/marketplace.jpg";
 
 const menus = [
   {
     id: 1,
-    name: "Home",
+
+    name: "Navigation",
+    icon: Compass,
   },
   {
     id: 2,
-    name: "Playlists",
+
+    name: "Mini Clips",
+    icon: MiniClip,
   },
   {
     id: 3,
-    name: "Mini Clips",
+
+    name: "Favorite",
+    icon: FavoriteVideo,
+  },
+  {
+    id: 4,
+
+    name: "Live Lens",
+    icon: LiveLens,
+  },
+  {
+    id: 5,
+
+    name: "MadeX Studio",
+    icon: MadeXStudio,
+  },
+  {
+    id: 6,
+
+    name: "Fan Base",
+    icon: FanMade,
+  },
+  {
+    id: 7,
+
+    name: "Instant Message",
+    icon: InstantMessage,
+  },
+  {
+    id: 8,
+
+    name: "Chat Room",
+    icon: ChatRoom,
+  },
+  {
+    id: 9,
+
+    name: "Marketplace",
+    icon: Marketplace,
   },
 ];
 
 const YourChannel = () => {
   const { user, loading: authLoading } = useSelector((state) => state.auth);
-  const { data: channelData, loading: channelLoading } = useSelector(
-    (state) => state.channel
-  );
+  const {
+    data: channelData,
+    loading: channelLoading,
+    channelNotExit: NoChannel,
+  } = useSelector((state) => state.channel);
+
+  console.log("Check Channel:", NoChannel.message);
 
   const [activeTab, setActiveTab] = useState(1);
 
@@ -65,6 +120,9 @@ const YourChannel = () => {
     }
   };
 
+  if (NoChannel.message === "400") {
+    return <h1>No Channel Exits</h1>;
+  }
   return (
     user && (
       <div className="px-sm-3">
@@ -101,12 +159,13 @@ const YourChannel = () => {
                     activeTab === index + 1 && "active-btn"
                   }`}
                 >
+                  <img src={item.icon} alt="" height={20} />
                   {item.name}
                 </button>
               );
             })}
 
-            <FaSearch className="search_icon" />
+            {/* <FaSearch className="search_icon" /> */}
           </div>
 
           <div className="videos_list mb-3">{renderTabContent()}</div>

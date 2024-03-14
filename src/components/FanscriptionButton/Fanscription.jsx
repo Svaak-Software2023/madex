@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  checkSubscribe,
   createSubscribe,
   unSubscribe,
 } from "../../redux/featurs/subscribeSlice";
@@ -13,24 +14,22 @@ import confetti from "canvas-confetti";
 import clapGif from "/assets/fanscription/clap.gif";
 
 const Fanscription = ({ data }) => {
-  // const username = data?.channelData?.owner.username;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.auth.user);
   const accessToken = useSelector((state) => state.auth.data?.accessToken);
-  const checkisSubscribe = useSelector(
-    (state) => state.channel.channelProfile?.isSubscribed
-  );
-  console.log(checkisSubscribe);
 
+  const checkIsSubscribed = useSelector(
+    (state) => state.subscriber.checkIsSubscribed
+  );
+
+  const [isSubscribed, setIsSubscribed] = useState();
   const { width, height } = useWindowSize();
 
   // eslint-disable-next-line no-unused-vars
   const [showConfetti, setShowConfetti] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isSubscribed, setIsSubscribed] = useState(checkisSubscribe);
-  console.log("IsSubscribe:", isSubscribed);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const [showSubscribeText, setShowSubscribeText] = useState(true);
@@ -47,6 +46,11 @@ const Fanscription = ({ data }) => {
     { x: 160, y: 0 },
     { x: 180, y: 0 },
   ]);
+
+  useEffect(() => {
+    setIsSubscribed(checkIsSubscribed);
+  }, [checkIsSubscribed]);
+
   useEffect(() => {
     if (isSubscribed) {
       setIsAnimating(false);
@@ -92,14 +96,12 @@ const Fanscription = ({ data }) => {
 
   const handleClick = () => {
     setShowSubscribeText(false); // Initially hide the subscribe text
-
     // Start animation only if there are dots left to eat
     if (dotPositions.length > 0) {
       setIsAnimating(true);
       setTimeout(() => {
         setIsAnimating(false); // Stop animation after 3 seconds
 
-        setIsSubscribed(!isSubscribed); // Toggle the subscription state
         setShowSubscribeText(true);
 
         const confettiOrigin = calculateConfettiOrigin();
@@ -108,14 +110,13 @@ const Fanscription = ({ data }) => {
           spread: 70,
           origin: confettiOrigin,
         });
-
         setTimeout(() => {
           confetti.reset();
         }, 2000);
-      }, 2000);
+      }, 3000);
     }
     if (isSubscribed) {
-      setIsSubscribed(!isSubscribed);
+      // setIsSubscribed(!isSubscribed);
       setShowSubscribeText(true);
       // setIsAnimating(false);
 
@@ -133,12 +134,14 @@ const Fanscription = ({ data }) => {
     }
   };
 
+  // handle Subscribe function
   const handlesubscribe = () => {
     if (!user) navigate("/login");
     else
       dispatch(
         createSubscribe({
           userId: user._id,
+          username: data?.channelData?.owner.username,
           channelId: data.channelData._id,
           accessToken,
         })
@@ -152,6 +155,7 @@ const Fanscription = ({ data }) => {
       dispatch(
         unSubscribe({
           userId: user._id,
+          username: data?.channelData?.owner.username,
           channelId: data.channelData._id,
           accessToken,
         })
@@ -162,7 +166,7 @@ const Fanscription = ({ data }) => {
     <>
       <button id="button" className="fanscription-button" onClick={handleClick}>
         {showSubscribeText &&
-          (checkisSubscribe ? (
+          (isSubscribed ? (
             <div className="message successMessage" onClick={handleUnsubscribe}>
               <span className="button-text">Fanscribed</span>
             </div>
@@ -198,7 +202,7 @@ const Fanscription = ({ data }) => {
                 width: 20,
                 height: 20,
                 left: position.x,
-                top: position.y,
+                top: position.y + "6px",
                 transition: "left 0.3s",
               }}
             >
@@ -216,10 +220,10 @@ const Fanscription = ({ data }) => {
                 alt=""
                 style={{
                   position: "absolute",
-                  width: 20,
                   height: 20,
+                  width: 20,
                   left: dotPosition.x,
-                  top: dotPosition.y + 20,
+                  top: dotPosition.y + 10,
                 }}
               />
             ))}
