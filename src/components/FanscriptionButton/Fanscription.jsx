@@ -112,7 +112,7 @@ const Fanscription = ({ data }) => {
         });
         setTimeout(() => {
           confetti.reset();
-        }, 2000);
+        }, 3000);
       }, 3000);
     }
     if (isSubscribed) {
