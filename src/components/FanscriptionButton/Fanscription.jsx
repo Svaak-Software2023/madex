@@ -24,6 +24,8 @@ const Fanscription = ({ data }) => {
     (state) => state.subscriber.checkIsSubscribed
   );
 
+  console.log("Check Subscribe:", checkIsSubscribed);
+
   const [isSubscribed, setIsSubscribed] = useState();
   const { width, height } = useWindowSize();
 
@@ -96,6 +98,7 @@ const Fanscription = ({ data }) => {
 
   const handleClick = () => {
     setShowSubscribeText(false); // Initially hide the subscribe text
+    setPosition({ x: 0, y: 0 });
     // Start animation only if there are dots left to eat
     if (dotPositions.length > 0) {
       setIsAnimating(true);
@@ -113,13 +116,13 @@ const Fanscription = ({ data }) => {
         setTimeout(() => {
           confetti.reset();
         }, 3000);
-      }, 3000);
+      }, 2000);
     }
     if (isSubscribed) {
       // setIsSubscribed(!isSubscribed);
       setShowSubscribeText(true);
       // setIsAnimating(false);
-
+      setPosition({ x: 0, y: 0 });
       setDotPositions([
         { x: 20, y: 0 },
         { x: 40, y: 0 },
@@ -202,7 +205,7 @@ const Fanscription = ({ data }) => {
                 width: 20,
                 height: 20,
                 left: position.x,
-                top: position.y + "6px",
+                top: position.y + "3px",
                 transition: "left 0.3s",
               }}
             >

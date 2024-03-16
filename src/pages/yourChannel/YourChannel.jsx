@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IoIosArrowForward } from "react-icons/io";
-import { FaSearch } from "react-icons/fa";
 import Loading from "../../assets/loader/Loading";
 import { getChannel } from "../../redux/featurs/channelSlice";
 import { getAllChanelVideo } from "../../redux/featurs/videoSlice";
@@ -19,59 +18,57 @@ import FanMade from "/assets/icons/fanMade.png";
 import InstantMessage from "/assets/icons/instantMessage.png";
 import ChatRoom from "/assets/icons/chatRoom.png";
 import Marketplace from "/assets/icons/marketplace.jpg";
+import Playlist from "/assets/icons/playlist.png";
+import NoStation from "../../components/Error/NoStation";
 
 const menus = [
   {
     id: 1,
-
     name: "Navigation",
     icon: Compass,
   },
   {
     id: 2,
-
+    name: "Playlist",
+    icon: Playlist,
+  },
+  {
+    id: 3,
     name: "Mini Clips",
     icon: MiniClip,
   },
   {
-    id: 3,
-
+    id: 4,
     name: "Favorite",
     icon: FavoriteVideo,
   },
   {
-    id: 4,
-
+    id: 5,
     name: "Live Lens",
     icon: LiveLens,
   },
   {
-    id: 5,
-
+    id: 6,
     name: "MadeX Studio",
     icon: MadeXStudio,
   },
   {
-    id: 6,
-
+    id: 7,
     name: "Fan Base",
     icon: FanMade,
   },
   {
-    id: 7,
-
+    id: 8,
     name: "Instant Message",
     icon: InstantMessage,
   },
   {
-    id: 8,
-
+    id: 9,
     name: "Chat Room",
     icon: ChatRoom,
   },
   {
-    id: 9,
-
+    id: 10,
     name: "Marketplace",
     icon: Marketplace,
   },
@@ -84,8 +81,6 @@ const YourChannel = () => {
     loading: channelLoading,
     channelNotExit: NoChannel,
   } = useSelector((state) => state.channel);
-
-  console.log("Check Channel:", NoChannel.message);
 
   const [activeTab, setActiveTab] = useState(1);
 
@@ -120,8 +115,12 @@ const YourChannel = () => {
     }
   };
 
-  if (NoChannel.message === "400") {
-    return <h1>No Channel Exits</h1>;
+  if (NoChannel?.message === "400") {
+    return (
+      <>
+        <NoStation />
+      </>
+    );
   }
   return (
     user && (

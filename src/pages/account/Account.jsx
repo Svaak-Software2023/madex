@@ -1,7 +1,12 @@
 import AccountImage from "/assets/setting/account.png";
 import AccountUser from "/assets/login/logout_user.png";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-const Account = () => {
+const Account = ({ handleTabClick }) => {
+  const user = useSelector((state) => state.auth.user);
+
+  console.log(user);
   return (
     <>
       <div className="account_container">
@@ -12,7 +17,7 @@ const Account = () => {
               <p className="p-12">
                 Choose how you appear and what you see on MadeXtube
               </p>
-              <span className="span-1">Signed in as user12334@gmail.com</span>
+              <span className="span-1">Signed in as {user?.email}</span>
             </div>
           </div>
 
@@ -37,8 +42,12 @@ const Account = () => {
             </div>
             <div className="p-links mt-3">
               <p> Rooms/Stations status and features</p>
-              <p>Create a new Room/Station</p>
-              <p>View advanced settings</p>
+              <Link>
+                <p>Create a new Room/Station</p>
+              </Link>
+              <Link>
+                <p>View advanced settings</p>
+              </Link>
             </div>
           </div>
         </div>

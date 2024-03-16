@@ -33,6 +33,7 @@
   margin: 5px 10px 0px;
   overflow-x: scroll;
   padding: 0px;
+  animation: ease 1s;
 }
 
 .categotrey-menu-list::-webkit-scrollbar {
@@ -44,28 +45,40 @@
 }
 
 .categorey-menu-item {
-  margin: 2px 7px 2px 0px;
-  padding: 5px 10px;
+  margin: 2px 4px 2px 0px;
+  padding: 4px 8px;
+  /* margin: 2px 7px 2px 0px;
+  padding: 5px 10px; */
   width: auto;
   border-radius: 20px;
   cursor: pointer;
   border-radius: 15px;
   background-color: #e5e5e5;
   color: #454242;
+  animation: all ease 1s;
 }
 
 .categorey-menu-item:hover {
   background-color: rgb(212, 206, 206);
+  animation: all ease 1s;
 }
 
 .categorey-menu-item span {
   width: 100%;
   text-wrap: nowrap;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 @media screen and (max-width: 768px) {
   .categotrey-menu-list {
     margin: 5px 12px;
+  }
+  .categorey-menu-item span {
+    width: 100%;
+    text-wrap: nowrap;
+    font-size: 0.8rem;
+    font-weight: 500;
   }
 }
 

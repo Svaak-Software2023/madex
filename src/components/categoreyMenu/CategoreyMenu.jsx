@@ -13,13 +13,10 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
 function CategoreyMenu() {
-  // dispach for call redux function
   const dispatch = useDispatch();
 
-  // state to store category data
   const [data, setData] = useState([]);
 
-  // get category data from store
   const category = useSelector((state) => state.category);
 
   // call get category api on first render
@@ -56,7 +53,6 @@ function CategoreyMenu() {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true,
         },
       },
       {

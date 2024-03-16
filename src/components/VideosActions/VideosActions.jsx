@@ -23,7 +23,7 @@ const VideosActions = ({ data }) => {
   const user = useSelector((state) => state.auth.user);
   const accessToken = useSelector((state) => state.auth.data?.accessToken);
   const isSidebarOpen = useSelector((state) => state.globalFunction.isMenuOpen);
-
+  const channelData = useSelector((state) => state.channel.data);
   const [videoMore, setVideoMore] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
   const forMobileResponse = window.screen.width;
@@ -36,6 +36,10 @@ const VideosActions = ({ data }) => {
   function closeModal() {
     setIsOpen(false);
   }
+
+  console.log("User:", user._id);
+
+  console.log("Channel:", data.channelData.owner._id);
 
   const handleDownload = async (event) => {
     event.preventDefault();
@@ -117,7 +121,12 @@ const VideosActions = ({ data }) => {
               {/* <p>{view} Views • 3 months ago</p> */}
             </div>
           </div>
-          <Fanscription data={data} />
+
+          {data.channelData.owner._id === user._id ? (
+            ""
+          ) : (
+            <Fanscription data={data} />
+          )}
         </div>
 
         <div className="more-button-in-video">
@@ -244,7 +253,7 @@ const VideosActions = ({ data }) => {
                   <div className="more-option-icon">
                     <img src="/assets/icons/tipBox.png" alt="" />
                   </div>
-                  <p>Thanks</p>
+                  <p>Tip Box </p>
                 </li>
 
                 <li>

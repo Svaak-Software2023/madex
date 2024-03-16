@@ -18,10 +18,12 @@ function VideoList({ data }) {
   const style = {
     width: isSidebarOpen ? "calc(100%/3)" : "calc(100%/4)",
   };
+  const accessToken = useSelector((state) => state.auth.data);
 
   // more option state
   const [more, setMore] = useState(null);
   const [modalIsOpen, setIsOpen] = React.useState(false);
+
   const [videoId, setVideoId] = useState(null);
 
   // handle more option
@@ -39,8 +41,6 @@ function VideoList({ data }) {
   const location = useLocation();
   const playlistLocation = location.pathname.split("/")[1];
   const playListId = location.pathname.split("/")[2];
-
-  const accessToken = useSelector((state) => state.auth.data);
 
   const userId = accessToken?.user._id;
 
@@ -83,7 +83,7 @@ function VideoList({ data }) {
   if (watchtLoading) return <Loading />;
   return (
     <>
-      <div className="video-list-main">
+      <div className="video-list-main" style={{ position: "relative" }}>
         {data &&
           data.map((item, i) => (
             <div key={i} className="video-list" style={style}>
@@ -114,18 +114,17 @@ function VideoList({ data }) {
                 </div>
                 <div className="video-more-option-button">
                   <BsThreeDotsVertical onClick={() => openMore(item?._id)} />
+
                   {more === item?._id && (
                     <div className="video-more-option">
                       <ul>
                         {accessToken && (
                           <>
-                            <li onClick={() => handleWatchLater(item?._id)}>
+                            <li onClick={() => handleWatchLater(item?.id)}>
                               Watch later
                             </li>
                             {playlistLocation == "playlistVideo" ? (
-                              <li
-                                onClick={() => removePlaylistVideo(item?._id)}
-                              >
+                              <li onClick={() => removePlaylistVideo(item?.id)}>
                                 Remove Video
                               </li>
                             ) : (

@@ -39,7 +39,7 @@ const Setting = () => {
   const renderTabContent = () => {
     switch (activeTab) {
       case 1:
-        return <Account />;
+        return <Account handleTabClick />;
       case 2:
         return <Notifications />;
       case 3:
