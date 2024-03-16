@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 export const checkSubscribe = createAsyncThunk(
   "get/subscribe",
   async ({ username, accessToken }) => {
+
     try {
       const response = await api.getUserStationProfile({
         username,
@@ -12,6 +13,7 @@ export const checkSubscribe = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
+      console.log("error",error)
       throw error.response.data;
     }
   }
@@ -64,6 +66,7 @@ export const unSubscribe = createAsyncThunk(
         dataRes: dataResponse.data,
       };
     } catch (error) {
+      console.log("error",error);
       throw error;
     }
   }

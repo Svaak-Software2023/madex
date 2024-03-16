@@ -37,13 +37,13 @@ const VideosActions = ({ data }) => {
     setIsOpen(false);
   }
 
-  console.log("User:", user._id);
+  console.log("User:", user?._id);
 
-  console.log("Channel:", data.channelData.owner._id);
+  console.log("Channel:", data.channelData.owner?._id);
 
   const handleDownload = async (event) => {
     event.preventDefault();
-    accessToken && dispatch(createDownload({ videoId: data._id, accessToken }));
+    accessToken && dispatch(createDownload({ videoId: data?._id, accessToken }));
     if (!accessToken) return navigate("/login");
     try {
       // Fetch the media file
@@ -81,7 +81,7 @@ const VideosActions = ({ data }) => {
   // like handler function
   const likehandler = (videoId) => {
     !user && navigate("/login");
-    dispatch(createLike({ userId: user._id, videoId, accessToken })).then(
+    dispatch(createLike({ userId: user?._id, videoId, accessToken })).then(
       () => {
         dispatch(getlikes(data?._id));
       }
@@ -91,7 +91,7 @@ const VideosActions = ({ data }) => {
   // dislike handler function
   const dislikehandler = (videoId) => {
     !user && navigate("/login");
-    dispatch(createDisLike({ userId: user._id, videoId, accessToken })).then(
+    dispatch(createDisLike({ userId: user?._id, videoId, accessToken })).then(
       () => {
         dispatch(getlikes(data?._id));
       }
@@ -122,7 +122,7 @@ const VideosActions = ({ data }) => {
             </div>
           </div>
 
-          {data.channelData.owner._id === user._id ? (
+          {data.channelData.owner?._id === user?._id ? (
             ""
           ) : (
             <Fanscription data={data} />

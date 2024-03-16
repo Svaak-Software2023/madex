@@ -45,7 +45,7 @@ const VideoPlayer = ({ data }) => {
 
   useEffect(() => {
     dispatch(checkSubscribe({ username, accessToken }));
-  }, [username, accessToken, dispatch]);
+  }, [username, accessToken]);
 
   return (
     <>
@@ -65,8 +65,8 @@ const VideoPlayer = ({ data }) => {
       {/* Views And Description Section Start*/}
       <div className="description mt-2">
         <p className="views-time">
-          {view} Views • {moment(data.createdAt).fromNow()}
         </p>
+          {view} Views • {moment(data.createdAt).fromNow()}
         <p className="description_data"> {data.description}</p>
       </div>
       {/* Description End */}
