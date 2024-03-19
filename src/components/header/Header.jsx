@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import { IoSearch } from "react-icons/io5";
 import { PiSignOutBold } from "react-icons/pi";

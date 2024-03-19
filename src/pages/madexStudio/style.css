@@ -12,3 +12,52 @@
   color: #065fd4;
   border-bottom: 1px solid #065fd4;
 }
+.video_details {
+  display: flex;
+  gap: 20px;
+}
+.video_details .video_actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.video_details .video_img {
+  height: 70px;
+  /* width: 90px; */
+}
+.video_details .video_img img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.video_details .title_desc {
+  display: flex;
+  flex-direction: column;
+}
+.video_details .title_desc p:first-child {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.video_details .title_desc p:first-child {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.video_details .video_actions .actions_icon {
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+}
+.video_details .video_actions .actions_icon .icons {
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.4s ease-in-out;
+}
+.video_details .video_actions .actions_icon .icons:hover {
+  background: #c6c6c6;
+}
+.video_details .video_actions .actions_icon .icons svg {
+  font-size: 1.5rem;
+  font-weight: 600;
+}

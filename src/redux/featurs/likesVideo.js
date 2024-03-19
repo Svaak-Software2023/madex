@@ -6,7 +6,6 @@ export const getLikedVideos = createAsyncThunk(
   async ({ userId, accessToken }) => {
     try {
       const response = await api.getLikedVideos({ userId, accessToken });
-      console.log(response.data);
       return response.data;
     } catch (error) {
       throw error.response;

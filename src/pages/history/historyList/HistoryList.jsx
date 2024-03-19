@@ -1,8 +1,11 @@
+/* eslint-disable react/prop-types */
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./style.css";
-import { IoMdClose } from "react-icons/io";
-import { deleteHistory, getAllHistory } from "../../../redux/featurs/historySlice";
+import {
+  deleteHistory,
+  getAllHistory,
+} from "../../../redux/featurs/historySlice";
 import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
@@ -16,66 +19,68 @@ const HistoryList = ({ historyData, token }) => {
 
   const isSidebarOpen = useSelector((state) => state.globalFunction.isMenuOpen);
   const style = {
-    width: isSidebarOpen ? "calc(100%/3)" : "calc(100%/4)"
-  }
+    width: isSidebarOpen ? "calc(100%/3)" : "calc(100%/4)",
+  };
 
-  // more option state 
-  const [more, setMore] = useState(null)
+  // more option state
+  const [more, setMore] = useState(null);
 
-  // handle more option 
+  // handle more option
   const openMore = (id) => {
     if (!more) {
-      setMore(id)
+      setMore(id);
+    } else {
+      setMore(null);
     }
-    else {
-      setMore(null)
-    }
-  }
-
+  };
 
   return (
     <div>
       <div className="video-list-main">
-        {historyData && historyData.map((item, i) =>
-          <div div key={i} className="video-list" style={style}>
-            <Link to={`/video/${item.video._id}`}>
-              <div className="video-item">
-                <img
-                  src={item.video.thumbnail}
-                  alt={item.video.title}
-                  className='img-fluid'
-                />
-                <span>{item.video.duration}</span>
-              </div>
-            </Link>
-            <div className="video-details">
-              {item.video.channelData && <div className="video-logo-img">
-                <img
-                  src={item.video.channelData.owner.avatar}
-                  alt=""
-                />
-              </div>}
-              <div className="video-name">
-                <Link to={`/video/${item.video._id}`}>
-                  <h3>
-                    {item.video.title}
-                  </h3>
-                </Link>
-                {item.video.channelData && <p>{item.video.channelData.channelName}</p>}
-                <p>{item.video.views} views 3 hours ago</p>
-              </div>
-              <div className='video-more-option-button'><BsThreeDotsVertical onClick={() => openMore(i + 1)} />
-                {more === i + 1 && <div className='video-more-option'>
-                  <ul>
-                    <li onClick={() => deleteSingleVideo(item._id)}>Remove From History</li>
-                  </ul>
-                </div>}
+        {historyData &&
+          historyData.map((item, i) => (
+            <div key={i} className="video-list" style={style}>
+              <Link to={`/video/${item.video._id}`}>
+                <div className="video-item">
+                  <img
+                    src={item.video.thumbnail}
+                    alt={item.video.title}
+                    className="img-fluid"
+                  />
+                  <span>{item.video.duration}</span>
+                </div>
+              </Link>
+              <div className="video-details">
+                {item.video.channelData && (
+                  <div className="video-logo-img">
+                    <img src={item.video.channelData.owner.avatar} alt="" />
+                  </div>
+                )}
+                <div className="video-name">
+                  <Link to={`/video/${item.video._id}`}>
+                    <h3>{item.video.title}</h3>
+                  </Link>
+                  {item.video.channelData && (
+                    <p>{item.video.channelData.channelName}</p>
+                  )}
+                  <p>{item.video.views} views 3 hours ago</p>
+                </div>
+                <div className="video-more-option-button">
+                  <BsThreeDotsVertical onClick={() => openMore(i + 1)} />
+                  {more === i + 1 && (
+                    <div className="video-more-option">
+                      <ul>
+                        <li onClick={() => deleteSingleVideo(item._id)}>
+                          Remove From History
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          ))}
       </div>
-
     </div>
     // <>
     //   {historyData &&

@@ -8,7 +8,7 @@ import {
   getPlaylistData,
 } from "../../redux/featurs/playlistSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import UpdatePLaylistModal from "./UpdatePLaylistModal";
 
 const PLaylistList = () => {

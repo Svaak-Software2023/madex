@@ -18,7 +18,6 @@ export const createHistory = createAsyncThunk(
   async ({ videoId, accessToken }) => {
     try {
       const response = await api.createHistory({ videoId, accessToken });
-      console.log("History:", response.data);
       return response;
     } catch (error) {
       throw error.response;

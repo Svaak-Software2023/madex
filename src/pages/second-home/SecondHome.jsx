@@ -27,7 +27,6 @@ function SecondHome() {
   const { videoData, loading, categoryVideoData } = useSelector(
     (state) => state.video
   );
-  console.log(videoData);
 
   useEffect(() => {
     fetchData(page);

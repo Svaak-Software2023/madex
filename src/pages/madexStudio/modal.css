@@ -1,0 +1,67 @@
+.ReactModal__Overlay--after-open {
+  background-color: rgb(171 171 171 / 33%) !important;
+}
+
+.modal-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-block: 20px;
+}
+.modal-box .modal-head {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgb(53, 53, 53);
+}
+.modal-box .filled_form {
+  display: flex;
+  gap: 10px;
+
+  flex-direction: column;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0;
+  border: 2px soild #000;
+}
+
+.modal-box .filled_form label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.modal-box .filled_form input {
+  outline: none;
+}
+.modal-box .filled_form textarea {
+  border: none;
+  resize: none;
+}
+.modal-box .filled_form .actions-buttons {
+  align-self: flex-end;
+}
+.modal-box .confirm_form p {
+  text-align: center;
+}
+.modal-box .confirm_form .svg_img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-box .confirm_form .svg_img svg {
+  font-size: 2.5rem;
+  color: #ac0d0d;
+}
+.modal-box .confirm-buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+.modal-box .confirm-buttons button {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.modal-box .confirm-buttons button:first-child {
+  color: #ac0d0d;
+}

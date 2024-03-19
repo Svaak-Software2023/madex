@@ -7,11 +7,11 @@ import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { createWatchLater } from "../../redux/featurs/watchLater";
-import { toast } from "react-toastify";
 import Loading from "../../assets/loader/Loading";
 import PlaylistModal from "./PlaylistModal";
 import { deletePlaylistVideo } from "../../redux/featurs/playlistSlice";
 import moment from "moment";
+import { Toaster } from "sonner";
 
 function VideoList({ data }) {
   const isSidebarOpen = useSelector((state) => state.globalFunction.isMenuOpen);
@@ -50,7 +50,7 @@ function VideoList({ data }) {
       dispatch(
         createWatchLater({
           videoId,
-          toast,
+
           accessToken: accessToken.accessToken,
         })
       );
@@ -79,8 +79,8 @@ function VideoList({ data }) {
     setMore(null);
   };
 
-  const watchtLoading = useSelector((state) => state.watchLater.loading);
-  if (watchtLoading) return <Loading />;
+  // const watchtLoading = useSelector((state) => state.watchLater.loading);
+  // if (watchtLoading) return <Loading />;
   return (
     <>
       <div className="video-list-main" style={{ position: "relative" }}>
@@ -120,11 +120,13 @@ function VideoList({ data }) {
                       <ul>
                         {accessToken && (
                           <>
-                            <li onClick={() => handleWatchLater(item?.id)}>
-                              Watch later
+                            <li onClick={() => handleWatchLater(item?._id)}>
+                              Continue later
                             </li>
                             {playlistLocation == "playlistVideo" ? (
-                              <li onClick={() => removePlaylistVideo(item?.id)}>
+                              <li
+                                onClick={() => removePlaylistVideo(item?._id)}
+                              >
                                 Remove Video
                               </li>
                             ) : (
@@ -151,6 +153,7 @@ function VideoList({ data }) {
         closeModal={closeModal}
         videoId={videoId}
       />
+      <Toaster richColors position="top-center" />
     </>
   );
 }

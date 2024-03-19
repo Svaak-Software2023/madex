@@ -1,9 +1,6 @@
-import React from 'react'
-import "./style.css"
+import "./style.css";
 
 function About() {
-  return (
-    <div>index</div>
-  )
+  return <div>index</div>;
 }
-export default About
+export default About;

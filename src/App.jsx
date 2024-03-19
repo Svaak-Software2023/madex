@@ -1,27 +1,25 @@
-import { useEffect, useState } from 'react'
-import './App.css'
-import Header from './components/header/Header'
-import LeftMenu from './components/leftMenu/LeftMenu'
-import { Route, Routes, useLocation } from 'react-router-dom'
-import UserRoutes from './routes/User.Routes'
-import { useDispatch, useSelector } from 'react-redux'
-import { setUser } from './redux/featurs/authSlice'
-import PrivateRoute from './auth/PrivateRoute'
-import { setmenu } from './utils/globalFunction/GlobalFunctionSlice'
-import { ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { useEffect, useState } from "react";
+import "./App.css";
+import Header from "./components/header/Header";
+import LeftMenu from "./components/leftMenu/LeftMenu";
+import { Route, Routes, useLocation } from "react-router-dom";
+import UserRoutes from "./routes/User.Routes";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "./redux/featurs/authSlice";
+import PrivateRoute from "./auth/PrivateRoute";
+import { setmenu } from "./utils/globalFunction/GlobalFunctionSlice";
+// import { ToastContainer} from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-
-  const dispatch=useDispatch();
-  const isSidebarOpen=useSelector((state)=>state.globalFunction.isMenuOpen);
-  const { pathname } = useLocation()
+  const dispatch = useDispatch();
+  const isSidebarOpen = useSelector((state) => state.globalFunction.isMenuOpen);
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     // setIsSidebarOpen(false);
-  }, [pathname])
+  }, [pathname]);
 
   const openSidebar = () => {
     dispatch(setmenu(!isSidebarOpen));
@@ -29,10 +27,10 @@ function App() {
   };
 
   // set login user value
-  const user = JSON.parse(localStorage.getItem('accessToken'))
+  const user = JSON.parse(localStorage.getItem("accessToken"));
   useEffect(() => {
-    dispatch(setUser(user&&user))
-  })
+    dispatch(setUser(user && user));
+  });
 
   return (
     <>
@@ -40,20 +38,25 @@ function App() {
       <div className="main">
         <LeftMenu data={isSidebarOpen} />
 
-        <div style={{ width: isSidebarOpen ? '80%' : '100%' }}>
+        <div style={{ width: isSidebarOpen ? "80%" : "100%" }}>
           <Routes>
-            {UserRoutes.map((item, index) => (
-              item.isPrivate?
-              <Route key={index} path={item.path} element={<PrivateRoute>{item.element}</PrivateRoute>} />
-             : <Route key={index} path={item.path} element={item.element} />
-            ))}
+            {UserRoutes.map((item, index) =>
+              item.isPrivate ? (
+                <Route
+                  key={index}
+                  path={item.path}
+                  element={<PrivateRoute>{item.element}</PrivateRoute>}
+                />
+              ) : (
+                <Route key={index} path={item.path} element={item.element} />
+              )
+            )}
           </Routes>
           {/* <AdminRouting/> */}
         </div>
       </div>
-      <ToastContainer/>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

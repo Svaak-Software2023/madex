@@ -8,8 +8,7 @@ import { getAllChanelVideo } from "../../redux/featurs/videoSlice";
 const CustomizeStation = () => {
   const { user } = useSelector((state) => state.auth);
   const { data: channelData } = useSelector((state) => state.channel);
-  const { playlistData } = useSelector((state) => state.playlist);
-  console.log(playlistData);
+  // const { playlistData } = useSelector((state) => state.playlist);
 
   const dispatch = useDispatch();
   useEffect(() => {

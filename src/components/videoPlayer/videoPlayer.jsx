@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import "./style.css";
 import ReactPlayer from "react-player";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createHistory } from "../../redux/featurs/historySlice";
 
@@ -13,6 +13,7 @@ import VideosActions from "../VideosActions/VideosActions";
 import { checkSubscribe } from "../../redux/featurs/subscribeSlice";
 
 const VideoPlayer = ({ data }) => {
+  const pathname = useLocation();
   const { username } = data?.channelData?.owner || {};
 
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const VideoPlayer = ({ data }) => {
 
   useEffect(() => {
     dispatch(checkSubscribe({ username, accessToken }));
-  }, [username, accessToken, dispatch]);
+  }, [username, accessToken, pathname, dispatch]);
 
   return (
     <>

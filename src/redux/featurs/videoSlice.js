@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api";
+import { toast } from "sonner";
 
 export const getAllVideo = createAsyncThunk(
   "video/getAll",
@@ -80,6 +81,61 @@ export const getAllCategoryVideo = createAsyncThunk(
   }
 );
 
+export const updateVideoDetail = createAsyncThunk(
+  "update/video/detail",
+  async ({ formData, videoId, accessToken, channelId }) => {
+    try {
+      const updatedResponse = await api.updateVideoDetails(
+        formData,
+        videoId,
+        accessToken
+      );
+      const promise = () =>
+        new Promise((resolve) => setTimeout(() => resolve(), 2000));
+
+      if (updatedResponse.data) {
+        // toast.info("Video has been updated successfully");
+        toast.promise(promise, {
+          loading: "Loading...",
+          success: () => {
+            return "Video has been updated successfully";
+          },
+          error: "Error",
+        });
+      }
+      const dataResponse = await api.getAllChanelVideo(channelId);
+
+      return {
+        updatedResponse: updatedResponse.data,
+        dataResponse: dataResponse.data,
+      };
+    } catch (error) {
+      throw error.response.data;
+    }
+  }
+);
+
+export const deleteVideo = createAsyncThunk(
+  "delete/video",
+  async ({ videoId, accessToken, channelId }) => {
+    try {
+      const deleteResponse = await api.deleteVideo({ videoId, accessToken });
+
+      if (deleteResponse.data) {
+        toast.success("Video has been deleted successfully");
+      }
+      const dataResponse = await api.getAllChanelVideo(channelId);
+
+      return {
+        deleteResponse: deleteResponse.data,
+        dataResponse: dataResponse.data,
+      };
+    } catch (error) {
+      throw error.response.data;
+    }
+  }
+);
+
 const videoSlice = createSlice({
   name: "video",
   initialState: {
@@ -87,6 +143,7 @@ const videoSlice = createSlice({
     channelVideoData: null,
     categoryVideoData: null,
     singleVideo: null,
+
     message: "",
     error: null,
     loading: false,
@@ -172,6 +229,36 @@ const videoSlice = createSlice({
         (state.message = action.payload.message), (state.error = null);
       })
       .addCase(getAllCategoryVideo.rejected, (state, action) => {
+        (state.loading = false), (state.videoData = null);
+        state.message = "";
+        state.error = action.error;
+      })
+      // update Video data
+      .addCase(updateVideoDetail.pending, (state) => {
+        (state.loading = true), (state.message = ""), (state.error = null);
+      })
+      .addCase(updateVideoDetail.fulfilled, (state, action) => {
+        (state.loading = false),
+          (state.channelVideoData = action.payload.dataResponse.data);
+        (state.message = action.payload.updatedResponse.message),
+          (state.error = null);
+      })
+      .addCase(updateVideoDetail.rejected, (state, action) => {
+        (state.loading = false), (state.videoData = null);
+        state.message = "";
+        state.error = action.error;
+      })
+      // Delete Video
+      .addCase(deleteVideo.pending, (state) => {
+        (state.loading = true), (state.message = ""), (state.error = null);
+      })
+      .addCase(deleteVideo.fulfilled, (state, action) => {
+        (state.loading = false),
+          (state.channelVideoData = action.payload.dataResponse.data);
+        (state.message = action.payload.deleteResponse.message),
+          (state.error = null);
+      })
+      .addCase(deleteVideo.rejected, (state, action) => {
         (state.loading = false), (state.videoData = null);
         state.message = "";
         state.error = action.error;

@@ -35,8 +35,6 @@ const SingleVideo = () => {
   // if (video.loading) return <Loading />;
   if (!video.singleVideo) return <Loading />;
 
-  console.log("Category Video :", video.singleVideo);
-
   const recommendData =
     video.categoryVideoData &&
     video.categoryVideoData.filter(

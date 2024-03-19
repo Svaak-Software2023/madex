@@ -8,7 +8,6 @@ const Fanscribe = () => {
   const accessToken = user.data.accessToken;
 
   const channelList = useSelector((state) => state.channel.channelList);
-  console.log("List:", channelList);
 
   const dispatch = useDispatch();
 

@@ -17,10 +17,9 @@ export const createChannel = createAsyncThunk(
 export const getChannel = createAsyncThunk("channel/get", async (userId) => {
   try {
     const response = await api.getChannel(userId);
-    console.log("Check Channel:", response.data);
     return response.data;
   } catch (error) {
-    console.log(error.response.data.statusCode);
+    // console.log(error.response.data.statusCode);
     throw error.response.data.statusCode.statusCode;
   }
 });
@@ -30,7 +29,6 @@ export const getAllChannelList = createAsyncThunk(
   async ({ accessToken }) => {
     try {
       const response = await api.getAllChannelList({ accessToken });
-      console.log(response.data);
 
       return response.data;
     } catch (error) {

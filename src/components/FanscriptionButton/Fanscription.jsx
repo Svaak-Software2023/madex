@@ -2,11 +2,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  checkSubscribe,
   createSubscribe,
   unSubscribe,
 } from "../../redux/featurs/subscribeSlice";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./style.css";
 import { useWindowSize } from "react-use";
 import Confetti from "canvas-confetti";
@@ -14,6 +13,8 @@ import confetti from "canvas-confetti";
 import clapGif from "/assets/fanscription/clap.gif";
 
 const Fanscription = ({ data }) => {
+  const pathname = useLocation();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -23,8 +24,6 @@ const Fanscription = ({ data }) => {
   const checkIsSubscribed = useSelector(
     (state) => state.subscriber.checkIsSubscribed
   );
-
-  console.log("Check Subscribe:", checkIsSubscribed);
 
   const [isSubscribed, setIsSubscribed] = useState();
   const { width, height } = useWindowSize();
@@ -51,12 +50,15 @@ const Fanscription = ({ data }) => {
 
   useEffect(() => {
     setIsSubscribed(checkIsSubscribed);
-  }, [checkIsSubscribed]);
+    setShowSubscribeText(true);
+  }, [checkIsSubscribed, pathname]);
 
   useEffect(() => {
     if (isSubscribed) {
       setIsAnimating(false);
       setShowConfetti(false);
+      setShowSubscribeText(true);
+
       setDotPositions([]);
     }
   }, [isSubscribed]);
@@ -115,7 +117,7 @@ const Fanscription = ({ data }) => {
         });
         setTimeout(() => {
           confetti.reset();
-        }, 3000);
+        }, 2000);
       }, 2000);
     }
     if (isSubscribed) {
@@ -149,6 +151,7 @@ const Fanscription = ({ data }) => {
           accessToken,
         })
       );
+    setShowSubscribeText(true);
   };
 
   // handle unSubscribe function
@@ -163,8 +166,9 @@ const Fanscription = ({ data }) => {
           accessToken,
         })
       );
+    setShowSubscribeText(true);
   };
-
+  const forMobileResponse = window.screen.width;
   return (
     <>
       <button id="button" className="fanscription-button" onClick={handleClick}>
@@ -225,8 +229,13 @@ const Fanscription = ({ data }) => {
                   position: "absolute",
                   height: 20,
                   width: 20,
+
                   left: dotPosition.x,
-                  top: dotPosition.y + 10,
+                  top:
+                    forMobileResponse < 480
+                      ? dotPosition.y
+                      : dotPosition.y + 10,
+                  // top: dotPosition.y + 10,
                 }}
               />
             ))}

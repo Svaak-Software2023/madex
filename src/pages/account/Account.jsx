@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 const Account = ({ handleTabClick }) => {
   const user = useSelector((state) => state.auth.user);
 
-  console.log(user);
   return (
     <>
       <div className="account_container">

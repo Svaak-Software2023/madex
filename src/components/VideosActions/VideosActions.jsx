@@ -23,7 +23,7 @@ const VideosActions = ({ data }) => {
   const user = useSelector((state) => state.auth.user);
   const accessToken = useSelector((state) => state.auth.data?.accessToken);
   const isSidebarOpen = useSelector((state) => state.globalFunction.isMenuOpen);
-  const channelData = useSelector((state) => state.channel.data);
+  // const channelData = useSelector((state) => state.channel.data);
   const [videoMore, setVideoMore] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
   const forMobileResponse = window.screen.width;
@@ -36,10 +36,6 @@ const VideosActions = ({ data }) => {
   function closeModal() {
     setIsOpen(false);
   }
-
-  console.log("User:", user._id);
-
-  console.log("Channel:", data.channelData.owner._id);
 
   const handleDownload = async (event) => {
     event.preventDefault();
@@ -122,7 +118,7 @@ const VideosActions = ({ data }) => {
             </div>
           </div>
 
-          {data.channelData.owner._id === user._id ? (
+          {data.channelData.owner._id === user?._id ? (
             ""
           ) : (
             <Fanscription data={data} />

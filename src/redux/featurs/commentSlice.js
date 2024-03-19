@@ -24,7 +24,6 @@ export const createComment = createAsyncThunk(
         userId,
         accessToken,
       });
-      console.log(createResponse);
 
       const response = await api.getAllComments({ videoId });
 

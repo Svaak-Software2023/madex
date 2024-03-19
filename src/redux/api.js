@@ -282,7 +282,22 @@ export const getAllChannelList = ({ accessToken }) =>
   });
 
 export const getUserStationProfile = ({ username, accessToken }) =>
-  API.get(`http://localhost:8000/api/v1/users/channel/${username}`, {
+  API.get(`/users/channel/${username}`, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });
+
+// update Video Details
+export const updateVideoDetails = (formData, videoId, accessToken) =>
+  API.patch(`/videos/update-single-video/${videoId}`, formData, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });
+// Delete the Video
+export const deleteVideo = ({ videoId, accessToken }) =>
+  API.delete(`/videos/delete-single-video/${videoId}`, {
     headers: {
       Authorization: accessToken,
     },

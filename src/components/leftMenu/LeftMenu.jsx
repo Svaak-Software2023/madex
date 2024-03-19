@@ -14,7 +14,6 @@ const LeftMenu = ({ data }) => {
 
   const openSidebar = () => {
     dispatch(setmenu(!isSidebarOpen));
-    // console.log("called:",isSidebarOpen);
   };
 
   const forMobileResponse = window.screen.width;

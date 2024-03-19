@@ -26,7 +26,6 @@ const UpdatePLaylistModal = ({
   modalIsOpen,
   playListId,
 }) => {
-  console.log(playListId);
   const accessToken = useSelector((state) => state.auth.data);
   const { playlistData } = useSelector((state) => state.playlist);
   const userId = useSelector((state) => state?.auth?.user._id);

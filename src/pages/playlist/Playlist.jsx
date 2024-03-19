@@ -9,7 +9,6 @@ import NoDataFound from "../../components/Error/NoDataFound";
 
 const Playlist = ({ stationProfileUserId }) => {
   // const { stationProfileUserId } = props;
-  console.log("Id:", stationProfileUserId);
   const dispatch = useDispatch();
 
   const { playlistData, loading } = useSelector((state) => state.playlist);

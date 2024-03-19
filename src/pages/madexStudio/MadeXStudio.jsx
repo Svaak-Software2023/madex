@@ -4,6 +4,11 @@ import "./style.css";
 import { getAllChanelVideo } from "../../redux/featurs/videoSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllComments } from "../../redux/featurs/commentSlice";
+import { MdOutlineModeEdit } from "react-icons/md";
+import { MdDeleteOutline } from "react-icons/md";
+import UpdateVideoModal from "./UpdateVideoModal";
+import DeleteVideoModal from "./DeleteVideoModal";
+import { Toaster } from "sonner";
 
 const SettingMenus = [
   {
@@ -27,12 +32,40 @@ const SettingMenus = [
     name: "Podcasts",
   },
 ];
+
 const MadeXStudio = () => {
   const [activeTab, setActiveTab] = useState(1);
   const { data: channelData } = useSelector((state) => state.channel);
   const videos = useSelector((state) => state.video.channelVideoData);
+
   // const commentData = useSelector((state) => state.comment.commentData);
-  // console.log(commentData);
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalIsOpen2, setIsOpen2] = useState(false);
+
+  const [delVideoId, setDelVideoId] = useState(null);
+
+  const [singleVideo, setSingleVideo] = useState(null);
+
+  function openModal(id) {
+    const findSingleVideo = videos.find((item) => item._id === id);
+    setSingleVideo(findSingleVideo);
+
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+  function openModal2(id) {
+    setDelVideoId(id);
+
+    setIsOpen2(true);
+  }
+
+  function closeModal2() {
+    setIsOpen2(false);
+  }
 
   const dispatch = useDispatch();
   const videoId = videos && videos._id;
@@ -51,19 +84,37 @@ const MadeXStudio = () => {
   const columns = [
     {
       name: "Video",
-      selector: (row) => <img src={row.thumbnail} alt="" height={"50px"} />,
-    },
-    {
-      name: "",
-      selector: () => "Description",
+      selector: (row) => (
+        <div className="video_details">
+          <div className="video_img">
+            <img src={row.thumbnail} alt="" height={"70px"} />
+          </div>
+          <div className="video_actions">
+            <div className="title_desc">
+              <p>{`${row.title.substring(0, 20)}...`}</p>
+              <p>{`${row.description.substring(0, 25)}...`}</p>
+            </div>
+            <div className="actions_icon">
+              <div className="icons" onClick={() => openModal(row._id)}>
+                <MdOutlineModeEdit />
+              </div>
+              <div className="icons" onClick={() => openModal2(row._id)}>
+                <MdDeleteOutline />
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+      width: "300px",
     },
     {
       name: "Visibility",
-      selector: (row) => row.year,
-    },
-    {
-      name: "Restrictions",
-      selector: () => "Private",
+      selector: () => (
+        <select name="cars" id="cars">
+          <option value="Public">Public</option>
+          <option value="Private">Private</option>
+        </select>
+      ),
     },
     {
       name: "Date",
@@ -82,6 +133,14 @@ const MadeXStudio = () => {
       selector: () => 35456,
     },
   ];
+
+  if (!videos) {
+    return (
+      <>
+        <h1>No Video Available</h1>
+      </>
+    );
+  }
 
   return (
     <>
@@ -104,6 +163,21 @@ const MadeXStudio = () => {
         </div>
         <DataTable columns={columns} data={videos} selectableRows pagination />
       </div>
+      <UpdateVideoModal
+        modalIsOpen={modalIsOpen}
+        openModal={openModal}
+        closeModal={closeModal}
+        videoDetails={singleVideo}
+        channelId={channelData._id}
+      />
+      <DeleteVideoModal
+        modalIsOpen={modalIsOpen2}
+        openModal={openModal2}
+        closeModal={closeModal2}
+        videoId={delVideoId}
+        channelId={channelData._id}
+      />
+      <Toaster position="top-center" richColors />
     </>
   );
 };

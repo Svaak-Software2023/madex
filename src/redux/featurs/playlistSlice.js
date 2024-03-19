@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 export const createPLaylist = createAsyncThunk(
   "create/playlist",
@@ -40,7 +41,7 @@ export const addVideoToPLaylist = createAsyncThunk(
         accessToken,
       });
       // console.log(response);
-      toast.success("Added Successfully", { autoClose: 700 });
+      toast.info("Video added Successfully");
       return response.data;
     } catch (error) {
       // console.log(error.response);
@@ -54,9 +55,11 @@ export const deletePlaylist = createAsyncThunk(
   async ({ playListId, accessToken }) => {
     try {
       const response = await api.deletePLaylist({ playListId, accessToken });
-      toast("Delete Successfully");
+      toast.info("Playlist Delete Successfully");
       return response.data;
     } catch (error) {
+      toast.error("Something went wrong");
+
       throw error.response;
     }
   }
@@ -71,12 +74,12 @@ export const updatePlaylist = createAsyncThunk(
         formData,
         accessToken,
       });
-      console.log(updatedResponse);
-      toast.success("Update Successfully", { autoClose: 700 });
+      toast.info("Update Successfully");
       const response = await api.getPlaylist({ userId });
       return response.data;
     } catch (error) {
-      console.log("Error:", error.response);
+      toast.error("Something went wrong!");
+
       throw error.response;
     }
   }
@@ -91,12 +94,11 @@ export const deletePlaylistVideo = createAsyncThunk(
         playListId,
         accessToken,
       });
-      console.log(deleteresponse);
       const response = await api.getPlaylist({ userId });
-      toast.success("Video Removed", { autoClose: 700 });
+      toast.success("Video Removed From Playlist");
       return response.data;
     } catch (error) {
-      console.log(error.response);
+      toast.error("Something went wrong!");
       throw error.response;
     }
   }
