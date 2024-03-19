@@ -39,7 +39,8 @@ const VideosActions = ({ data }) => {
 
   const handleDownload = async (event) => {
     event.preventDefault();
-    accessToken && dispatch(createDownload({ videoId: data._id, accessToken }));
+    accessToken &&
+      dispatch(createDownload({ videoId: data?._id, accessToken }));
     if (!accessToken) return navigate("/login");
     try {
       // Fetch the media file
