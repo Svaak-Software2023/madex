@@ -11,6 +11,7 @@ import moment from "moment";
 import VideosActions from "../VideosActions/VideosActions";
 // import { getUserStationProfile } from "../../redux/featurs/channelSlice";
 import { checkSubscribe } from "../../redux/featurs/subscribeSlice";
+import { getUserStationProfile } from "../../redux/featurs/channelSlice";
 
 const VideoPlayer = ({ data }) => {
   const pathname = useLocation();
@@ -40,9 +41,9 @@ const VideoPlayer = ({ data }) => {
     accessToken && dispatch(createHistory({ videoId, accessToken }));
   }, [videoId, accessToken, dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(getUserStationProfile({ username, accessToken }));
-  // }, [username, accessToken, dispatch]);
+  useEffect(() => {
+    dispatch(getUserStationProfile({ username, accessToken }));
+  }, [username, accessToken, pathname, dispatch]);
 
   useEffect(() => {
     dispatch(checkSubscribe({ username, accessToken }));
@@ -82,7 +83,7 @@ const VideoPlayer = ({ data }) => {
           />
         ) : (
           <p style={{ textAlign: "center", fontWeight: "500" }}>
-            Restricted Mode has hidden comments for this video.
+            Restricted Mode has hidden Opinions for this video.
           </p>
         )}
       </div>

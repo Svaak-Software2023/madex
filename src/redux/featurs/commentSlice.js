@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 export const getAllComments = createAsyncThunk(
   "get/comment",
@@ -42,7 +42,7 @@ export const updateComment = createAsyncThunk(
         accessToken,
         content,
       });
-      toast.success("Updated Successfully", { autoClose: 700 });
+      toast.success("Updated Successfully");
 
       return response.data;
     } catch (error) {
@@ -58,7 +58,7 @@ export const deleteComment = createAsyncThunk(
         commentId,
         accessToken,
       });
-      toast.success("Delete Successfully", { autoClose: 700 });
+      toast.success("Delete Successfully");
 
       return response.data;
     } catch (error) {

@@ -20,6 +20,7 @@ import ChatRoom from "/assets/icons/chatRoom.png";
 import Marketplace from "/assets/icons/marketplace.jpg";
 import Playlist from "/assets/icons/playlist.png";
 import NoStation from "../../components/Error/NoStation";
+import MiniClips from "./channelTabs/MiniClips";
 
 const menus = [
   {
@@ -109,7 +110,7 @@ const YourChannel = () => {
       case 2:
         return <PLaylisyList />;
       case 3:
-        return <h6>No Mini clips yet</h6>;
+        return <MiniClips />;
       default:
         return <HomeContent />;
     }

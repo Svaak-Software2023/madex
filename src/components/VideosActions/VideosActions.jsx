@@ -23,9 +23,12 @@ const VideosActions = ({ data }) => {
   const user = useSelector((state) => state.auth.user);
   const accessToken = useSelector((state) => state.auth.data?.accessToken);
   const isSidebarOpen = useSelector((state) => state.globalFunction.isMenuOpen);
+  const subscribersCount = useSelector((state) => state.channel.channelProfile);
+  console.log(subscribersCount);
   // const channelData = useSelector((state) => state.channel.data);
   const [videoMore, setVideoMore] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [FanscribersCount, setFanscribersCount] = useState(0);
   const forMobileResponse = window.screen.width;
   const isMobile = forMobileResponse < 768;
   function openModal() {
@@ -69,6 +72,28 @@ const VideosActions = ({ data }) => {
     }
   };
 
+  useEffect(() => {
+    if (
+      subscribersCount?.subscribersCount >= 1000 &&
+      subscribersCount?.subscribersCount < 1000000
+    )
+      setFanscribersCount(
+        `${Math.round(subscribersCount?.subscribersCount / 1000)} K`
+      );
+    else if (
+      subscribersCount?.subscribersCount >= 1000000 &&
+      subscribersCount?.subscribersCount < 1000000000
+    )
+      setFanscribersCount(
+        `${Math.round(subscribersCount?.subscribersCount / 1000000)} M`
+      );
+    else if (subscribersCount?.subscribersCount > 1000000000)
+      setFanscribersCount(
+        `${Math.round(subscribersCount?.subscribersCount / 1000000000)} B`
+      );
+    else setFanscribersCount(subscribersCount?.subscribersCount);
+  }, [subscribersCount?.subscribersCount]);
+
   const likeCount = useSelector((state) => state.likeDislike);
 
   useEffect(() => {
@@ -95,10 +120,6 @@ const VideosActions = ({ data }) => {
     );
   };
 
-  // useEffect(() => {
-  //   dispatch(checkSubscribe({ username, accessToken }));
-  // }, [username, accessToken, dispatch]);
-
   return (
     <>
       <div className="video_content">
@@ -114,7 +135,7 @@ const VideosActions = ({ data }) => {
             </div>
             <div className="channel_name">
               <h3>{data?.channelData.channelName}</h3>
-              <p className="fanscribe_count"> 1.3M Fanscribers</p>
+              <p className="fanscribe_count">{FanscribersCount} Fanscribers</p>
               {/* <p>{view} Views • 3 months ago</p> */}
             </div>
           </div>
@@ -149,6 +170,7 @@ const VideosActions = ({ data }) => {
                     src="/assets/icons/downvote.png"
                     onClick={() => dislikehandler(data?._id)}
                   />
+                  <span>{data?.dislikesCount}</span>
                 </div>
               </>
             )}

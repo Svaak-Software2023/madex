@@ -2,18 +2,18 @@ import { useSelector } from "react-redux";
 import VideoList from "../../../components/videoList/VideoList";
 import { Link } from "react-router-dom";
 
-const HomeContent = () => {
+const MiniClips = () => {
   const channelVideoData = useSelector((state) => state.video.channelVideoData);
 
-  const onlyVideo = channelVideoData?.filter((item) =>
-    item.videoCategory.find((i) => i != "65af9c1d300e52cac8fa193e")
+  const onlyClips = channelVideoData?.filter((item) =>
+    item.videoCategory.find((i) => i == "65af9c1d300e52cac8fa193e")
   );
 
   return (
     <>
       {channelVideoData ? (
         <div className="my-3 w-100">
-          <VideoList data={onlyVideo} />
+          <VideoList data={onlyClips} />
         </div>
       ) : (
         <div className="d-flex justify-content-center align-items-center">
@@ -36,4 +36,4 @@ const HomeContent = () => {
   );
 };
 
-export default HomeContent;
+export default MiniClips;

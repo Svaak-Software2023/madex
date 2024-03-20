@@ -8,8 +8,10 @@ import { useEffect, useState } from "react";
 import "./style.css";
 import CommentsList from "./CommentsList";
 import LogoutUser from "/assets/login/logout_user.png";
+import { useLocation } from "react-router-dom";
 
 const CommentSection = ({ userId, videoId, accessToken }) => {
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const commentData = useSelector((state) => state.comment.commentData);
   const userProfile = useSelector((state) => state.auth.user);
@@ -24,7 +26,7 @@ const CommentSection = ({ userId, videoId, accessToken }) => {
   };
   useEffect(() => {
     dispatch(getAllComments({ videoId }));
-  }, [dispatch]);
+  }, [dispatch, pathname]);
   return (
     <>
       <div className="comment-container">
@@ -39,7 +41,10 @@ const CommentSection = ({ userId, videoId, accessToken }) => {
             </div>
           )}
           <div style={{ flex: "1" }}>
-            <p className="comment-count">{commentData?.length} Opinions</p>
+            <p className="comment-count">
+              {commentData?.length}{" "}
+              {commentData?.length <= 1 ? "Opinion" : "Opinions"}
+            </p>
             <form onSubmit={handleCreateComment}>
               <input
                 type="text"

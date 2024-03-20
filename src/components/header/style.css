@@ -390,3 +390,10 @@
 .form .inputs p span {
   color: #065fd4;
 }
+.tooltip_style {
+  background-color: #c8c8c8 !important;
+  color: #000 !important;
+  padding: 5px !important;
+  font-size: 0.7rem !important;
+  font-weight: 500 !important;
+}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import Header from "./components/header/Header";
 import LeftMenu from "./components/leftMenu/LeftMenu";
@@ -8,8 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/featurs/authSlice";
 import PrivateRoute from "./auth/PrivateRoute";
 import { setmenu } from "./utils/globalFunction/GlobalFunctionSlice";
-// import { ToastContainer} from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const dispatch = useDispatch();

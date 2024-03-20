@@ -14,12 +14,12 @@ import Loading from "../../assets/loader/Loading";
 
 const SingleVideo = () => {
   const { videoId } = useParams();
+
   const dispatch = useDispatch();
   const video = useSelector((state) => state.video);
   const { pathname } = useLocation();
 
-  // const token = JSON.parse(localStorage.getItem("accessToken"));
-  // const accessToken = token?.accessToken;
+  // const username = video.singleVideo?.channelData.owner.username;
 
   useEffect(() => {
     dispatch(getSingleVideo(videoId));
@@ -44,6 +44,7 @@ const SingleVideo = () => {
   const defaultRecommendData =
     video.videoData &&
     video.videoData.filter((item) => item._id !== video.singleVideo._id);
+
   return (
     <>
       <div className="">

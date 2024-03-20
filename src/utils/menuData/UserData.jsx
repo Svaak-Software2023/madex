@@ -93,7 +93,7 @@ const menuData = [
   {
     id: 5,
     url: "/your-channel",
-    text: "My Stations",
+    text: "My Station",
     icon: MyStation,
     heading: "My ",
     headingIcon: My,

@@ -69,7 +69,15 @@ const ChannelModal = (props) => {
           <div className="channel_profile d-flex flex-column justify-content-center align-items-center">
             <h3>
               Welcome
-              <span style={{ color: "#065FD4", textTransform: "capitalize" }}>
+              <span
+                style={{
+                  color: "#065FD4",
+                  fontSize: "1.2rem",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  marginLeft: "5px",
+                }}
+              >
                 {user && user.fullName}
               </span>
             </h3>
@@ -87,7 +95,7 @@ const ChannelModal = (props) => {
               />
               {errors.channelName && (
                 <span className="text-danger fw-bold">
-                  Channel name is requird
+                  Station name is requird
                 </span>
               )}
               <input

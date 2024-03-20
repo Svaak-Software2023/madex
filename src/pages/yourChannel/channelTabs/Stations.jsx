@@ -19,7 +19,7 @@ const menus = [
   },
   {
     id: 3,
-    name: "Shorts",
+    name: "Mini Clips",
   },
 ];
 

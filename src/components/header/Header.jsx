@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLogout } from "../../redux/featurs/authSlice";
 import ChannelModal from "./ChannelModal";
 import { setRestrictedMode } from "../../utils/globalFunction/GlobalFunctionSlice";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 function Header({ toggle }) {
   const navigate = useNavigate();
@@ -82,37 +83,41 @@ function Header({ toggle }) {
             <input type="text" placeholder="Search" />
             <IoSearch />
           </div>
-          <div className="header-three-dot">
+          <div className="header-three-dot" data-tooltip-id="my-tooltip-0">
             <img src="assets/icons/mic.png" alt="" />
           </div>
           {/* <div className="header-voice-search">
             <img src="/assets/icons/mic.png" alt="" />
           </div> */}
+          <ReactTooltip
+            id="my-tooltip-0"
+            place="bottom"
+            content="Speak to Search"
+            className="tooltip_style"
+          />
         </div>
         <div className="header-right">
           {user ? (
             <>
-              <div className="header-three-dot">
+              <div className="header-three-dot" data-tooltip-id="my-tooltip-1">
                 <img
                   src="assets/icons/camera.png"
                   alt=""
                   onClick={() => navigate("/upload-video")}
                 />
               </div>
-
-              <div className="header-three-dot">
+              <div className="header-three-dot" data-tooltip-id="my-tooltip-2">
                 <img src="assets/icons/chatRoom.png" alt="" />
               </div>
-              <div className="header-three-dot">
+              <div className="header-three-dot" data-tooltip-id="my-tooltip-3">
                 <img src="assets/icons/standCamera2.png" alt="" />
               </div>
-              <div className="header-three-dot">
+              <div className="header-three-dot" data-tooltip-id="my-tooltip-4">
                 <img src="assets/icons/notification.png" alt="" />
               </div>
-              <div className="header-three-dot">
+              <div className="header-three-dot" data-tooltip-id="my-tooltip-5">
                 <img src="assets/icons/chat.png" alt="" />
               </div>
-
               <div className="user-profile-logo">
                 <img
                   src={user.avatar}
@@ -120,6 +125,36 @@ function Header({ toggle }) {
                   onClick={() => setDropdown(!dropdown)}
                 />
               </div>
+              <ReactTooltip
+                id="my-tooltip-1"
+                place="bottom"
+                content="Upload Video"
+                className="tooltip_style"
+              />
+              <ReactTooltip
+                id="my-tooltip-2"
+                place="bottom"
+                content="chat room"
+                className="tooltip_style"
+              />
+              <ReactTooltip
+                id="my-tooltip-3"
+                place="bottom"
+                content="Live"
+                className="tooltip_style"
+              />
+              <ReactTooltip
+                id="my-tooltip-4"
+                place="bottom"
+                content="Notification"
+                className="tooltip_style"
+              />
+              <ReactTooltip
+                id="my-tooltip-5"
+                place="bottom"
+                content="chat"
+                className="tooltip_style"
+              />
             </>
           ) : (
             <>
@@ -189,7 +224,7 @@ function Header({ toggle }) {
                 {channel.data ? (
                   <div className="view-chanel-option">
                     <Link to="/your-channel" className="text-primary">
-                      View your station
+                      My Station
                     </Link>
                   </div>
                 ) : (
@@ -200,7 +235,7 @@ function Header({ toggle }) {
                 <li>
                   <div className="dropdown-option" onClick={logout}>
                     <PiSignOutBold />
-                    <p>Sign out</p>
+                    <p>Log out</p>
                   </div>
                 </li>
                 <li>
@@ -213,7 +248,7 @@ function Header({ toggle }) {
                   >
                     <FaExclamationTriangle />{" "}
                     <p>
-                      Restricted Mode : &nbsp;
+                      View Opinions : &nbsp;
                       {restrictionMode === false ? "Off" : "On"}
                     </p>
                   </div>
