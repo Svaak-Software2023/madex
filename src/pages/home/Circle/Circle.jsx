@@ -30,7 +30,7 @@ const Circle = () => {
                 style={{ height: "60px" }}
               />
             </div>
-            <Link to="">Subscription</Link>
+            <Link to="/fanscribe">Fanscription</Link>
           </li>
           <li>
             <div>
@@ -50,7 +50,7 @@ const Circle = () => {
                 style={{ height: "60px" }}
               />
             </div>
-            <Link to="">Stage settings</Link>
+            <Link to="/setting">Stage settings</Link>
           </li>
           <li>
             <div>
@@ -91,7 +91,7 @@ const Circle = () => {
                 style={{ height: "60px" }}
               />
             </div>
-            <Link to="">Mini Clip</Link>
+            <Link to="/mini-clips">Mini Clip</Link>
           </li>
           <li>
             <div>
@@ -101,7 +101,7 @@ const Circle = () => {
                 style={{ height: "60px" }}
               />
             </div>
-            <Link to="">Account</Link>
+            <Link to="/your-channel">Account</Link>
           </li>
           <li>
             <div>

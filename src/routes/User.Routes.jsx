@@ -20,6 +20,7 @@ import MyVideos from "../pages/myVideos/MyVideos";
 import Setting from "../pages/account/Setting";
 import CustomizeStation from "../pages/customizeStation/CustomizeStation";
 import MadeXStudio from "../pages/madexStudio/MadeXStudio";
+import UploadVideo from "../pages/uploadVideo/UploadVideo";
 
 const UserRoutes = [
   { name: "404 Error", path: "*", element: <Error404 />, isPrivate: false },
@@ -58,7 +59,7 @@ const UserRoutes = [
   {
     name: "Upload Video",
     path: "/upload-video",
-    element: <Upload />,
+    element: <UploadVideo />,
     isPrivate: true,
   },
   {

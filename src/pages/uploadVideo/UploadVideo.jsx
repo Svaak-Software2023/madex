@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import "./style.css";
-import { useForm } from "react-hook-form";
 import { MdCloudUpload } from "react-icons/md";
 import Loading from "../../assets/loader/Loading";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,16 +8,15 @@ import { getAllCategory } from "../../redux/featurs/categorySlice";
 import ProgressBar from "./ProgressBar";
 import { getChannel } from "../../redux/featurs/channelSlice";
 import { useNavigate } from "react-router-dom";
+// import Select from "react-select";
+// import makeAnimated from "react-select/animated";
 
-function Upload() {
+function UploadVideo() {
   // Create a state to count upload parcent
   const [percentage, setPercentage] = useState(0);
 
-  // Define ref to triger invisible input
-  const myref = useRef();
-  const selectVideoHandler = () => {
-    myref.current.click();
-  };
+  // Define ref to trigger invisible input
+  const fileInputRef = useRef(null);
 
   // Get video state from the store
   const video = useSelector((state) => state.video);
@@ -29,54 +27,61 @@ function Upload() {
   const channel = useSelector((state) => state.channel);
   const accessToken = useSelector((state) => state.auth.data);
 
-  // Call api to featch categorey data using reducer function
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // Call API to fetch category data using reducer function
   useEffect(() => {
     dispatch(getAllCategory());
     dispatch(getChannel(user.user._id));
   }, []);
 
-  // Get categorey state from the store
+  // Get category state from the store
   const category = useSelector((state) => state.category);
 
-  //Create state to store the video file and thumbnail
+  // Create state to store the video file and thumbnail
   const [file, setFile] = useState({ videoFile: "", thumbnail: "" });
 
-  //Import from react use hook for handling form and vailidate
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  // File onChange handler
+  //   const fileHandler = (e) => {
+  //     const name = e.target.name;
+  //     const size = (e.target.files[0].size / 1024 / 1024).toFixed(2);
+  //     if (size > 200) {
+  //       alert("Video size is too large.");
+  //     }
+  //     setFile((prevFile) => ({
+  //       ...prevFile,
+  //       [name]: e.target.files[0],
+  //     }));
+  //   };
 
-  //File on change handler
+  // File onChange handler
   const fileHandler = (e) => {
     const name = e.target.name;
-    const size = (e.target.files[0].size / 1024 / 1024).toFixed(2);
+    const selectedFile = e.target.files[0];
+    if (!selectedFile) {
+      return; // No file selected, do nothing
+    }
+    const size = (selectedFile.size / 1024 / 1024).toFixed(2);
     if (size > 200) {
-      alert("Video size is to large.");
+      alert("Video size is too large.");
+      return;
     }
     setFile((prevFile) => ({
       ...prevFile,
-      [name]: e.target.files[0],
+      [name]: selectedFile,
     }));
   };
+  // Form submit handler function
+  const submitHandler = (e) => {
+    e.preventDefault();
 
-  const dispatch = useDispatch();
-
-  const navigate = useNavigate();
-
-  //Form submit handler function
-  const submitHandler = (data) => {
     // Check if channelId and categoryId are present
     if (!channel.data || !channel.data._id) {
       console.error("Channel ID is missing");
       return;
     }
 
-    if (!data.categoryId) {
-      console.error("Category ID is missing");
-      return;
-    }
     const formData = new FormData();
     formData.append("userId", user.user._id);
     formData.append("videoFile", file.videoFile);
@@ -84,9 +89,23 @@ function Upload() {
     formData.append("views", 0);
     formData.append("channelId", channel.data._id);
 
-    for (const [key, value] of Object.entries(data)) {
-      formData.append(key, value);
-    }
+    formData.append("title", e.target.title.value);
+    formData.append("description", e.target.description.value);
+    // formData.append("categoryIds", e.target.categoryId.value);
+
+    // Get selected category IDs from the form
+    const selectedCategoryIds = Array.from(
+      e.target["categoryIds"].selectedOptions
+    ).map((option) => option.value);
+
+    // Convert the selected category IDs to valid ObjectId strings
+    // const categoryObjectIds = selectedCategoryIds.map((id) =>
+    //   mongoose.Types.ObjectId(id)
+    // );
+
+    selectedCategoryIds.forEach((categoryId) => {
+      formData.append("categoryIds", categoryId);
+    });
 
     console.log("Video data:", formData);
     dispatch(
@@ -99,11 +118,13 @@ function Upload() {
     );
   };
 
-  //Showing Loading
+  // Showing Loading
   if (category.loading) return <Loading />;
 
-  //Showing Progress bar
+  // Showing Progress bar
   if (video.loading) return <ProgressBar percentage={percentage} />;
+  //   const animatedComponents = makeAnimated();
+  //   console.log("Category Data:", category.categoryData);
 
   return (
     <>
@@ -111,7 +132,10 @@ function Upload() {
         <h3 className="mt-3 mx-3">Upload Video</h3>
         <div className="row m-0 p-0">
           <div className="col-lg-6 col-12 my-3">
-            <div className="upload-video-input" onClick={selectVideoHandler}>
+            <div
+              className="upload-video-input"
+              onClick={() => fileInputRef.current.click()}
+            >
               <div className="upload-vido-input-inner">
                 <h3 className="text-center">Select Video To Upload</h3>
                 <h2>
@@ -129,13 +153,12 @@ function Upload() {
             </div>
           </div>
           <div className="col-lg-6 col-12 my-3">
-            {/* <h5 className='fw-bold'>Video Details</h5> */}
-            <form onSubmit={handleSubmit(submitHandler)}>
+            <form onSubmit={submitHandler}>
               {/* select video input */}
               <input
                 type="file"
                 className="select-video-upload-video"
-                ref={myref}
+                ref={fileInputRef}
                 name="videoFile"
                 onChange={fileHandler}
               />
@@ -148,11 +171,9 @@ function Upload() {
                       type="text"
                       className="w-100 video-upload-input-field"
                       id="videoTitle"
-                      {...register("title", { required: true })}
+                      name="title"
+                      required
                     />
-                    {errors.videoTitle && (
-                      <p className="text-danger">Video Title is required</p>
-                    )}
                   </div>
                 </div>
                 <div className="col-lg-12 col-12">
@@ -163,23 +184,34 @@ function Upload() {
                       id="videoDescription"
                       type="text"
                       className="w-100 video-upload-input-field"
-                      {...register("description", { required: true })}
+                      name="description"
+                      required
                     />
-                    {errors.videoDescription && (
-                      <p className="text-danger">
-                        Video Description is required
-                      </p>
-                    )}
                   </div>
                 </div>
                 <div className="col-lg-12 col-12">
                   <div className="video-upload-form-input">
                     <label htmlFor="videoCategories">Video Categories</label>
+
+                    {/* <Select
+                      closeMenuOnSelect={false}
+                      components={animatedComponents}
+                      defaultValue="Select Category"
+                      isMulti
+                      options={category?.categoryData?.map((item) => ({
+                        value: item._id,
+                        label: item.categoryName,
+                      }))}
+                                          name="categoryIds"
+                                          value={}
+                    /> */}
                     <select
                       type="text"
                       className="w-100 video-upload-input-field"
                       id="videoCategories"
-                      {...register("categoryId", { required: true })}
+                      name="categoryIds"
+                      required
+                      multiple
                     >
                       <option value="">Select Category</option>
                       {category.categoryData &&
@@ -189,11 +221,6 @@ function Upload() {
                           </option>
                         ))}
                     </select>
-                    {errors.videoCategories && (
-                      <p className="text-danger">
-                        Video Categories is required
-                      </p>
-                    )}
                   </div>
                 </div>
 
@@ -206,12 +233,8 @@ function Upload() {
                       id="videoThumbnails"
                       name="thumbnail"
                       onChange={fileHandler}
+                      required
                     />
-                    {errors.videoThumbnails && (
-                      <p className="text-danger">
-                        Video Thumbnails is required
-                      </p>
-                    )}
                   </div>
                 </div>
 
@@ -226,4 +249,5 @@ function Upload() {
     </>
   );
 }
-export default Upload;
+
+export default UploadVideo;

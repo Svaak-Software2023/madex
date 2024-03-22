@@ -2,13 +2,13 @@
 
 import menuData from "../../utils/menuData/UserData";
 import "./sidebar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setmenu } from "../../utils/globalFunction/GlobalFunctionSlice";
 
 const LeftMenu = ({ data }) => {
   const dispatch = useDispatch();
-
+  const location = useLocation();
   const user = useSelector((state) => state.auth.user);
   const isSidebarOpen = useSelector((state) => state.globalFunction.isMenuOpen);
 
@@ -39,8 +39,12 @@ const LeftMenu = ({ data }) => {
                     heading,
                     headingIcon,
                   } = link;
+
                   return (
-                    <li key={id}>
+                    <li
+                      key={id}
+                      className={url === location.pathname ? "active" : ""}
+                    >
                       {heading && (
                         <div className="heading d-flex align-items-center">
                           {heading}&nbsp;

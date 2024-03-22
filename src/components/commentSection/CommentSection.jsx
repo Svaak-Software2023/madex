@@ -15,8 +15,10 @@ const CommentSection = ({ userId, videoId, accessToken }) => {
   const dispatch = useDispatch();
   const commentData = useSelector((state) => state.comment.commentData);
   const userProfile = useSelector((state) => state.auth.user);
-
   const [content, setContent] = useState("");
+  // const [commentList, setcommentList] = useState([]);
+
+  // console.log("Reverse Array:", commentList);
 
   // Commemt Funtions
   const handleCreateComment = (e) => {
@@ -27,6 +29,12 @@ const CommentSection = ({ userId, videoId, accessToken }) => {
   useEffect(() => {
     dispatch(getAllComments({ videoId }));
   }, [dispatch, pathname]);
+
+  // useEffect(() => {
+  //   if (commentData) {
+  //     setcommentList(commentList);
+  //   }
+  // }, []);
   return (
     <>
       <div className="comment-container">

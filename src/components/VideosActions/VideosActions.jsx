@@ -24,7 +24,6 @@ const VideosActions = ({ data }) => {
   const accessToken = useSelector((state) => state.auth.data?.accessToken);
   const isSidebarOpen = useSelector((state) => state.globalFunction.isMenuOpen);
   const subscribersCount = useSelector((state) => state.channel.channelProfile);
-  console.log(subscribersCount);
   // const channelData = useSelector((state) => state.channel.data);
   const [videoMore, setVideoMore] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);

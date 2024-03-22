@@ -40,8 +40,6 @@ const MadeXStudio = () => {
   const videos = useSelector((state) => state.video.channelVideoData);
   const playlistData = useSelector((state) => state.playlist.playlistData);
 
-  console.log(playlistData);
-
   // const commentData = useSelector((state) => state.comment.commentData);
 
   const [modalIsOpen, setIsOpen] = useState(false);
