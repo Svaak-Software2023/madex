@@ -6,7 +6,7 @@ const HomeContent = () => {
   const channelVideoData = useSelector((state) => state.video.channelVideoData);
 
   const onlyVideo = channelVideoData?.filter((item) =>
-    item.videoCategory.find((i) => i != "65af9c1d300e52cac8fa193e")
+    item.videoCategory?.find((i) => i != "65af9c1d300e52cac8fa193e")
   );
 
   return (

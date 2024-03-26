@@ -93,21 +93,14 @@ function UploadVideo() {
     formData.append("description", e.target.description.value);
     // formData.append("categoryIds", e.target.categoryId.value);
 
-    // Get selected category IDs from the form
     const selectedCategoryIds = Array.from(
       e.target["categoryIds"].selectedOptions
     ).map((option) => option.value);
-
-    // Convert the selected category IDs to valid ObjectId strings
-    // const categoryObjectIds = selectedCategoryIds.map((id) =>
-    //   mongoose.Types.ObjectId(id)
-    // );
 
     selectedCategoryIds.forEach((categoryId) => {
       formData.append("categoryIds", categoryId);
     });
 
-    console.log("Video data:", formData);
     dispatch(
       videoUpload({
         formData,
@@ -115,16 +108,19 @@ function UploadVideo() {
         navigate,
         accessToken: accessToken.accessToken,
       })
-    );
+    ).then(() => {
+      navigate("/your-channel");
+    });
   };
 
   // Showing Loading
   if (category.loading) return <Loading />;
 
   // Showing Progress bar
+
   if (video.loading) return <ProgressBar percentage={percentage} />;
-  //   const animatedComponents = makeAnimated();
-  //   console.log("Category Data:", category.categoryData);
+
+  // const animatedComponents = makeAnimated();
 
   return (
     <>
@@ -192,8 +188,8 @@ function UploadVideo() {
                 <div className="col-lg-12 col-12">
                   <div className="video-upload-form-input">
                     <label htmlFor="videoCategories">Video Categories</label>
-
-                    {/* <Select
+                    {/* 
+                    <Select
                       closeMenuOnSelect={false}
                       components={animatedComponents}
                       defaultValue="Select Category"
@@ -202,8 +198,7 @@ function UploadVideo() {
                         value: item._id,
                         label: item.categoryName,
                       }))}
-                                          name="categoryIds"
-                                          value={}
+                      name="categoryIds"
                     /> */}
                     <select
                       type="text"

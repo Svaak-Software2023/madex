@@ -115,16 +115,19 @@ const YourChannel = () => {
         return <HomeContent />;
     }
   };
-
-  if (NoChannel?.message === "400") {
-    return (
-      <>
-        <NoStation />
-      </>
-    );
-  }
+  if (channelLoading) return <h1>Loading...</h1>;
+  setTimeout(() => {
+    if (NoChannel?.message === "400") {
+      return (
+        <>
+          <NoStation />
+        </>
+      );
+    }
+  }, 500);
   return (
-    user && (
+    user &&
+    channelData && (
       <div className="px-sm-3">
         <div className="channel_profile">
           <div className="profile_container">

@@ -4,9 +4,14 @@ import * as api from "../api.js";
 export const createChannel = createAsyncThunk(
   "channel/createChannel",
   async (formData) => {
+    const { userId } = formData;
     try {
-      const response = await api.createNewChannel(formData);
-      return response.data;
+      const createResponse = await api.createNewChannel(formData);
+      const getResponse = await api.getChannel(userId);
+      return {
+        createResponse: createResponse.data,
+        getresponse: getResponse.data,
+      };
     } catch (error) {
       // Instead of throwing error.response, throw the entire error object
       throw error.response.data.statusCode;
@@ -74,8 +79,9 @@ const channelSlice = createSlice({
       })
       .addCase(createChannel.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload.data;
+        state.data = action.payload.getresponse.data;
         state.message = action.payload.message;
+        state.channelNotExit = "";
         state.error = "";
       })
       .addCase(createChannel.rejected, (state, action) => {
@@ -93,6 +99,8 @@ const channelSlice = createSlice({
         state.loading = false;
         state.data = action.payload.data;
         state.message = action.payload.message;
+        state.channelNotExit = "";
+
         state.error = "";
       })
       .addCase(getChannel.rejected, (state, action) => {

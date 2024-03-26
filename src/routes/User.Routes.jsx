@@ -59,6 +59,8 @@ const UserRoutes = [
   {
     name: "Upload Video",
     path: "/upload-video",
+    // element: <Upload />,
+
     element: <UploadVideo />,
     isPrivate: true,
   },

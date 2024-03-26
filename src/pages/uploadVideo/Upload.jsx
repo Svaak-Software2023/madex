@@ -97,6 +97,7 @@ function Upload() {
         accessToken: accessToken.accessToken,
       })
     );
+    navigate("/your-channel");
   };
 
   //Showing Loading

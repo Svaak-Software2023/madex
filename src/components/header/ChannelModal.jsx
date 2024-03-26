@@ -7,6 +7,8 @@ import { createChannel } from "../../redux/featurs/channelSlice";
 import Loading from "../../assets/loader/Loading";
 import { useEffect } from "react";
 import { getChannel } from "../../redux/featurs/channelSlice";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const customStyles = {
   content: {
@@ -22,9 +24,11 @@ const customStyles = {
 
 const ChannelModal = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { closeModal, afterOpenModal, modalIsOpen } = props;
   const user = useSelector((state) => state.auth.user);
+  const channelData = useSelector((state) => state.channel.data);
 
   const {
     register,
@@ -38,8 +42,18 @@ const ChannelModal = (props) => {
     dispatch(createChannel(dataWithId));
     // Reset the form after successful submission
     reset();
+    getChannelData(user?._id);
     closeModal();
+
+    navigate("/your-channel");
   };
+
+  // useEffect(() => {
+  //   if (submitted && channelData) {
+  //     // window.location.href = "#/your-channel";
+  //     navigate("/your-channel");
+  //   }
+  // }, []);
 
   const channel = useSelector((state) => state.channel);
 

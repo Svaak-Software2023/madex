@@ -40,8 +40,6 @@ const MadeXStudio = () => {
   const videos = useSelector((state) => state.video.channelVideoData);
   const playlistData = useSelector((state) => state.playlist.playlistData);
 
-  // const commentData = useSelector((state) => state.comment.commentData);
-
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalIsOpen2, setIsOpen2] = useState(false);
 
@@ -50,15 +48,15 @@ const MadeXStudio = () => {
   const [singleVideo, setSingleVideo] = useState(null);
 
   const onlyVideos = videos?.filter((item) =>
-    item.videoCategory.find((i) => i != "65af9c1d300e52cac8fa193e")
+    item.videoCategory?.find((i) => i != "65af9c1d300e52cac8fa193e")
   );
 
   const onlyClips = videos?.filter((item) =>
-    item.videoCategory.find((i) => i == "65af9c1d300e52cac8fa193e")
+    item.videoCategory?.find((i) => i == "65af9c1d300e52cac8fa193e")
   );
 
   function openModal(id) {
-    const findSingleVideo = videos.find((item) => item._id === id);
+    const findSingleVideo = videos?.find((item) => item._id === id);
     setSingleVideo(findSingleVideo);
 
     setIsOpen(true);
@@ -140,7 +138,7 @@ const MadeXStudio = () => {
     },
     {
       name: "Video Count",
-      selector: () => 155,
+      selector: (row) => row.videos.length,
     },
   ];
 
@@ -189,11 +187,15 @@ const MadeXStudio = () => {
     },
     {
       name: "Opinions",
-      selector: () => 46545,
+      selector: (row) => row.commentCount,
     },
     {
       name: "Up-Vote/Down-Vote",
-      selector: () => 35456,
+      selector: (row) => (
+        <>
+          <p>{`${row.likesCount} / ${row.dislikesCount}`}</p>
+        </>
+      ),
     },
   ];
 
