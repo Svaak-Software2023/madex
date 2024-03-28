@@ -65,7 +65,7 @@ const menus = [
   },
   {
     id: 9,
-    name: "Chat Room",
+    name: "Chatroom",
     icon: ChatRoom,
   },
   {

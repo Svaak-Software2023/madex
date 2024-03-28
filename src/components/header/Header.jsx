@@ -134,7 +134,7 @@ function Header({ toggle }) {
               <ReactTooltip
                 id="my-tooltip-2"
                 place="bottom"
-                content="chat room"
+                content="Chatroom"
                 className="tooltip_style"
               />
               <ReactTooltip
@@ -152,7 +152,7 @@ function Header({ toggle }) {
               <ReactTooltip
                 id="my-tooltip-5"
                 place="bottom"
-                content="chat"
+                content="Instant Message"
                 className="tooltip_style"
               />
             </>

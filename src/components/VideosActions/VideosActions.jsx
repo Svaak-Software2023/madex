@@ -133,7 +133,11 @@ const VideosActions = ({ data }) => {
               />
             </div>
             <div className="channel_name">
-              <h3>{data?.channelData.channelName}</h3>
+              <Link
+                to={`/fanscribeStation/${data?.channelData.owner?.username}`}
+              >
+                <h3>{data?.channelData.channelName}</h3>
+              </Link>
               <p className="fanscribe_count">{FanscribersCount} Fanscribers</p>
               {/* <p>{view} Views • 3 months ago</p> */}
             </div>
@@ -251,7 +255,7 @@ const VideosActions = ({ data }) => {
                       <div className="more-option-icon">
                         <img src="assets/icons/chat.png" alt="" />
                       </div>
-                      <p>chat</p>
+                      <p>Instant Message</p>
                     </li>
                     <li>
                       <div className="more-option-icon">
@@ -263,7 +267,7 @@ const VideosActions = ({ data }) => {
                       <div className="more-option-icon">
                         <img src="assets/icons/chatRoom.png" alt="" />
                       </div>
-                      <p>ChatRoom</p>
+                      <p>Chatroom</p>
                     </li>
                   </>
                 )}

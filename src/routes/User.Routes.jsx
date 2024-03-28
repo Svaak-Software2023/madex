@@ -4,7 +4,7 @@ import Downloads from "../pages/downloads/Downloads";
 import Home from "../pages/home/Home";
 import Login from "../pages/Login/Login";
 import SecondHome from "../pages/second-home/SecondHome";
-import Upload from "../pages/uploadVideo/Upload";
+// import Upload from "../pages/uploadVideo/Upload";
 import SingleVideo from "../pages/videoPlayer/SingleVideo";
 import WatchLater from "../pages/watchLater/WatchLater";
 import YourChannel from "../pages/yourChannel/YourChannel";
@@ -21,6 +21,7 @@ import Setting from "../pages/account/Setting";
 import CustomizeStation from "../pages/customizeStation/CustomizeStation";
 import MadeXStudio from "../pages/madexStudio/MadeXStudio";
 import UploadVideo from "../pages/uploadVideo/UploadVideo";
+import Xplore from "../pages/xPlore/Xplore";
 
 const UserRoutes = [
   { name: "404 Error", path: "*", element: <Error404 />, isPrivate: false },
@@ -130,6 +131,12 @@ const UserRoutes = [
     path: "/manage-video",
     element: <MadeXStudio />,
     isPrivate: true,
+  },
+  {
+    name: "Xplore",
+    path: "/xplore/:id",
+    element: <Xplore />,
+    isPrivate: false,
   },
 ];
 

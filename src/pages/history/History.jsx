@@ -53,7 +53,7 @@ const History = () => {
           <HistoryList historyData={historyData} token={accessToken} />
         )}
         <div className="clear-all-watch-later">
-          <button onClick={clearAllHistory}>Clear All Watch Later</button>
+          <button onClick={clearAllHistory}>Clear All Chronicle</button>
         </div>
       </div>
     </>

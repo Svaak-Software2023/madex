@@ -12,6 +12,7 @@ export const createPLaylist = createAsyncThunk(
         accessToken,
         formData,
       });
+      toast.info("Video added Successfully");
       return response.data;
     } catch (error) {
       throw error.response;

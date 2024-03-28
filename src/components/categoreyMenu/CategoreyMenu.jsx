@@ -16,6 +16,7 @@ function CategoreyMenu() {
   const dispatch = useDispatch();
 
   const [data, setData] = useState([]);
+  console.log("Data:", data);
 
   const category = useSelector((state) => state.category);
 
@@ -102,6 +103,14 @@ function CategoreyMenu() {
                 key={item._id}
                 onClick={() => handleClick(item._id)}
               >
+                {item?.categoryImage && (
+                  <img
+                    src={item?.categoryImage}
+                    alt=""
+                    height={22}
+                    style={{ borderRadius: "50%" }}
+                  />
+                )}
                 <span>{item.categoryName}</span>
               </div>
             ))}

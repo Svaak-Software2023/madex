@@ -53,7 +53,9 @@ const LeftMenu = ({ data }) => {
                       )}
                       {url && (
                         <Link
-                          to={url}
+                          to={`${url}?image=${encodeURIComponent(
+                            icon
+                          )}&text=${encodeURIComponent(text)}`}
                           onClick={forMobileResponse < 769 ? openSidebar : ""}
                         >
                           <div className="menu_image">

@@ -121,23 +121,43 @@ function VideoList({ data }) {
                         {accessToken && (
                           <>
                             <li onClick={() => handleWatchLater(item?._id)}>
-                              Continue later
+                              <div className="more-option-icon">
+                                <img src="assets/icons/watchLater.png" alt="" />
+                              </div>
+                              <p>Continue Later</p>
                             </li>
                             {playlistLocation == "playlistVideo" ? (
                               <li
                                 onClick={() => removePlaylistVideo(item?._id)}
                               >
-                                Remove Video
+                                <div className="more-option-icon">
+                                  <img
+                                    src="/assets/icons/cutVideo.png"
+                                    alt=""
+                                  />
+                                </div>
+                                <p>Remove Video</p>
                               </li>
                             ) : (
                               <li onClick={() => openModal(item?._id)}>
-                                Add to Playlist
+                                <div className="more-option-icon">
+                                  <img
+                                    src="/assets/icons/playlist.png"
+                                    alt=""
+                                  />
+                                </div>
+                                <p>Add To PLaylist </p>
                               </li>
                             )}
                           </>
                         )}
 
-                        <li>Share</li>
+                        <li>
+                          <div className="more-option-icon">
+                            <img src="/assets/icons/share.png" alt="" />
+                          </div>
+                          <p>Share </p>
+                        </li>
                       </ul>
                     </div>
                   )}
