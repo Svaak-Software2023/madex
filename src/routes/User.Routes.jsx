@@ -22,6 +22,7 @@ import CustomizeStation from "../pages/customizeStation/CustomizeStation";
 import MadeXStudio from "../pages/madexStudio/MadeXStudio";
 import UploadVideo from "../pages/uploadVideo/UploadVideo";
 import Xplore from "../pages/xPlore/Xplore";
+import ForgetPassword from "../pages/Login/ForgetPassword";
 
 const UserRoutes = [
   { name: "404 Error", path: "*", element: <Error404 />, isPrivate: false },
@@ -45,6 +46,13 @@ const UserRoutes = [
     isPrivate: false,
   },
   { name: "Login", path: "/login", element: <Login />, isPrivate: false },
+  {
+    name: "Forget Password",
+    path: "/forget-password",
+    element: <ForgetPassword />,
+    isPrivate: false,
+  },
+
   {
     name: "Create Account",
     path: "/create-account",
