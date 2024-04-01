@@ -15,6 +15,7 @@ import commentSlice from "./featurs/commentSlice";
 import likesVideoSlice from "./featurs/likesVideo";
 import shortsSlice from "./featurs/shortsSlice";
 import searchVideoSlice from "./featurs/searchVideo";
+import complaintSlice from "./featurs/complaintSlice";
 const store = configureStore({
   reducer: {
     globalFunction: GlobalFunctionSlice,
@@ -32,6 +33,7 @@ const store = configureStore({
     likedVideos: likesVideoSlice,
     shorts: shortsSlice,
     search: searchVideoSlice,
+    complaint: complaintSlice,
   },
 });
 

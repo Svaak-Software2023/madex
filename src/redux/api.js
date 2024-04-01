@@ -306,3 +306,14 @@ export const deleteVideo = ({ videoId, accessToken }) =>
 // Search Video
 export const searchVideo = (searchTerm) =>
   API.post("/video/search-video", { searchTerm });
+
+//Get All Complaint Category  list
+export const getAllComplaintCategoryList = () => API.get("/report/all-reports");
+
+// Create a new Complaint
+export const createComplaint = (formData, accessToken) =>
+  API.post("/video-report/create-video-report", formData, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });

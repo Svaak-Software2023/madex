@@ -1,0 +1,32 @@
+.complaint_modal p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}
+.complaint_modal ul {
+  padding: 0 !important;
+}
+.complaint_modal ul li {
+  list-style: none;
+  padding: 3px;
+}
+.complaint_modal ul li input {
+  margin-right: 8px;
+}
+.complaint_modal ul li label {
+  font-size: 1rem;
+}
+.complaint_modal .action-buttons {
+  display: flex;
+  justify-content: end;
+}
+.complaint_modal .action-buttons button {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.complaint_modal .action-buttons button:nth-child(2) {
+  color: blue;
+}
+.ReactModal__Content {
+  padding: 25px !important;
+}

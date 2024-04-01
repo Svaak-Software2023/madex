@@ -12,6 +12,8 @@ import { createDownload } from "../../redux/featurs/downloads";
 import { HiDotsHorizontal } from "react-icons/hi";
 import "./style.css";
 import ShareVideoModal from "../videoPlayer/ShareVideoModal";
+import ComplaintModal from "./ComplaintModal";
+import { getComplaintCategoriesList } from "../../redux/featurs/complaintSlice";
 // import { checkSubscribe } from "../../redux/featurs/subscribeSlice";
 
 const VideosActions = ({ data }) => {
@@ -27,6 +29,10 @@ const VideosActions = ({ data }) => {
   // const channelData = useSelector((state) => state.channel.data);
   const [videoMore, setVideoMore] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalIsOpen2, setIsOpen2] = useState(false);
+
+  // const [complaintModalIsOpen, setComplaintModalIsOpen] = useState(false);
+
   const [FanscribersCount, setFanscribersCount] = useState(0);
   const forMobileResponse = window.screen.width;
   const isMobile = forMobileResponse < 768;
@@ -37,6 +43,15 @@ const VideosActions = ({ data }) => {
 
   function closeModal() {
     setIsOpen(false);
+  }
+
+  function openModal2() {
+    setIsOpen2(true);
+    setVideoMore(false);
+  }
+
+  function closeModal2() {
+    setIsOpen2(false);
   }
 
   const handleDownload = async (event) => {
@@ -97,6 +112,7 @@ const VideosActions = ({ data }) => {
 
   useEffect(() => {
     dispatch(getlikes(data?._id));
+    dispatch(getComplaintCategoriesList());
   }, [pathname]);
 
   // like handler function
@@ -284,7 +300,7 @@ const VideosActions = ({ data }) => {
                   </div>
                   <p>Store Video</p>
                 </li>
-                <li>
+                <li onClick={openModal2}>
                   <div className="more-option-icon">
                     <img src="/assets/icons/complaint.png" alt="" />
                   </div>
@@ -300,6 +316,12 @@ const VideosActions = ({ data }) => {
         modalIsOpen={modalIsOpen}
         openModal={openModal}
         closeModal={closeModal}
+      />
+      <ComplaintModal
+        modalIsOpen2={modalIsOpen2}
+        openModal={openModal2}
+        closeModal={closeModal2}
+        videoId={data?._id}
       />
     </>
   );

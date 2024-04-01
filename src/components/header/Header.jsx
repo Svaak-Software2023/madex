@@ -51,7 +51,7 @@ function Header({ toggle }) {
   const [foundVideo, setFoundVideo] = useState([]);
   const [disableInput, setDisableInput] = useState(false);
 
-  console.log("Searched Data", foundVideo);
+  // console.log("Searched Data", foundVideo);
 
   const loca = window.location.hash;
   useEffect(() => {
