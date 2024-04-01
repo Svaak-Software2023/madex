@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
 
 export const getAllVideo = createAsyncThunk(
   "video/getAll",

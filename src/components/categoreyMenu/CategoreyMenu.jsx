@@ -16,7 +16,6 @@ function CategoreyMenu() {
   const dispatch = useDispatch();
 
   const [data, setData] = useState([]);
-  console.log("Data:", data);
 
   const category = useSelector((state) => state.category);
 
@@ -42,11 +41,7 @@ function CategoreyMenu() {
     centerPadding: "60px",
     slidesToShow: 5,
     swipeToSlide: true,
-    afterChange: function (index) {
-      console.log(
-        `Slider Changed to: ${index + 2}, background: #222; color: #bada55`
-      );
-    },
+
     responsive: [
       {
         breakpoint: 1024,
@@ -74,6 +69,7 @@ function CategoreyMenu() {
     ],
   };
   let sliderRef = useRef(null);
+
   const next = () => {
     sliderRef.slickNext();
   };
@@ -107,8 +103,8 @@ function CategoreyMenu() {
                   <img
                     src={item?.categoryImage}
                     alt=""
-                    height={22}
-                    style={{ borderRadius: "50%" }}
+                    height={32}
+                    width={30}
                   />
                 )}
                 <span>{item.categoryName}</span>
@@ -117,6 +113,7 @@ function CategoreyMenu() {
           </Slider>
         </div>
       </div>
+
       <button className="arrow-button" onClick={next}>
         <MdKeyboardArrowRight />
       </button>

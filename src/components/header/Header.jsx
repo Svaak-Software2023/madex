@@ -19,21 +19,132 @@ import { setLogout } from "../../redux/featurs/authSlice";
 import ChannelModal from "./ChannelModal";
 import { setRestrictedMode } from "../../utils/globalFunction/GlobalFunctionSlice";
 import { Tooltip as ReactTooltip } from "react-tooltip";
+// import axios from "axios";
+import "regenerator-runtime/runtime";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import { getSearchedData } from "../../redux/featurs/searchVideo";
+// import { API } from "../../redux/api";
 
 function Header({ toggle }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [dropdown, setDropdown] = useState(false);
   const [dropdown2, setDropdown2] = useState(false);
-
   const user = useSelector((state) => state.auth.user);
   const restrictionMode = useSelector(
     (state) => state.globalFunction.restrictedMode
   );
+
+  const searchedData = useSelector((state) => state.search.searchedData);
+
   const logout = () => {
     dispatch(setLogout());
     setDropdown(false);
   };
+
+  // Search Funcationallty
+
+  const [searchBox, setSearchBox] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [foundVideo, setFoundVideo] = useState([]);
+  const [disableInput, setDisableInput] = useState(false);
+
+  console.log("Searched Data", foundVideo);
+
+  const loca = window.location.hash;
+  useEffect(() => {
+    if (!loca || loca === "#/") {
+      setDisableInput(true);
+      setSearchTerm("");
+    } else {
+      setDisableInput(false);
+    }
+  }, [loca]);
+
+  useEffect(() => {
+    if (searchTerm.trim() !== "") {
+      dispatch(getSearchedData({ searchTerm: searchTerm }));
+      setFoundVideo(searchedData);
+
+      // findTheVideo();
+    } else {
+      setFoundVideo([]);
+    }
+    // dispatch(getSearchedData({ searchTerm: searchTerm }));
+
+    // async function findTheVideo() {
+    //   try {
+    //     const res = await axios.post(
+    //       "http://localhost:8000/api/v1/video/search-video",
+    //       { searchTerm: searchTerm }
+    //     );
+    //     if (res.data) setFoundVideo(res.data);
+    //   } catch (error) {
+    //     console.error("Error fetching video:", error);
+    //     setFoundVideo([]);
+    //   }
+    // }
+
+    // if (searchedData) {
+    //   setFoundVideo(searchedData);
+    // }
+  }, [searchTerm]);
+
+  function inputHandler(e) {
+    let inputValue = e.target.value;
+    setSearchTerm(inputValue);
+    setSearchBox(inputValue.trim().length > 0);
+  }
+  function searchPage(e) {
+    if (searchTerm) {
+      const SearchValue = searchTerm.replace(/\//g, "");
+      if (e.key === "Enter") {
+        navigate(`/searchPage/${SearchValue}`);
+        setSearchBox(false);
+      }
+      if (e.type === "click") {
+        navigate(`/searchPage/${SearchValue}`);
+        setSearchBox(false);
+      }
+      if (e === "micSubmit") {
+        navigate(`/searchPage/${SearchValue}`);
+        setSearchBox(false);
+      }
+    }
+  }
+
+  // Mic Funcationality
+  const [listen, setListen] = useState(false);
+  const { transcript, resetTranscript } = useSpeechRecognition({
+    onEnd: () => {
+      if (listen) {
+        SpeechRecognition.stopListening();
+        setListen(false);
+      }
+    },
+  });
+  function listenHandler() {
+    if (!listen) {
+      SpeechRecognition.startListening();
+      resetTranscript();
+    } else {
+      SpeechRecognition.stopListening();
+      setSearchTerm(transcript);
+    }
+    setListen(!listen);
+  }
+  useEffect(
+    () => {
+      if (transcript) {
+        setSearchTerm(transcript);
+        searchPage("micSubmit");
+      }
+    },
+    [transcript],
+    1000
+  );
 
   // let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -73,18 +184,51 @@ function Header({ toggle }) {
                 alt="Logo"
                 width={100}
                 height={50}
-                layout="responsive"
+                // layout="responsive"
               />
             </div>
           </Link>
         </div>
-        <div className="search_content">
-          <div className="header-search-box">
-            <input type="text" placeholder="Search" />
-            <IoSearch />
+        <div className="search_content position-relative">
+          <div
+            className="header-search-box"
+            style={{ background: `${disableInput ? "#d3d3d3" : ""}` }}
+          >
+            <input
+              type="text"
+              style={{ background: `${disableInput ? "#d3d3d3" : ""}` }}
+              placeholder="Search"
+              value={searchTerm}
+              onChange={(e) => inputHandler(e)}
+              onKeyDown={(e) => {
+                searchPage(e);
+              }}
+              disabled={disableInput}
+            />
+            <IoSearch
+              onClick={(e) => {
+                searchPage(e);
+              }}
+            />
+            {searchBox && (
+              <div className="header-search-results">
+                {foundVideo?.slice(0, 10).map((item, index) => (
+                  <div key={index}>
+                    <Link
+                      to={`/video/${item?._id}`}
+                      onClick={() => {
+                        setSearchBox(!searchBox);
+                      }}
+                    >
+                      {item?.title.slice(0, 60)}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           <div className="header-three-dot" data-tooltip-id="my-tooltip-0">
-            <img src="assets/icons/mic.png" alt="" />
+            <img src="assets/icons/mic.png" alt="" onClick={listenHandler} />
           </div>
           {/* <div className="header-voice-search">
             <img src="/assets/icons/mic.png" alt="" />
@@ -134,7 +278,7 @@ function Header({ toggle }) {
               <ReactTooltip
                 id="my-tooltip-2"
                 place="bottom"
-                content="Chatroom"
+                content="chat room"
                 className="tooltip_style"
               />
               <ReactTooltip
@@ -152,7 +296,7 @@ function Header({ toggle }) {
               <ReactTooltip
                 id="my-tooltip-5"
                 place="bottom"
-                content="Instant Message"
+                content="chat"
                 className="tooltip_style"
               />
             </>

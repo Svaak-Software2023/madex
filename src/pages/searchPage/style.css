@@ -1,0 +1,44 @@
+.searchPage_mainDiv{
+    display: flex;
+    width: 90%;
+    gap: 15px;
+    margin: auto;
+    margin-top: 10px;
+    font-family: sans-serif;
+    /* padding: 10px 0; */
+}
+.searchPage_Div1{
+    width: 50%;
+    display: flex;
+    justify-content: right;
+}
+.searchPage_Div2{
+    width: 50%;
+}
+.searchPage_Div1 img{
+    width: 100%;
+    max-height: 250px;
+    max-width: 500px;
+    border-radius: 1rem;
+}
+.searchPage_Div2 img{
+    width: 5vw;
+    height: 5vw;
+    max-width: 3vw;
+    max-height: 3vw;
+    border-radius: 50%;
+}
+.searchPage_Div2 h3{
+    font-size: 1.5vw;
+}
+.searchPage_Div2 p, .searchPage_Div2{
+    font-size: 1vw;
+    font-weight: 500;
+    padding: 10px 0;
+}
+.searchPage_notFound{
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

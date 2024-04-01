@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const API = axios.create({
-  baseURL: "https://madextube700.com/api/v1",
-  // baseURL: "http://localhost:8000/api/v1",
+export const API = axios.create({
+  // baseURL: "https://madextube700.com/api/v1",
+  baseURL: "http://localhost:8000/api/v1",
 });
 
 //User API's
@@ -302,3 +302,7 @@ export const deleteVideo = ({ videoId, accessToken }) =>
       Authorization: accessToken,
     },
   });
+
+// Search Video
+export const searchVideo = (searchTerm) =>
+  API.post("/video/search-video", { searchTerm });

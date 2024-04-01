@@ -1,3 +1,87 @@
+/* .categorey-menu-main {
+  max-width: 100%;
+  margin: auto;
+  overflow: hidden;
+  background-color: #fff;
+  margin: 0px 0px;
+  display: flex;
+  align-items: center;
+  padding-inline: 5px;
+}
+
+.categorey-menu-main .arrow-button {
+  border-radius: 50%;
+  padding: 8px;
+  background: #e5e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.categorey-menu-main .arrow-button svg {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #000;
+}
+
+.categotrey-menu-list {
+  margin: 5px 10px 0px;
+  overflow-x: scroll;
+  padding: 0px;
+  animation: ease 1s;
+}
+
+.categotrey-menu-list::-webkit-scrollbar {
+  display: none;
+}
+
+.categotrey-menu-list::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.categorey-menu-item {
+  margin: 2px 4px 2px 0px;
+  padding: 4px 8px;
+
+  width: auto;
+  border-radius: 20px;
+  cursor: pointer;
+  border-radius: 15px;
+  background-color: #e5e5e5;
+  color: #454242;
+  animation: all ease 1s;
+  display: flex !important;
+  gap: 5px;
+}
+
+.categorey-menu-item:hover {
+  background-color: rgb(212, 206, 206);
+  animation: all ease 1s;
+}
+
+.categorey-menu-item span {
+  width: 100%;
+  text-wrap: nowrap;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+  .categotrey-menu-list {
+    margin: 5px 12px;
+  }
+  .categorey-menu-item span {
+    width: 100%;
+    text-wrap: nowrap;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+}
+
+.slick-slide {
+  width: fit-content !important;
+  margin-inline: 2px !important;
+} */
+
 .categorey-menu-main {
   max-width: 100%;
   margin: auto;
@@ -45,21 +129,27 @@
 }
 
 .categorey-menu-item {
-  margin: 2px 4px 2px 0px;
+  position: relative;
+  margin: 5px 4px 2px 0px;
   padding: 4px 8px;
   /* margin: 2px 7px 2px 0px;
   padding: 5px 10px; */
   width: auto;
-  border-radius: 20px;
   cursor: pointer;
-  border-radius: 15px;
-  background-color: #e5e5e5;
+  border: 1px solid #000000;
+  /* border-radius: 15px; */
+  /* background-color: #e5e5e5; */
   color: #454242;
   animation: all ease 1s;
   display: flex !important;
   gap: 5px;
 }
-
+.categorey-menu-item img {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  border: 1px solid;
+}
 .categorey-menu-item:hover {
   background-color: rgb(212, 206, 206);
   animation: all ease 1s;
@@ -70,6 +160,7 @@
   text-wrap: nowrap;
   font-size: 0.9rem;
   font-weight: 500;
+  padding-left: 20px;
 }
 
 @media screen and (max-width: 768px) {
@@ -86,5 +177,5 @@
 
 .slick-slide {
   width: fit-content !important;
-  margin-inline: 2px !important;
+  margin-inline: 5px !important;
 }

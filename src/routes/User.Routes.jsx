@@ -23,6 +23,7 @@ import MadeXStudio from "../pages/madexStudio/MadeXStudio";
 import UploadVideo from "../pages/uploadVideo/UploadVideo";
 import Xplore from "../pages/xPlore/Xplore";
 import ForgetPassword from "../pages/Login/ForgetPassword";
+import SearchPage from "../pages/searchPage/SearchPage";
 
 const UserRoutes = [
   { name: "404 Error", path: "*", element: <Error404 />, isPrivate: false },
@@ -144,6 +145,12 @@ const UserRoutes = [
     name: "Xplore",
     path: "/xplore/:id",
     element: <Xplore />,
+    isPrivate: false,
+  },
+  {
+    name: "search page",
+    path: "/searchPage/:key",
+    element: <SearchPage />,
     isPrivate: false,
   },
 ];
