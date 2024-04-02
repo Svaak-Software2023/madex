@@ -14,6 +14,7 @@ import "./style.css";
 import ShareVideoModal from "../videoPlayer/ShareVideoModal";
 import ComplaintModal from "./ComplaintModal";
 import { getComplaintCategoriesList } from "../../redux/featurs/complaintSlice";
+import TipBox from "./TipBox";
 // import { checkSubscribe } from "../../redux/featurs/subscribeSlice";
 
 const VideosActions = ({ data }) => {
@@ -30,6 +31,15 @@ const VideosActions = ({ data }) => {
   const [videoMore, setVideoMore] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalIsOpen2, setIsOpen2] = useState(false);
+  const [modalIsOpen3, setIsOpen3] = useState(false);
+  function openModal3() {
+    setIsOpen3(true);
+    setVideoMore(false);
+  }
+
+  function closeModal3() {
+    setIsOpen3(false);
+  }
 
   // const [complaintModalIsOpen, setComplaintModalIsOpen] = useState(false);
 
@@ -233,81 +243,69 @@ const VideosActions = ({ data }) => {
             <HiDotsHorizontal />
           </div>
           {videoMore && (
-            <div className="more-option-video-list">
-              <ul>
-                {/* {isMobile && (
-                  <>
-                    <li>
-                      <div className="more-option-icon" onClick={openModal}>
-                        <img src="assets/icons/share.png" alt="" />
-                      </div>
-                      <p>Share</p>
-                    </li>
-                    <li>
-                      <Link to="#" onClick={handleDownload}>
+            <>
+              <div
+                className="modal_wrapper"
+                onClick={() => setVideoMore(!videoMore)}
+              ></div>
+              <div className="more-option-video-list">
+                <ul>
+                  {(isMobile || isSidebarOpen) && (
+                    <>
+                      <li>
                         <div className="more-option-icon">
-                          <img src="/assets/icons/download.png" alt="" />
+                          <img src="assets/icons/cutVideo.png" alt="" />
                         </div>
-                        <p>Download</p>
-                      </Link>
-                    </li>
-                  </>
-                )} */}
-                {(isMobile || isSidebarOpen) && (
-                  <>
-                    <li>
-                      <div className="more-option-icon">
-                        <img src="assets/icons/cutVideo.png" alt="" />
-                      </div>
-                      <p>Share Clip</p>
-                    </li>
-                    <li>
-                      <div className="more-option-icon">
-                        <img src="assets/icons/watchLater.png" alt="" />
-                      </div>
-                      <p>Watch Later</p>
-                    </li>
-                    <li>
-                      <div className="more-option-icon">
-                        <img src="assets/icons/chat.png" alt="" />
-                      </div>
-                      <p>Instant Message</p>
-                    </li>
-                    <li>
-                      <div className="more-option-icon">
-                        <img src="assets/icons/marketPlace.png" alt="" />
-                      </div>
-                      <p>MarketPlace</p>
-                    </li>
-                    <li>
-                      <div className="more-option-icon">
-                        <img src="assets/icons/chatRoom.png" alt="" />
-                      </div>
-                      <p>Chatroom</p>
-                    </li>
-                  </>
-                )}
-                <li>
-                  <div className="more-option-icon">
-                    <img src="/assets/icons/tipBox.png" alt="" />
-                  </div>
-                  <p>Tip Box </p>
-                </li>
+                        <p>Share Clip</p>
+                      </li>
+                      <li>
+                        <div className="more-option-icon">
+                          <img src="assets/icons/watchLater.png" alt="" />
+                        </div>
+                        <p>Watch Later</p>
+                      </li>
+                      <li>
+                        <div className="more-option-icon">
+                          <img src="assets/icons/chat.png" alt="" />
+                        </div>
+                        <p>Instant Message</p>
+                      </li>
+                      <li>
+                        <div className="more-option-icon">
+                          <img src="assets/icons/marketPlace.png" alt="" />
+                        </div>
+                        <p>MarketPlace</p>
+                      </li>
+                      <li>
+                        <div className="more-option-icon">
+                          <img src="assets/icons/chatRoom.png" alt="" />
+                        </div>
+                        <p>Chatroom</p>
+                      </li>
+                    </>
+                  )}
+                  <li onClick={openModal3}>
+                    <div className="more-option-icon">
+                      <img src="/assets/icons/tipBox.png" alt="" />
+                    </div>
+                    <p>Tip Box </p>
+                  </li>
 
-                <li>
-                  <div className="more-option-icon">
-                    <img src="/assets/icons/storeVideo.png" alt="" />
-                  </div>
-                  <p>Store Video</p>
-                </li>
-                <li onClick={openModal2}>
-                  <div className="more-option-icon">
-                    <img src="/assets/icons/complaint.png" alt="" />
-                  </div>
-                  <p>Complaint</p>
-                </li>
-              </ul>
-            </div>
+                  <li>
+                    <div className="more-option-icon">
+                      <img src="/assets/icons/storeVideo.png" alt="" />
+                    </div>
+                    <p>Store Video</p>
+                  </li>
+                  <li onClick={openModal2}>
+                    <div className="more-option-icon">
+                      <img src="/assets/icons/complaint.png" alt="" />
+                    </div>
+                    <p>Complaint</p>
+                  </li>
+                </ul>
+              </div>
+            </>
           )}
         </div>
       </div>
@@ -323,6 +321,7 @@ const VideosActions = ({ data }) => {
         closeModal={closeModal2}
         videoId={data?._id}
       />
+      <TipBox modalIsOpen3={modalIsOpen3} closeModal={closeModal3} />
     </>
   );
 };

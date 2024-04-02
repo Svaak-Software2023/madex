@@ -1,5 +1,5 @@
 .complaint_modal p {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
 }
@@ -29,4 +29,88 @@
 }
 .ReactModal__Content {
   padding: 25px !important;
+}
+
+input[type="radio"]:checked + label {
+  font-weight: 500;
+}
+
+textarea {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  width: 100%;
+}
+
+/* Tip Box Css */
+.tipBox_modal_wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(126, 126, 126, 0.33);
+}
+.tipBox_modal_container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 30rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  z-index: 5;
+}
+
+.tipBox_modal_container h2 {
+  font-size: 1.2rem;
+  font-family: serif;
+}
+.tipBox_modal_container input {
+  border: 1px solid gray;
+}
+.tipBox_modal_container input:focus {
+  border: none;
+  outline: none;
+}
+.tipBox_modal_container p {
+  font-size: 0.7rem;
+  color: gray;
+}
+.tipBox_modal_btn {
+  float: right;
+  padding: 0.4rem 0.6rem;
+  border: none;
+  border-radius: 0.3rem;
+  margin-top: 50px;
+  background-color: #212121;
+  color: white;
+}
+
+.tipBox_cursor {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  cursor: pointer;
+  margin-top: 4px;
+  margin-left: 1rem;
+  font-size: 1.5rem;
+}
+.tipBox_Gift {
+  padding: 5px;
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+  border-radius: 5px;
+  align-items: center;
+  position: relative;
+  border: 1px solid blue;
+}
+.tipBox_Gift_text {
+  position: absolute;
+  top: -13px;
+  right: 35px;
+  padding: 0 5px;
+  color: blue;
+  background-color: white;
 }

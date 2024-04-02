@@ -12,7 +12,8 @@ export const createPLaylist = createAsyncThunk(
         accessToken,
         formData,
       });
-      toast.info("Video added Successfully");
+      toast.info("Video added Successfully", { duration: 1000 });
+
       return response.data;
     } catch (error) {
       throw error.response;
@@ -42,7 +43,7 @@ export const addVideoToPLaylist = createAsyncThunk(
         accessToken,
       });
       // console.log(response);
-      toast.info("Video added Successfully");
+      toast.info("Video added Successfully", { duration: 1000 });
       return response.data;
     } catch (error) {
       // console.log(error.response);
@@ -56,10 +57,10 @@ export const deletePlaylist = createAsyncThunk(
   async ({ playListId, accessToken }) => {
     try {
       const response = await api.deletePLaylist({ playListId, accessToken });
-      toast.info("Playlist Delete Successfully");
+      toast.info("Playlist Delete Successfully", { duration: 1000 });
       return response.data;
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("Something went wrong", { duration: 1000 });
 
       throw error.response;
     }
@@ -75,11 +76,11 @@ export const updatePlaylist = createAsyncThunk(
         formData,
         accessToken,
       });
-      toast.info("Update Successfully");
+      toast.info("Update Successfully", { duration: 1000 });
       const response = await api.getPlaylist({ userId });
       return response.data;
     } catch (error) {
-      toast.error("Something went wrong!");
+      toast.error("Something went wrong!", { duration: 1000 });
 
       throw error.response;
     }
@@ -96,10 +97,10 @@ export const deletePlaylistVideo = createAsyncThunk(
         accessToken,
       });
       const response = await api.getPlaylist({ userId });
-      toast.success("Video Removed From Playlist");
+      toast.success("Video Removed From Playlist", { duration: 1000 });
       return response.data;
     } catch (error) {
-      toast.error("Something went wrong!");
+      toast.error("Something went wrong!", { duration: 1000 });
       throw error.response;
     }
   }

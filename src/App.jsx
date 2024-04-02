@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/featurs/authSlice";
 import PrivateRoute from "./auth/PrivateRoute";
 import { setmenu } from "./utils/globalFunction/GlobalFunctionSlice";
+import { Toaster } from "sonner";
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ function App() {
           {/* <AdminRouting/> */}
         </div>
       </div>
+      <Toaster richColors position="top-center" />
     </>
   );
 }

@@ -68,13 +68,19 @@ const HistoryList = ({ historyData, token }) => {
                 <div className="video-more-option-button">
                   <BsThreeDotsVertical onClick={() => openMore(i + 1)} />
                   {more === i + 1 && (
-                    <div className="video-more-option">
-                      <ul>
-                        <li onClick={() => deleteSingleVideo(item._id)}>
-                          Remove From History
-                        </li>
-                      </ul>
-                    </div>
+                    <>
+                      <div
+                        className="modal_wrapper"
+                        onClick={() => openMore(!more)}
+                      ></div>
+                      <div className="video-more-option">
+                        <ul>
+                          <li onClick={() => deleteSingleVideo(item._id)}>
+                            <p> Remove From History</p>
+                          </li>
+                        </ul>
+                      </div>
+                    </>
                   )}
                 </div>
               </div>

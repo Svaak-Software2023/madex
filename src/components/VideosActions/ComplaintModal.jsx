@@ -4,6 +4,7 @@ import ReactModal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewComplaint } from "../../redux/featurs/complaintSlice";
 import "./modal.css";
+// import { toast } from "sonner";
 
 const customStyles = {
   content: {
@@ -19,6 +20,7 @@ const customStyles = {
     paddingInline: "40px",
   },
 };
+// eslint-disable-next-line react/prop-types
 const ComplaintModal = ({ modalIsOpen2, closeModal, videoId }) => {
   const dispatch = useDispatch();
   const complaintCategoryList = useSelector(
@@ -36,6 +38,14 @@ const ComplaintModal = ({ modalIsOpen2, closeModal, videoId }) => {
     setFormData({
       ...formData,
       reportId: event.target.value,
+      reportContent: event.target.value,
+    });
+  };
+
+  const handleTextareaChange = (event) => {
+    setFormData({
+      ...formData,
+      reportContent: event.target.value,
     });
   };
 
@@ -69,6 +79,14 @@ const ComplaintModal = ({ modalIsOpen2, closeModal, videoId }) => {
               </li>
             ))}
           </ul>
+          <textarea
+            name="reportContent"
+            id=""
+            cols={30}
+            rows={4}
+            placeholder="Description (optional)"
+            onChange={handleTextareaChange}
+          ></textarea>
           <div className="action-buttons">
             <button onClick={closeModal}>Cancel</button>
             <button onClick={handleComplaintSubmit}>Submit</button>

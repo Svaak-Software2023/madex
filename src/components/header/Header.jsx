@@ -4,14 +4,12 @@ import "./style.css";
 import { IoSearch } from "react-icons/io5";
 import { PiSignOutBold } from "react-icons/pi";
 import { FaExclamationTriangle } from "react-icons/fa";
-import { IoMdArrowRoundBack } from "react-icons/io";
-import {
-  MdOutlineHelpOutline,
-  MdOutlineSettings,
-  MdOutlineSettingsBrightness,
-} from "react-icons/md";
+import { MdOutlineSettings, MdOutlineSettingsBrightness } from "react-icons/md";
+import { GrUserSettings } from "react-icons/gr";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoMenu } from "react-icons/io5";
+import { BiSolidCommentX } from "react-icons/bi";
+import { BiSolidCommentCheck } from "react-icons/bi";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,6 +23,9 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import { getSearchedData } from "../../redux/featurs/searchVideo";
+import ListenLoader from "../../assets/loader/ListenLoader";
+import { MdLiveHelp } from "react-icons/md";
+
 // import { API } from "../../redux/api";
 
 function Header({ toggle }) {
@@ -59,6 +60,7 @@ function Header({ toggle }) {
       setDisableInput(true);
       setSearchTerm("");
     } else {
+      setListen(false);
       setDisableInput(false);
     }
   }, [loca]);
@@ -117,7 +119,7 @@ function Header({ toggle }) {
 
   // Mic Funcationality
   const [listen, setListen] = useState(false);
-  const { transcript, resetTranscript } = useSpeechRecognition({
+  const { transcript, listening, resetTranscript } = useSpeechRecognition({
     onEnd: () => {
       if (listen) {
         SpeechRecognition.stopListening();
@@ -135,6 +137,7 @@ function Header({ toggle }) {
     }
     setListen(!listen);
   }
+
   useEffect(
     () => {
       if (transcript) {
@@ -227,9 +230,27 @@ function Header({ toggle }) {
               </div>
             )}
           </div>
-          <div className="header-three-dot" data-tooltip-id="my-tooltip-0">
-            <img src="assets/icons/mic.png" alt="" onClick={listenHandler} />
-          </div>
+          {listening ? (
+            <ListenLoader />
+          ) : (
+            <div
+              className="header-three-dot"
+              data-tooltip-id="my-tooltip-0"
+              onClick={listenHandler}
+            >
+              <img src="assets/icons/mic.png" alt="" />
+            </div>
+          )}
+
+          {/* <div
+            className="header-three-dot"
+            data-tooltip-id="my-tooltip-0"
+            onClick={listenHandler}
+            style={{ filter: listen ? "none" : "greyScale(100%)" }}
+          >
+            <img src="assets/icons/mic.png" alt="" />
+          </div> */}
+
           {/* <div className="header-voice-search">
             <img src="/assets/icons/mic.png" alt="" />
           </div> */}
@@ -305,39 +326,47 @@ function Header({ toggle }) {
               <div className="header-moreOption-dot">
                 <BsThreeDotsVertical onClick={() => setDropdown2(!dropdown2)} />
               </div>
+
               {dropdown2 && (
-                <div className="dropdown2-menus">
-                  <div className="container">
-                    <ul className="mt-3 dropdown-menu-list">
-                      <li>
-                        <div className="dropdown-option">
-                          <MdOutlineSettingsBrightness />
-                          &nbsp;
-                          <p>Appearance: Dark</p>
-                        </div>
-                        <div
-                          className="dropdown-option"
-                          onClick={() => dispatch(setRestrictedMode())}
-                        >
-                          <FaExclamationTriangle />
-                          &nbsp;
-                          <p>
-                            Restricted Mode:
-                            {restrictionMode === false ? "Off" : "On"}
-                          </p>
-                        </div>
-                      </li>
-                      <li>
-                        <Link to="/pages/account/setting">
-                          <div className="dropdown-option">
-                            <MdOutlineSettings />
-                            &nbsp; <p>Settings</p>
+                <>
+                  <div
+                    className="modal_wrapper"
+                    onClick={() => setDropdown(!dropdown2)}
+                  ></div>
+
+                  <div className="dropdown2-menus">
+                    <div className="container">
+                      <ul className="mt-3 dropdown-menu-list">
+                        <li>
+                          {/* <div className="dropdown-option">
+                              <MdOutlineSettingsBrightness />
+                              &nbsp;
+                              <p>Appearance: Dark</p>
+                            </div> */}
+                          <div
+                            className="dropdown-option"
+                            onClick={() => dispatch(setRestrictedMode())}
+                          >
+                            <FaExclamationTriangle />
+                            &nbsp;
+                            <p>
+                              Restricted Mode:
+                              {restrictionMode === false ? "Off" : "On"}
+                            </p>
                           </div>
-                        </Link>
-                      </li>
-                    </ul>
+                        </li>
+                        <li>
+                          <Link to="/pages/account/setting">
+                            <div className="dropdown-option">
+                              <MdOutlineSettings />
+                              &nbsp; <p>Settings</p>
+                            </div>
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
+                </>
               )}
               <Link to="login">
                 <div className="user-profile">
@@ -349,68 +378,85 @@ function Header({ toggle }) {
             </>
           )}
           {dropdown && (
-            <div className="login-user-details ">
-              <h3 className="dropdown-back">
-                <IoMdArrowRoundBack onClick={() => setDropdown(!dropdown)} />
-                <span>Accounts</span>
-              </h3>
-
-              <ul className="mt-3 dropdown-menu-list">
-                <div className="user-details">
-                  <div className="profile">
-                    <img src={user.avatar} alt="kdk" />
-                  </div>
-                  <div className="username">
-                    <h3>{user.fullName}</h3>
-                    <p>@{user.username}</p>
-                  </div>
-                </div>
-                {channel.data ? (
-                  <div className="view-chanel-option">
-                    <Link to="/your-channel" className="text-primary">
-                      My Station
-                    </Link>
-                  </div>
-                ) : (
-                  <div className="view-chanel-option" onClick={openModal}>
-                    Develop station
-                  </div>
-                )}
-                <li>
-                  <div className="dropdown-option" onClick={logout}>
-                    <PiSignOutBold />
-                    <p>Log out</p>
-                  </div>
-                </li>
-                <li>
-                  <div className="dropdown-option">
-                    <MdOutlineSettingsBrightness /> <p>Appearance : Dark</p>
-                  </div>
-                  <div
-                    className="dropdown-option"
-                    onClick={() => dispatch(setRestrictedMode())}
-                  >
-                    <FaExclamationTriangle />{" "}
-                    <p>
-                      View Opinions : &nbsp;
-                      {restrictionMode === false ? "Off" : "On"}
-                    </p>
-                  </div>
-                </li>
-                <li>
-                  <Link to="/setting">
-                    <div className="dropdown-option">
-                      <MdOutlineSettings /> <p>Settings</p>
+            <>
+              <div
+                className="modal_wrapper"
+                onClick={() => setDropdown(!dropdown)}
+              ></div>
+              {/* <div className="modal_container"> */}
+              <div className="login-user-details">
+                <ul className="mt-3 dropdown-menu-list">
+                  <div className="user-details">
+                    <div className="profile">
+                      <img src={user.avatar} alt="kdk" />
                     </div>
-                  </Link>
-                </li>
-                <li>
-                  <div className="dropdown-option">
-                    <MdOutlineHelpOutline /> <p>Help</p>
+                    <div className="username">
+                      <h3>{user.fullName}</h3>
+                      <p>@{user.username}</p>
+                      {channel.data ? (
+                        <div className="view-chanel-option">
+                          <Link to="/your-channel">My Station</Link>
+                        </div>
+                      ) : (
+                        <div className="view-chanel-option" onClick={openModal}>
+                          Develop station
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </li>
-              </ul>
-            </div>
+                  {/* {channel.data ? (
+                    <div className="view-chanel-option">
+                      <Link to="/your-channel">My Station</Link>
+                    </div>
+                  ) : (
+                    <div className="view-chanel-option" onClick={openModal}>
+                      Develop station
+                    </div>
+                  )} */}
+
+                  {/* <li>
+                    <div className="dropdown-option">
+                      <MdOutlineSettingsBrightness /> <p>Appearance : Dark</p>
+                    </div>
+                  </li> */}
+                  <li>
+                    <div
+                      className="dropdown-option"
+                      onClick={() => dispatch(setRestrictedMode())}
+                    >
+                      {restrictionMode === false ? (
+                        <BiSolidCommentX />
+                      ) : (
+                        <BiSolidCommentCheck />
+                      )}
+                      <p>
+                        View Opinions : &nbsp;
+                        {restrictionMode === false ? "Off" : "On"}
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <Link to="/setting">
+                      <div className="dropdown-option">
+                        <GrUserSettings /> <p>Settings</p>
+                      </div>
+                    </Link>
+                  </li>
+                  <li>
+                    <div className="dropdown-option">
+                      <MdLiveHelp /> <p>Help</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="dropdown-option" onClick={logout}>
+                      <PiSignOutBold />
+                      <p>Log out</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              {/* </div> */}
+            </>
           )}
         </div>
         {/* Channel Modal */}

@@ -11,7 +11,6 @@ import Loading from "../../assets/loader/Loading";
 import PlaylistModal from "./PlaylistModal";
 import { deletePlaylistVideo } from "../../redux/featurs/playlistSlice";
 import moment from "moment";
-import { Toaster } from "sonner";
 
 function VideoList({ data }) {
   const isSidebarOpen = useSelector((state) => state.globalFunction.isMenuOpen);
@@ -116,50 +115,59 @@ function VideoList({ data }) {
                   <BsThreeDotsVertical onClick={() => openMore(item?._id)} />
 
                   {more === item?._id && (
-                    <div className="video-more-option">
-                      <ul>
-                        {accessToken && (
-                          <>
-                            <li onClick={() => handleWatchLater(item?._id)}>
-                              <div className="more-option-icon">
-                                <img src="assets/icons/watchLater.png" alt="" />
-                              </div>
-                              <p>Continue Later</p>
-                            </li>
-                            {playlistLocation == "playlistVideo" ? (
-                              <li
-                                onClick={() => removePlaylistVideo(item?._id)}
-                              >
+                    <>
+                      <div
+                        className="modal_wrapper"
+                        onClick={() => openMore(!more)}
+                      ></div>
+                      <div className="video-more-option">
+                        <ul>
+                          {accessToken && (
+                            <>
+                              <li onClick={() => handleWatchLater(item?._id)}>
                                 <div className="more-option-icon">
                                   <img
-                                    src="/assets/icons/cutVideo.png"
+                                    src="assets/icons/watchLater.png"
                                     alt=""
                                   />
                                 </div>
-                                <p>Remove Video</p>
+                                <p>Continue Later</p>
                               </li>
-                            ) : (
-                              <li onClick={() => openModal(item?._id)}>
-                                <div className="more-option-icon">
-                                  <img
-                                    src="/assets/icons/playlist.png"
-                                    alt=""
-                                  />
-                                </div>
-                                <p>Add To PLaylist </p>
-                              </li>
-                            )}
-                          </>
-                        )}
+                              {playlistLocation == "playlistVideo" ? (
+                                <li
+                                  onClick={() => removePlaylistVideo(item?._id)}
+                                >
+                                  <div className="more-option-icon">
+                                    <img
+                                      src="/assets/icons/cutVideo.png"
+                                      alt=""
+                                    />
+                                  </div>
+                                  <p>Remove Video</p>
+                                </li>
+                              ) : (
+                                <li onClick={() => openModal(item?._id)}>
+                                  <div className="more-option-icon">
+                                    <img
+                                      src="/assets/icons/playlist.png"
+                                      alt=""
+                                    />
+                                  </div>
+                                  <p>Add To PLaylist </p>
+                                </li>
+                              )}
+                            </>
+                          )}
 
-                        <li>
-                          <div className="more-option-icon">
-                            <img src="/assets/icons/share.png" alt="" />
-                          </div>
-                          <p>Share </p>
-                        </li>
-                      </ul>
-                    </div>
+                          <li>
+                            <div className="more-option-icon">
+                              <img src="/assets/icons/share.png" alt="" />
+                            </div>
+                            <p>Share </p>
+                          </li>
+                        </ul>
+                      </div>
+                    </>
                   )}
                 </div>
               </div>
@@ -173,7 +181,6 @@ function VideoList({ data }) {
         closeModal={closeModal}
         videoId={videoId}
       />
-      <Toaster richColors position="top-center" />
     </>
   );
 }

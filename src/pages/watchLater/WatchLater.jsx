@@ -128,13 +128,21 @@ function WatchLater() {
                       onClick={() => openMore(item.video._id)}
                     />
                     {more === item.video._id && (
-                      <div className="video-more-option">
-                        <ul>
-                          <li onClick={() => handleWatchLater(item.video._id)}>
-                            Remove watch later
-                          </li>
-                        </ul>
-                      </div>
+                      <>
+                        <div
+                          className="modal_wrapper"
+                          onClick={() => openMore(!more)}
+                        ></div>
+                        <div className="video-more-option">
+                          <ul>
+                            <li
+                              onClick={() => handleWatchLater(item.video._id)}
+                            >
+                              <p>Remove video</p>
+                            </li>
+                          </ul>
+                        </div>
+                      </>
                     )}
                   </div>
                 </div>

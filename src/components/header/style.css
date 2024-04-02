@@ -99,6 +99,7 @@
   background: #fff;
   padding: 5px;
 }
+
 .header-three-dot img {
   height: 30px;
 }
@@ -152,12 +153,13 @@
 .login-user-details {
   position: absolute;
   top: 68px;
-  right: 0px;
+  right: 30px;
   padding: 20px 0px;
-  border-radius: 15px;
+  border-radius: 10px;
   background: #f3f3f3;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  width: 350px;
+  width: 310px;
+  z-index: 300;
 }
 
 .login-user-details svg {
@@ -194,8 +196,12 @@
 
 .dropdown-menu-list .user-details {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  justify-content: center;
   padding: 5px 40px;
+}
+.dropdown-menu-list .user-details .username p {
+  font-size: 0.9rem;
 }
 
 .dropdown-menu-list .user-details .profile {
@@ -214,7 +220,8 @@
 .dropdown-menu-list .user-details .username h3 {
   color: #000;
   font-size: 1rem;
-  line-height: normal;
+  text-transform: uppercase;
+  margin: 0 !important;
 }
 
 .dropdown-menu-list .user-details .username h3 p {
@@ -225,12 +232,14 @@
 .dropdown-menu-list .view-chanel-option {
   margin: 0px 0px;
   color: #065fd4;
-  font-size: 16px;
-  font-style: normal;
+  font-size: 0.9rem;
   font-weight: 600;
-  line-height: normal;
   cursor: pointer;
-  padding: 5px 40px;
+  /* padding: 5px 40px; */
+  /* text-align: center; */
+}
+.dropdown-menu-list .view-chanel-option a {
+  color: rgb(18, 63, 177) !important;
 }
 
 .dropdown-menu-list li .dropdown-option {
@@ -245,7 +254,8 @@
   line-height: normal;
 }
 .dropdown-menu-list li .dropdown-option svg {
-  color: #065fd4;
+  /* color: #065fd4; */
+  color: rgb(18, 63, 177) !important;
 }
 
 .dropdown2-menus {
@@ -304,6 +314,7 @@
     background: #fff;
     box-shadow: none;
     width: 100vw;
+    z-index: 300;
   }
 }
 /* ------------------------------------------------------------------------------ */

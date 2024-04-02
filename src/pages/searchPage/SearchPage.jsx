@@ -32,6 +32,10 @@ const SearchPage = () => {
     // }
     // findTheVideo();
   }, [key]);
+
+  if (!searchedData) {
+    return <p className="searchPage_notFound">Sorry, no videos found.</p>;
+  }
   return (
     <div>
       {/* <CategoreyMenu /> */}

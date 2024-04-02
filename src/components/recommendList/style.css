@@ -34,9 +34,13 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 10px;
+  }
+  .video-list-recomended a {
+    width: 30%;
   }
   .video-container {
-    width: 40%;
+    /* width: 40%; */
   }
 }
 @media screen and (max-width: 768px) {
@@ -47,8 +51,11 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+  .video-list-recomended a {
+    width: 45%;
+  }
   .video-container {
-    width: 40%;
+    /* width: 40%; */
   }
   .recomended-video-image {
     height: 230px;
@@ -68,8 +75,11 @@
     object-fit: fill;
   }
 }
-@media screen and (max-device-width: 480px) {
+@media screen and (max-width: 480px) {
   .video-list-recomended {
+    width: 100%;
+  }
+  .video-list-recomended a {
     width: 100%;
   }
   .video-container {

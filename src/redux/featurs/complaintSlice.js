@@ -21,10 +21,12 @@ export const createNewComplaint = createAsyncThunk(
     try {
       const response = await api.createComplaint(formData, accessToken);
       if (response.data) {
-        toast("Complaint Successfully");
+        toast.info("Complaint submitted", { duration: 1000 });
       }
       return response.data;
     } catch (error) {
+      toast.error("Please Login for complaint ", { duration: 1000 });
+
       throw error.response.data;
     }
   }

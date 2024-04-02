@@ -75,17 +75,23 @@ const PLaylistList = () => {
                 <p className="playlist_name">{item.name}</p>
                 <BsThreeDotsVertical onClick={() => openMore(item._id)} />
                 {more === item._id && (
-                  <div className="more-option">
-                    <ul>
-                      <li onClick={() => handleDeletePLaylist(item._id)}>
-                        <RiDeleteBin6Line />
-                        &nbsp; Delete
-                      </li>
-                      <li onClick={() => openModal(item?._id)}>
-                        <MdOutlineModeEdit /> &nbsp; Edit
-                      </li>
-                    </ul>
-                  </div>
+                  <>
+                    <div
+                      className="modal_wrapper"
+                      onClick={() => openMore(!more)}
+                    ></div>
+                    <div className="more-option">
+                      <ul>
+                        <li onClick={() => handleDeletePLaylist(item._id)}>
+                          <RiDeleteBin6Line />
+                          &nbsp; Delete
+                        </li>
+                        <li onClick={() => openModal(item?._id)}>
+                          <MdOutlineModeEdit /> &nbsp; Edit
+                        </li>
+                      </ul>
+                    </div>
+                  </>
                 )}
               </div>
             </div>
