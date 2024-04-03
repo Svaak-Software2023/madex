@@ -10,6 +10,7 @@ import {
   viewCount,
 } from "../../redux/featurs/videoSlice";
 import Loading from "../../assets/loader/Loading";
+import CategorySlider from "../../components/categoreyMenu/CategorySlider";
 // import Loading from "../../assets/loader/Loading";
 
 const SingleVideo = () => {
@@ -55,7 +56,8 @@ const SingleVideo = () => {
             )}
           </div>
           <div className="video_list col-lg-5 col-12 m-0 p-0 mt-2">
-            <CategoreyMenu />
+            {/* <CategoreyMenu /> */}
+            <CategorySlider width={"87%"} />
             <RecommendList
               data={recommendData ? recommendData : defaultRecommendData}
             />

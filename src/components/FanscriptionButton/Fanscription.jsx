@@ -61,7 +61,7 @@ const Fanscription = ({ data }) => {
 
       setDotPositions([]);
     }
-  }, [isSubscribed]);
+  }, [isSubscribed, pathname]);
   useEffect(() => {
     if (isAnimating && dotPositions.length > 0) {
       const interval = setInterval(() => {
@@ -76,7 +76,7 @@ const Fanscription = ({ data }) => {
     } else {
       setIsAnimating(false); // Stop the animation if no dots are left or if isAnimating is false
     }
-  }, [isAnimating, dotPositions]);
+  }, [isAnimating, dotPositions, pathname]);
 
   useEffect(() => {
     setDotPositions((prevDotPositions) =>
@@ -84,7 +84,7 @@ const Fanscription = ({ data }) => {
         (dot) => dot.x !== position.x || dot.y !== position.y
       )
     );
-  }, [position]);
+  }, [position, pathname]);
 
   const calculateConfettiOrigin = () => {
     const buttonElement = document.getElementById("button");

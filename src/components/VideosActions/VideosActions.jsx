@@ -15,6 +15,7 @@ import ShareVideoModal from "../videoPlayer/ShareVideoModal";
 import ComplaintModal from "./ComplaintModal";
 import { getComplaintCategoriesList } from "../../redux/featurs/complaintSlice";
 import TipBox from "./TipBox";
+import { createWatchLater } from "../../redux/featurs/watchLater";
 // import { checkSubscribe } from "../../redux/featurs/subscribeSlice";
 
 const VideosActions = ({ data }) => {
@@ -145,6 +146,18 @@ const VideosActions = ({ data }) => {
     );
   };
 
+  // Handle Watch LAter
+  const handleWatchLater = (videoId) => {
+    accessToken &&
+      dispatch(
+        createWatchLater({
+          videoId,
+          accessToken: accessToken,
+        })
+      );
+    setVideoMore(false);
+  };
+
   return (
     <>
       <div className="video_content">
@@ -222,7 +235,10 @@ const VideosActions = ({ data }) => {
                 <img src="assets/icons/cutVideo.png" alt="" />
               </div>
 
-              <div className="header-three-dot header-three-dot-video-option">
+              <div
+                className="header-three-dot header-three-dot-video-option"
+                onClick={() => handleWatchLater(data?._id)}
+              >
                 <img src="assets/icons/watchLater.png" alt="" />
               </div>
               <div className="header-three-dot">
@@ -258,7 +274,7 @@ const VideosActions = ({ data }) => {
                         </div>
                         <p>Share Clip</p>
                       </li>
-                      <li>
+                      <li onClick={() => handleWatchLater(data?._id)}>
                         <div className="more-option-icon">
                           <img src="assets/icons/watchLater.png" alt="" />
                         </div>

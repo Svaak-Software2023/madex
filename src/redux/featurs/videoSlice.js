@@ -139,6 +139,7 @@ const videoSlice = createSlice({
   name: "video",
   initialState: {
     videoData: null,
+    pagination: null,
     channelVideoData: null,
     categoryVideoData: null,
     singleVideo: null,
@@ -154,8 +155,11 @@ const videoSlice = createSlice({
         (state.loading = true), (state.message = ""), (state.error = null);
       })
       .addCase(getAllVideo.fulfilled, (state, action) => {
-        (state.loading = false), (state.videoData = action.payload.data.videos);
-        (state.message = action.payload.message), (state.error = null);
+        (state.loading = false),
+          (state.videoData = action.payload.data.videos),
+          (state.pagination = action.payload.data.pagination),
+          (state.message = action.payload.message),
+          (state.error = null);
       })
       .addCase(getAllVideo.rejected, (state, action) => {
         (state.loading = false), (state.videoData = null);

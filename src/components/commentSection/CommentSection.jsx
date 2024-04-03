@@ -35,6 +35,8 @@ const CommentSection = ({ userId, videoId, accessToken }) => {
   //     setcommentList(commentList);
   //   }
   // }, []);
+  // Reverse the commentData array
+  const reversedCommentData = commentData ? commentData.slice().reverse() : [];
   return (
     <>
       <div className="comment-container">
@@ -73,8 +75,8 @@ const CommentSection = ({ userId, videoId, accessToken }) => {
           </div>
         </div>
 
-        {commentData &&
-          commentData.map((item) => (
+        {reversedCommentData &&
+          reversedCommentData.map((item) => (
             <CommentsList
               key={item._id}
               id={item._id}

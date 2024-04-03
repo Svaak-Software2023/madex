@@ -3,14 +3,14 @@ import VideoList from "../../components/videoList/VideoList";
 import CategoryMenu from "../../components/categoreyMenu/CategoreyMenu";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllVideo } from "../../redux/featurs/videoSlice";
-import Loading from "../../assets/loader/Loading";
 import InfiniteScroll from "react-infinite-scroll-component";
 import SkeletonLoader from "../../assets/loader/SkeletonLoader";
+import CategorySlider from "../../components/categoreyMenu/CategorySlider";
 
 function SecondHome() {
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState();
   const [hasMore, setHasMore] = useState(true);
 
   const fetchData = (pageValue) => {
@@ -19,63 +19,82 @@ function SecondHome() {
 
   const fetchMoreData = () => {
     setTimeout(() => {
-      setPage((prevPage) => prevPage + 1);
+      setPage((prevPage) => prevPage - 1);
     }, 500);
   };
 
   // const video = useSelector((state) => state.video);
-  const { videoData, loading, categoryVideoData } = useSelector(
+  const { videoData, pagination, categoryVideoData } = useSelector(
     (state) => state.video
   );
 
   useEffect(() => {
-    fetchData(page);
-  }, [page]);
+    if (videoData?.length < 12) {
+      setPage((prevPage) => prevPage - 1);
+    }
+  }, [videoData]);
+
+  useEffect(() => {
+    if (pagination) {
+      setPage(pagination.totalPages);
+    }
+  }, [pagination?.totalPages]);
+
+  function shuffleArray(array) {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+  }
 
   useEffect(() => {
     if (videoData) {
+      const newArray = shuffleArray(videoData);
       setData((prevData) => {
-        if (page === 1) {
-          return videoData;
+        if (page === pagination?.totalPages) {
+          return newArray;
         } else {
-          return [...prevData, ...videoData];
+          return [...prevData, ...newArray];
         }
       });
     }
   }, [videoData]);
 
   useEffect(() => {
-    categoryVideoData && setData(categoryVideoData);
-  }, [categoryVideoData]);
+    fetchData(page);
+  }, [page]);
 
   // useEffect(() => {
-  //   if (video.videoData) {
+  //   if (videoData) {
   //     setData((prevData) => {
   //       if (page === 1) {
-  //         return video.videoData;
+  //         return videoData;
   //       } else {
-  //         return [...prevData, ...video.videoData];
+  //         return [...prevData, ...videoData];
   //       }
   //     });
   //   }
-  // }, [video.videoData]);
+  // }, [videoData]);
 
-  // useEffect(() => {
-  //   video.categoryVideoData && setData(video.categoryVideoData);
-  // }, [video.categoryVideoData]);
+  useEffect(() => {
+    categoryVideoData && setData(categoryVideoData);
+  }, [categoryVideoData]);
 
   return (
     <>
       <div>
-        <CategoryMenu />
+        {/* <CategoryMenu /> */}
+        <CategorySlider width={"93%"} />
         {data.length > 0 ? (
           <InfiniteScroll
             dataLength={data.length}
             next={fetchMoreData}
             hasMore={hasMore}
-            loader={<h4 className="text-center my-3">Loading...</h4>}
+            // loader={<h4 className="text-center my-3">Loading...</h4>}
           >
-            <VideoList data={data} />
+            <VideoList data={data} />;
           </InfiniteScroll>
         ) : (
           <div className="d-flex flex-wrap flex-row bd-highlight justify-content-center mx-auto">
@@ -86,24 +105,6 @@ function SecondHome() {
             ))}
           </div>
         )}
-
-        {/* {data.length > 0 ? (
-          <InfiniteScroll
-            dataLength={data.length}
-            next={fetchMoreData}
-            hasMore={hasMore}
-            loader={<h4 className="text-center my-3">Loading...</h4>}
-          >
-            <VideoList data={data} />
-          </InfiniteScroll>
-        ) : (
-          <h1>Loading</h1>
-        )}
-        {!videoData && (
-          <h4 className="text-center mt-5">
-            Sorry, the video data could not be found
-          </h4>
-        )} */}
       </div>
     </>
   );

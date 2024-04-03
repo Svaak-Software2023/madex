@@ -34,6 +34,7 @@ function CategoreyMenu() {
   const handleClick = (categoryId) => {
     dispatch(getAllCategoryVideo(categoryId));
   };
+  console.log("Window", window);
 
   const settings = {
     className: "center",
@@ -41,6 +42,7 @@ function CategoreyMenu() {
     centerPadding: "60px",
     slidesToShow: 5,
     swipeToSlide: true,
+    initialSlide: Math.ceil(data.length / 2),
 
     responsive: [
       {
