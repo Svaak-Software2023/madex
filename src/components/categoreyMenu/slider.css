@@ -24,20 +24,21 @@
   font-weight: 700;
 }
 .swiper-button-next {
-  right: -65px !important;
+  right: -28px !important;
   width: 57px;
   background: white;
   display: flex;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
 }
 .swiper-button-prev {
-  left: -65px !important;
+  left: -28px !important;
   width: 57px;
   background: white;
   display: flex;
-  justify-content: end;
+  /* justify-content: end; */
 }
 
 .swiper-button-prev.swiper-button-disabled {
-  opacity: 0.7;
+  /* opacity: 0.7; */
+  display: none;
 }

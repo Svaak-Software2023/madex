@@ -10,7 +10,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./slider.css";
-function CategorySlider({ width }) {
+function CategorySlider(props) {
+  const { width } = props;
+  console.log(width);
   const dispatch = useDispatch();
 
   //   const path = useLocation();
@@ -38,7 +40,7 @@ function CategorySlider({ width }) {
 
   return (
     <div className="categorey-menu-main mt-0">
-      <div className="categotrey-menu-list">
+      <div className="categotrey-menu-list" style={{ width: width }}>
         <div className="slider-container">
           <Swiper
             slidesPerView={10}
@@ -55,7 +57,6 @@ function CategorySlider({ width }) {
             {data?.map((item) => (
               <SwiperSlide key={item._id}>
                 <div
-                  style={{ width: width }}
                   className="categorey-menu-item"
                   onClick={() => handleClick(item._id)}
                 >

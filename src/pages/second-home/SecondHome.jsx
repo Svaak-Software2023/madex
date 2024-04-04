@@ -86,7 +86,7 @@ function SecondHome() {
     <>
       <div>
         {/* <CategoryMenu /> */}
-        <CategorySlider width={"93%"} />
+        <CategorySlider width="98%" />
         {data.length > 0 ? (
           <InfiniteScroll
             dataLength={data.length}

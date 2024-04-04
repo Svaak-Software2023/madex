@@ -57,7 +57,7 @@ const SingleVideo = () => {
           </div>
           <div className="video_list col-lg-5 col-12 m-0 p-0 mt-2">
             {/* <CategoreyMenu /> */}
-            <CategorySlider width={"87%"} />
+            <CategorySlider width="94%" />
             <RecommendList
               data={recommendData ? recommendData : defaultRecommendData}
             />

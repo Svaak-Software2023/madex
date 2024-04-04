@@ -163,14 +163,16 @@ const VideosActions = ({ data }) => {
       <div className="video_content">
         <div className="channel-profile-details">
           <div className="Video_channel_profile">
-            <div className="channel-img">
-              <img
-                src={data?.channelData.owner.avatar}
-                height={80}
-                width={80}
-                alt="profile"
-              />
-            </div>
+            <Link to={`/fanscribeStation/${data?.channelData.owner?.username}`}>
+              <div className="channel-img">
+                <img
+                  src={data?.channelData.owner.avatar}
+                  height={80}
+                  width={80}
+                  alt="profile"
+                />
+              </div>
+            </Link>
             <div className="channel_name">
               <Link
                 to={`/fanscribeStation/${data?.channelData.owner?.username}`}
@@ -278,7 +280,7 @@ const VideosActions = ({ data }) => {
                         <div className="more-option-icon">
                           <img src="assets/icons/watchLater.png" alt="" />
                         </div>
-                        <p>Watch Later</p>
+                        <p>Continue Later</p>
                       </li>
                       <li>
                         <div className="more-option-icon">
