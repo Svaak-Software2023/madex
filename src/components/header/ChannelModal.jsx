@@ -3,10 +3,10 @@ import Modal from "react-modal";
 import { IoCloseOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { createChannel } from "../../redux/featurs/channelSlice";
+import { createChannel } from "../../redux/features/channelSlice";
 import Loading from "../../assets/loader/Loading";
 import { useEffect } from "react";
-import { getChannel } from "../../redux/featurs/channelSlice";
+import { getChannel } from "../../redux/features/channelSlice";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

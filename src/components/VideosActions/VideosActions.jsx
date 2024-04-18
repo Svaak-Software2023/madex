@@ -5,18 +5,18 @@ import {
   createDisLike,
   createLike,
   getlikes,
-} from "../../redux/featurs/likeDislikeSlice";
+} from "../../redux/features/likeDislikeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { createDownload } from "../../redux/featurs/downloads";
+import { createDownload } from "../../redux/features/downloads";
 import { HiDotsHorizontal } from "react-icons/hi";
 import "./style.css";
 import ShareVideoModal from "../videoPlayer/ShareVideoModal";
 import ComplaintModal from "./ComplaintModal";
-import { getComplaintCategoriesList } from "../../redux/featurs/complaintSlice";
+import { getComplaintCategoriesList } from "../../redux/features/complaintSlice";
 import TipBox from "./TipBox";
-import { createWatchLater } from "../../redux/featurs/watchLater";
-// import { checkSubscribe } from "../../redux/featurs/subscribeSlice";
+import { createWatchLater } from "../../redux/features/watchLater";
+// import { checkSubscribe } from "../../redux/features/subscribeSlice";
 
 const VideosActions = ({ data }) => {
   // const username = data?.channelData?.owner.username;

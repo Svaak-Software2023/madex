@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   createSubscribe,
   unSubscribe,
-} from "../../redux/featurs/subscribeSlice";
+} from "../../redux/features/subscribeSlice";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./style.css";
 import { useWindowSize } from "react-use";

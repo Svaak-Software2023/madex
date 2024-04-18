@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getChannel } from "../../redux/featurs/channelSlice";
-import { getAllChanelVideo } from "../../redux/featurs/videoSlice";
+import { getChannel } from "../../redux/features/channelSlice";
+import { getAllChanelVideo } from "../../redux/features/videoSlice";
 
 const CustomizeStation = () => {
   const { user } = useSelector((state) => state.auth);

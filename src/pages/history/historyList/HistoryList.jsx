@@ -5,7 +5,7 @@ import "./style.css";
 import {
   deleteHistory,
   getAllHistory,
-} from "../../../redux/featurs/historySlice";
+} from "../../../redux/features/historySlice";
 import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 

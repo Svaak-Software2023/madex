@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import VideoList from "../../components/videoList/VideoList";
 import CategoryMenu from "../../components/categoreyMenu/CategoreyMenu";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllVideo } from "../../redux/featurs/videoSlice";
+import { getAllVideo } from "../../redux/features/videoSlice";
 import InfiniteScroll from "react-infinite-scroll-component";
 import SkeletonLoader from "../../assets/loader/SkeletonLoader";
 import CategorySlider from "../../components/categoreyMenu/CategorySlider";

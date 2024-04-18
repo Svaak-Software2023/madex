@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export const API = axios.create({
-  baseURL: "https://madextube700.com/api/v1",
-  // baseURL: "http://localhost:8000/api/v1",
+  // baseURL: "https://madextube700.com/api/v1",
+  baseURL: "http://localhost:8000/api/v1",
 });
 
 //User API's
@@ -317,3 +317,14 @@ export const createComplaint = (formData, accessToken) =>
       Authorization: accessToken,
     },
   });
+
+export const sendFeedBack = (feedBackDescription, accessToken) =>
+  API.post(
+    "/feedback/create-feedback",
+    { feedBackDescription },
+    {
+      headers: {
+        Authorization: accessToken,
+      },
+    }
+  );

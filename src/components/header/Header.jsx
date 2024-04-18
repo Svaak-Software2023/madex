@@ -13,7 +13,7 @@ import { BiSolidCommentCheck } from "react-icons/bi";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setLogout } from "../../redux/featurs/authSlice";
+import { setLogout } from "../../redux/features/authSlice";
 import ChannelModal from "./ChannelModal";
 import { setRestrictedMode } from "../../utils/globalFunction/GlobalFunctionSlice";
 import { Tooltip as ReactTooltip } from "react-tooltip";
@@ -22,7 +22,7 @@ import "regenerator-runtime/runtime";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import { getSearchedData } from "../../redux/featurs/searchVideo";
+import { getSearchedData } from "../../redux/features/searchVideo";
 import ListenLoader from "../../assets/loader/ListenLoader";
 import { MdLiveHelp } from "react-icons/md";
 

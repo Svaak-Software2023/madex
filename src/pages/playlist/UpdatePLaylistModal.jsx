@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getPlaylistData,
   updatePlaylist,
-} from "../../redux/featurs/playlistSlice";
+} from "../../redux/features/playlistSlice";
 import "./style.css";
 
 const customStyles = {

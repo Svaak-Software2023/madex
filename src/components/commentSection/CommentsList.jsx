@@ -8,7 +8,7 @@ import {
   deleteComment,
   getAllComments,
   updateComment,
-} from "../../redux/featurs/commentSlice";
+} from "../../redux/features/commentSlice";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 

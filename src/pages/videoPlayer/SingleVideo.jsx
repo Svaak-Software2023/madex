@@ -8,7 +8,7 @@ import {
   getAllVideo,
   getSingleVideo,
   viewCount,
-} from "../../redux/featurs/videoSlice";
+} from "../../redux/features/videoSlice";
 import Loading from "../../assets/loader/Loading";
 import CategorySlider from "../../components/categoreyMenu/CategorySlider";
 // import Loading from "../../assets/loader/Loading";

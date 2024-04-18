@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 // import axios from "axios";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-import { getSearchedData } from "../../redux/featurs/searchVideo";
+import { getSearchedData } from "../../redux/features/searchVideo";
 // import { API } from "../../redux/api";
 
 const SearchPage = () => {

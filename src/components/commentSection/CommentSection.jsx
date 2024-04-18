@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   createComment,
   getAllComments,
-} from "../../redux/featurs/commentSlice";
+} from "../../redux/features/commentSlice";
 import { useEffect, useState } from "react";
 import "./style.css";
 import CommentsList from "./CommentsList";

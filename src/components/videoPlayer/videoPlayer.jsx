@@ -4,14 +4,14 @@ import "./style.css";
 import ReactPlayer from "react-player";
 import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createHistory } from "../../redux/featurs/historySlice";
+import { createHistory } from "../../redux/features/historySlice";
 
 import CommentSection from "../commentSection/CommentSection";
 import moment from "moment";
 import VideosActions from "../VideosActions/VideosActions";
-// import { getUserStationProfile } from "../../redux/featurs/channelSlice";
-import { checkSubscribe } from "../../redux/featurs/subscribeSlice";
-import { getUserStationProfile } from "../../redux/featurs/channelSlice";
+// import { getUserStationProfile } from "../../redux/features/channelSlice";
+import { checkSubscribe } from "../../redux/features/subscribeSlice";
+import { getUserStationProfile } from "../../redux/features/channelSlice";
 
 const VideoPlayer = ({ data }) => {
   const pathname = useLocation();

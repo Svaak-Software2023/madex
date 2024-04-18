@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
 import { useEffect } from "react";
-import { getAllChannelList } from "../../redux/featurs/channelSlice";
+import { getAllChannelList } from "../../redux/features/channelSlice";
 import { Link } from "react-router-dom";
 const Fanscribe = () => {
   const user = useSelector((state) => state.auth);

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import "./style.css";
-import { getAllChanelVideo } from "../../redux/featurs/videoSlice";
+import { getAllChanelVideo } from "../../redux/features/videoSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllComments } from "../../redux/featurs/commentSlice";
+import { getAllComments } from "../../redux/features/commentSlice";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
 import UpdateVideoModal from "./UpdateVideoModal";
 import DeleteVideoModal from "./DeleteVideoModal";
 import { Toaster } from "sonner";
-import { getPlaylistData } from "../../redux/featurs/playlistSlice";
+import { getPlaylistData } from "../../redux/features/playlistSlice";
 
 const SettingMenus = [
   {

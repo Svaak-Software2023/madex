@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPlaylistData } from "../../redux/featurs/playlistSlice";
+import { getPlaylistData } from "../../redux/features/playlistSlice";
 import "./style.css";
 
 import Loading from "../../assets/loader/Loading";

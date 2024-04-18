@@ -28,8 +28,8 @@
 }
 
 .modal-box .filled_form label {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 .modal-box .filled_form input {
   outline: none;
@@ -40,6 +40,12 @@
 }
 .modal-box .filled_form .actions-buttons {
   align-self: flex-end;
+}
+.modal-box .filled_form .actions-buttons button {
+  font-weight: 500;
+}
+.modal-box .filled_form .actions-buttons .save-video-update {
+  color: blue;
 }
 .modal-box .confirm_form p {
   text-align: center;

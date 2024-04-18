@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   deleteAllHistory,
   getAllHistory,
-} from "../../redux/featurs/historySlice";
+} from "../../redux/features/historySlice";
 import HistoryList from "./historyList/HistoryList";
 import Loading from "../../assets/loader/Loading";
 import "./style.css";

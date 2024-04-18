@@ -2,7 +2,7 @@
 import { useState } from "react";
 import ReactModal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
-import { createNewComplaint } from "../../redux/featurs/complaintSlice";
+import { createNewComplaint } from "../../redux/features/complaintSlice";
 import "./modal.css";
 // import { toast } from "sonner";
 

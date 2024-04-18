@@ -1,7 +1,60 @@
-.shorts-main{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+.shorts-main {
+  /* width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; */
+  height: 88vh; /* Make each section take up the full viewport height */
+  scroll-snap-align: start;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+.shorts_container {
+  width: 100%;
+  height: 100vh; /* Make the container take up the full viewport height */
+  scroll-snap-type: y mandatory; /* Enable snapping behavior */
+  overflow-y: scroll; /* Allow vertical scrolling */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none;
+}
+.shorts_container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+.actions {
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  gap: 10px;
+}
+.actions ul {
+  margin: 10px !important;
+  padding: 0 !important;
+}
+.actions ul li {
+  list-style: none;
+  margin-top: 10px;
+}
+.actions .shorts_actions {
+  padding-block: 10px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+.actions .shorts_actions img {
+  height: 30px;
+}
+.actions a .channel-img {
+  height: 55px;
+  width: 55px;
+  padding: 2px;
+}
+
+.actions .shorts_actions span {
+  font-size: 0.7rem;
+  font-weight: 500;
 }

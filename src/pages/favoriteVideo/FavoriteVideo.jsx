@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getLikedVideos } from "../../redux/featurs/likesVideo";
+import { getLikedVideos } from "../../redux/features/likesVideo";
 import VideoList from "../../components/videoList/VideoList";
 
 const FavoriteVideo = () => {

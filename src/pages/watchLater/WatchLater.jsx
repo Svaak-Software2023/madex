@@ -4,7 +4,7 @@ import {
   deleteAllWatchLater,
   deleteWatchLater,
   getAllWatchLater,
-} from "../../redux/featurs/watchLater";
+} from "../../redux/features/watchLater";
 import { Link } from "react-router-dom";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Loading from "../../assets/loader/Loading";

@@ -2,7 +2,7 @@
 import Modal from "react-modal";
 import "./modal.css";
 import { useDispatch, useSelector } from "react-redux";
-import { updateVideoDetail } from "../../redux/featurs/videoSlice";
+import { updateVideoDetail } from "../../redux/features/videoSlice";
 import { useEffect, useState } from "react";
 
 Modal.setAppElement("#root"); // Set the app element
@@ -96,7 +96,9 @@ const UpdateVideoModal = ({
               </div>
               <div className="actions-buttons">
                 <button onClick={closeModal}>Cancel</button>
-                <button onClick={updateVideo}>Save</button>
+                <button onClick={updateVideo} className="save-video-update">
+                  Save
+                </button>
               </div>
             </div>
           </div>

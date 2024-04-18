@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 // import VideoList from '../../components/videoList/VideoList'
 import { useDispatch, useSelector } from "react-redux";
-import { getDownload } from "../../redux/featurs/downloads";
+import { getDownload } from "../../redux/features/downloads";
 import { Link } from "react-router-dom";
 import NoDataFound from "../../components/Error/NoDataFound";
 // import Loading from "../../assets/loader/Loading";

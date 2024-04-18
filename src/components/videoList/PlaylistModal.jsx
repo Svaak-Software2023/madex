@@ -7,7 +7,7 @@ import {
   addVideoToPLaylist,
   createPLaylist,
   getPlaylistData,
-} from "../../redux/featurs/playlistSlice";
+} from "../../redux/features/playlistSlice";
 
 const customStyles = {
   content: {

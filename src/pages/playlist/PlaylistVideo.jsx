@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import VideoList from "../../components/videoList/VideoList";
 import { useEffect } from "react";
-import { getPlaylistData } from "../../redux/featurs/playlistSlice";
+import { getPlaylistData } from "../../redux/features/playlistSlice";
 
 const PlaylistVideo = () => {
   const dispatch = useDispatch();

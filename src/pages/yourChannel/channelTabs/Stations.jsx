@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getUserStationProfile } from "../../../redux/featurs/channelSlice";
+import { getUserStationProfile } from "../../../redux/features/channelSlice";
 import { IoIosArrowForward } from "react-icons/io";
 import HomeContent from "./HomeContent";
 // import PLaylistList from "../../playlist/PLaylistList";

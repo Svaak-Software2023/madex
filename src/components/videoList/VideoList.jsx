@@ -6,10 +6,10 @@ import React, { useState } from "react";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { createWatchLater } from "../../redux/featurs/watchLater";
+import { createWatchLater } from "../../redux/features/watchLater";
 import Loading from "../../assets/loader/Loading";
 import PlaylistModal from "./PlaylistModal";
-import { deletePlaylistVideo } from "../../redux/featurs/playlistSlice";
+import { deletePlaylistVideo } from "../../redux/features/playlistSlice";
 import moment from "moment";
 
 function VideoList({ data }) {

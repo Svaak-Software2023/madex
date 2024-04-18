@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteVideo } from "../../redux/featurs/videoSlice";
+import { deleteVideo } from "../../redux/features/videoSlice";
 import { MdDelete } from "react-icons/md";
 
 const customStyles = {

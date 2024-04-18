@@ -5,7 +5,7 @@ import LeftMenu from "./components/leftMenu/LeftMenu";
 import { Route, Routes, useLocation } from "react-router-dom";
 import UserRoutes from "./routes/User.Routes";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "./redux/featurs/authSlice";
+import { setUser } from "./redux/features/authSlice";
 import PrivateRoute from "./auth/PrivateRoute";
 import { setmenu } from "./utils/globalFunction/GlobalFunctionSlice";
 import { Toaster } from "sonner";

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import VideoList from "../../components/videoList/VideoList";
-import { getChannel } from "../../redux/featurs/channelSlice";
-import { getAllChanelVideo } from "../../redux/featurs/videoSlice";
+import { getChannel } from "../../redux/features/channelSlice";
+import { getAllChanelVideo } from "../../redux/features/videoSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const MyVideos = () => {

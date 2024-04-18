@@ -4,10 +4,10 @@ import { useForm } from "react-hook-form";
 import { MdCloudUpload } from "react-icons/md";
 import Loading from "../../assets/loader/Loading";
 import { useDispatch, useSelector } from "react-redux";
-import { videoUpload } from "../../redux/featurs/videoSlice";
-import { getAllCategory } from "../../redux/featurs/categorySlice";
+import { videoUpload } from "../../redux/features/videoSlice";
+import { getAllCategory } from "../../redux/features/categorySlice";
 import ProgressBar from "./ProgressBar";
-import { getChannel } from "../../redux/featurs/channelSlice";
+import { getChannel } from "../../redux/features/channelSlice";
 import { useNavigate } from "react-router-dom";
 
 function Upload() {

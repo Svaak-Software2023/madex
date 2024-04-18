@@ -24,6 +24,8 @@ import UploadVideo from "../pages/uploadVideo/UploadVideo";
 import Xplore from "../pages/xPlore/Xplore";
 import ForgetPassword from "../pages/Login/ForgetPassword";
 import SearchPage from "../pages/searchPage/SearchPage";
+import SendObservation from "../pages/sendObservation/SendObservation";
+import Support from "../pages/support/Support";
 
 const UserRoutes = [
   { name: "404 Error", path: "*", element: <Error404 />, isPrivate: false },
@@ -151,6 +153,18 @@ const UserRoutes = [
     name: "search page",
     path: "/searchPage/:key",
     element: <SearchPage />,
+    isPrivate: false,
+  },
+  {
+    name: "search page",
+    path: "/sendObservation",
+    element: <SendObservation />,
+    isPrivate: false,
+  },
+  {
+    name: "search page",
+    path: "/assistant",
+    element: <Support />,
     isPrivate: false,
   },
 ];

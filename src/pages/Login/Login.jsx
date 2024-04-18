@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../redux/featurs/authSlice";
+import { login } from "../../redux/features/authSlice";
 import { useForm } from "react-hook-form";
 
 function Login() {

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import "./style.css";
-import { getAllCategory } from "../../redux/featurs/categorySlice";
+import { getAllCategory } from "../../redux/features/categorySlice";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCategoryVideo } from "../../redux/featurs/videoSlice";
+import { getAllCategoryVideo } from "../../redux/features/videoSlice";
 // import { useNavigate } from "react-router-dom";
 // import Carousel from "react-multi-carousel";
 // import "react-multi-carousel/lib/styles.css";

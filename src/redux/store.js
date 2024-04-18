@@ -1,21 +1,23 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "./featurs/authSlice";
-import videoSlice from "./featurs/videoSlice";
-import categorySlice from "./featurs/categorySlice";
-import channelSlice from "./featurs/channelSlice";
-import downloads from "./featurs/downloads";
-import watchLater from "./featurs/watchLater";
+import authSlice from "./features/authSlice";
+import videoSlice from "./features/videoSlice";
+import categorySlice from "./features/categorySlice";
+import channelSlice from "./features/channelSlice";
+import downloads from "./features/downloads";
+import watchLater from "./features/watchLater";
 import GlobalFunctionSlice from "../utils/globalFunction/GlobalFunctionSlice";
 
-import historySlice from "./featurs/historySlice";
-import playlistSlice from "./featurs/playlistSlice";
-import likeDislikeSlice from "./featurs/likeDislikeSlice";
-import subscribeSlice from "./featurs/subscribeSlice";
-import commentSlice from "./featurs/commentSlice";
-import likesVideoSlice from "./featurs/likesVideo";
-import shortsSlice from "./featurs/shortsSlice";
-import searchVideoSlice from "./featurs/searchVideo";
-import complaintSlice from "./featurs/complaintSlice";
+import historySlice from "./features/historySlice";
+import playlistSlice from "./features/playlistSlice";
+import likeDislikeSlice from "./features/likeDislikeSlice";
+import subscribeSlice from "./features/subscribeSlice";
+import commentSlice from "./features/commentSlice";
+import likesVideoSlice from "./features/likesVideo";
+import shortsSlice from "./features/shortsSlice";
+import searchVideoSlice from "./features/searchVideo";
+import complaintSlice from "./features/complaintSlice";
+import feedbackSlice from "./features/sendFeedback";
+
 const store = configureStore({
   reducer: {
     globalFunction: GlobalFunctionSlice,
@@ -34,6 +36,7 @@ const store = configureStore({
     shorts: shortsSlice,
     search: searchVideoSlice,
     complaint: complaintSlice,
+    feedBack: feedbackSlice,
   },
 });
 

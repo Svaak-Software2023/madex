@@ -4,8 +4,8 @@
   padding: 20px;
 }
 .channel_profile .profile_container {
-  height: 125px;
-  width: 125px;
+  height: 115px;
+  width: 115px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,23 +26,26 @@
   padding: 20px;
 }
 .channel_profile .profile_details h1 {
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   color: #000;
   font-weight: 500;
 }
 .channel_profile .profile_details h3 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #454242;
   margin-top: 10px;
   line-height: 15px;
+  text-transform: capitalize;
 }
 .channel_profile .profile_details span {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   color: #454242;
   line-height: 15px;
   margin: 2px 0px 5px;
 }
-
+.channel_profile .profile_details p {
+  font-size: 0.8rem;
+}
 .channel_profile .profile_details .profile_buttons {
   display: flex;
   gap: 8px;
@@ -52,7 +55,7 @@
   border-radius: 30px;
   background: #efefef;
   color: #000;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   outline: none;
   border: 0;
@@ -88,13 +91,13 @@
 }
 .job-btn {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   background: transparent;
   border-color: transparent;
   text-transform: capitalize;
   font-size: 0.9rem;
   font-weight: 500;
-  margin: 0 0.5rem;
+  margin: 0 0.4rem;
   transition: all 0.2s linear;
   cursor: pointer;
   padding: 0.5rem 0;

@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCategoryVideo } from "../../redux/featurs/videoSlice";
+import { getAllCategoryVideo } from "../../redux/features/videoSlice";
 import VideoList from "../videoList/VideoList";
-import { getAllCategory } from "../../redux/featurs/categorySlice";
+import { getAllCategory } from "../../redux/features/categorySlice";
 
 const MiniClips = () => {
   const dispatch = useDispatch();

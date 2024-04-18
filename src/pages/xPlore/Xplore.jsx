@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
-import { getAllCategoryVideo } from "../../redux/featurs/videoSlice";
+import { getAllCategoryVideo } from "../../redux/features/videoSlice";
 import VideoList from "../../components/videoList/VideoList";
 
 const Xplore = () => {

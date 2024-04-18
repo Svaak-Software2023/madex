@@ -3,7 +3,7 @@
 import { useDispatch } from "react-redux";
 import Circle from "./Circle/Circle";
 import { useEffect } from "react";
-import { getAllVideo } from "../../redux/featurs/videoSlice";
+import { getAllVideo } from "../../redux/features/videoSlice";
 function Home() {
   const dispatch = useDispatch();
 

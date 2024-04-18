@@ -5,12 +5,12 @@
   padding: 10px 20px;
 }
 .page-heading .heading-name {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 .page-heading .heading-img-container {
-  height: 50px;
-  width: 50px;
+  height: 45px;
+  width: 45px;
   background: #3f4178;
   border-radius: 50%;
   padding: 10px;

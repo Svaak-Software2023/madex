@@ -6,7 +6,7 @@ import { MdOutlineModeEdit } from "react-icons/md";
 import {
   deletePlaylist,
   getPlaylistData,
-} from "../../redux/featurs/playlistSlice";
+} from "../../redux/features/playlistSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import UpdatePLaylistModal from "./UpdatePLaylistModal";
