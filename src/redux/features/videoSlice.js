@@ -9,6 +9,7 @@ export const getAllVideo = createAsyncThunk(
       const response = await api.getAllVideo(pageValue);
       return response.data;
     } catch (error) {
+      console.error("get all video error", error);
       throw error.response.data;
     }
   }

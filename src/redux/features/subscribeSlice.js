@@ -26,7 +26,7 @@ export const createSubscribe = createAsyncThunk(
         channelId,
         accessToken,
       });
-
+      console.log("messageResponse",messageResponse)
       const dataResponse = await api.getUserStationProfile({
         username,
         accessToken,
@@ -37,6 +37,7 @@ export const createSubscribe = createAsyncThunk(
         dataRes: dataResponse.data,
       };
     } catch (error) {
+      console.log("error",error);
       toast.error(error.response.data.statusCode.message);
       throw error;
     }

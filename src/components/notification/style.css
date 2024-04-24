@@ -1,0 +1,88 @@
+.notification_parent {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: rgb(217, 217, 217);
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: auto;
+}
+
+.notification_main {
+    width: 20em;
+
+}
+
+.notification_main h3 {
+    text-align: start;
+    padding: .5em 1em;
+    font-size: .9em;
+    font-weight: 600;
+    /* border-bottom: 1px solid rgb(197, 194, 194); */
+}
+
+.unread_notification {
+    padding: .5em .5em;
+}
+
+.read_notification {
+    padding: .5em .5em;
+    background-color: rgb(252, 239, 238);
+}
+
+.notification_details {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+}
+
+.notification_image {
+    height: 2em;
+    width: 2em;
+}
+
+.notification_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2em;
+}
+
+.notification_message {
+    line-height: .8em;
+}
+
+.notification_message p {
+    font-size: .75em;
+    text-wrap: wrap;
+}
+
+.notification_message span {
+    font-size: .50em;
+}
+
+.notification_delete_button {
+    display: flex;
+    align-items: start;
+}
+
+.notification_delete_button:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.notification_delete_button {
+   visibility: hidden; /* Initially hide the delete button */
+   margin-top: -20px;
+}
+
+.notification_delete_button svg{
+   font-size: 25px;
+ }
+
+.unread_notification:hover .notification_delete_button {
+    visibility: visible; /* Show delete button on hover */
+}
+.read_notification:hover .notification_delete_button {
+    visibility: visible; /* Show delete button on hover */
+}

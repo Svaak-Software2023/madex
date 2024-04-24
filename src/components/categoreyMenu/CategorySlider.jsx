@@ -12,7 +12,7 @@ import "swiper/css/navigation";
 import "./slider.css";
 function CategorySlider(props) {
   const { width } = props;
-  console.log(width);
+  // console.log(width);
   const dispatch = useDispatch();
 
   //   const path = useLocation();

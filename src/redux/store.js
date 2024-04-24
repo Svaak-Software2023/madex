@@ -17,6 +17,7 @@ import shortsSlice from "./features/shortsSlice";
 import searchVideoSlice from "./features/searchVideo";
 import complaintSlice from "./features/complaintSlice";
 import feedbackSlice from "./features/sendFeedback";
+import notificationSlice from "./features/notificationSlice";
 
 const store = configureStore({
   reducer: {
@@ -37,6 +38,7 @@ const store = configureStore({
     search: searchVideoSlice,
     complaint: complaintSlice,
     feedBack: feedbackSlice,
+    notification:notificationSlice,
   },
 });
 

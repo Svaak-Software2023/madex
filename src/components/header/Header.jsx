@@ -25,6 +25,9 @@ import SpeechRecognition, {
 import { getSearchedData } from "../../redux/features/searchVideo";
 import ListenLoader from "../../assets/loader/ListenLoader";
 import { MdLiveHelp } from "react-icons/md";
+import Notification from "../notification/Notification";
+import { getNotifications } from "../../redux/features/notificationSlice";
+
 
 // import { API } from "../../redux/api";
 
@@ -33,7 +36,12 @@ function Header({ toggle }) {
   const dispatch = useDispatch();
   const [dropdown, setDropdown] = useState(false);
   const [dropdown2, setDropdown2] = useState(false);
+
+  // notification Dropdown 
+  const [notificationDropdown, setNotificationDropdown] = useState(false);
+
   const user = useSelector((state) => state.auth.user);
+
   const restrictionMode = useSelector(
     (state) => state.globalFunction.restrictedMode
   );
@@ -74,24 +82,7 @@ function Header({ toggle }) {
     } else {
       setFoundVideo([]);
     }
-    // dispatch(getSearchedData({ searchTerm: searchTerm }));
 
-    // async function findTheVideo() {
-    //   try {
-    //     const res = await axios.post(
-    //       "http://localhost:8000/api/v1/video/search-video",
-    //       { searchTerm: searchTerm }
-    //     );
-    //     if (res.data) setFoundVideo(res.data);
-    //   } catch (error) {
-    //     console.error("Error fetching video:", error);
-    //     setFoundVideo([]);
-    //   }
-    // }
-
-    // if (searchedData) {
-    //   setFoundVideo(searchedData);
-    // }
   }, [searchTerm]);
 
   function inputHandler(e) {
@@ -172,6 +163,8 @@ function Header({ toggle }) {
 
   const channel = useSelector((state) => state.channel);
 
+
+
   return (
     <>
       <div className="header-main">
@@ -187,7 +180,7 @@ function Header({ toggle }) {
                 alt="Logo"
                 width={100}
                 height={50}
-                // layout="responsive"
+              // layout="responsive"
               />
             </div>
           </Link>
@@ -277,8 +270,10 @@ function Header({ toggle }) {
               <div className="header-three-dot" data-tooltip-id="my-tooltip-3">
                 <img src="assets/icons/standCamera2.png" alt="" />
               </div>
-              <div className="header-three-dot" data-tooltip-id="my-tooltip-4">
-                <img src="assets/icons/notification.png" alt="" />
+              <div className="header-three-dot position-relative" >
+                <img src="assets/icons/notification.png" alt="" data-tooltip-id="my-tooltip-4"
+                  onClick={() => setNotificationDropdown(!notificationDropdown)} />
+                <Notification notificationDropdown={notificationDropdown} />
               </div>
               <div className="header-three-dot" data-tooltip-id="my-tooltip-5">
                 <img src="assets/icons/chat.png" alt="" />

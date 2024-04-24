@@ -12,7 +12,18 @@
   background-color: #fff;
   margin: 0;
 }
-
+.notification-count{
+  position: absolute;
+  top: -15px;
+  right: -8px;
+  background: red;
+  height: 25px ;
+  width: 25px;
+  color: #fff;
+  border-radius: 9999px;
+  display: grid;
+  place-content: center;
+}
 .header-main::before {
   padding-top: 100px;
 }
