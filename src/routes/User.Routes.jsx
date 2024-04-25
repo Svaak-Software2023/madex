@@ -26,6 +26,7 @@ import ForgetPassword from "../pages/Login/ForgetPassword";
 import SearchPage from "../pages/searchPage/SearchPage";
 import SendObservation from "../pages/sendObservation/SendObservation";
 import Support from "../pages/support/Support";
+import ComplaintHistory from "../pages/complaintHistory/ComplaintHistory";
 
 const UserRoutes = [
   { name: "404 Error", path: "*", element: <Error404 />, isPrivate: false },
@@ -166,6 +167,12 @@ const UserRoutes = [
     path: "/assistant",
     element: <Support />,
     isPrivate: false,
+  },
+  {
+    name: "complaint history page",
+    path: "/complaintHistory",
+    element: <ComplaintHistory />,
+    isPrivate: true,
   },
 ];
 

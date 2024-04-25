@@ -1,0 +1,13 @@
+.introduction-area {
+  margin-top: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.introduction-area .img-area img {
+  height: 200px;
+  width: 200px;
+}
+.introduction-area .text-area p {
+}
