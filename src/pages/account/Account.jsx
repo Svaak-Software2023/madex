@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 const Account = ({ handleTabClick }) => {
   const user = useSelector((state) => state.auth.user);
+  const channel = useSelector((state) => state.channel.data);
+  console.log(channel);
 
   return (
     <>
@@ -33,11 +35,11 @@ const Account = ({ handleTabClick }) => {
           upload your own videos, share options on videos or create playlists.
         </span>
         <div className="d-flex mt-4">
-          <p className="p-1234">Your Rooms/Stations</p>
+          <p className="p-1234">Your Stations</p>
           <div className="d-flex flex-column mx-5">
             <div className="d-flex justify-content-center align-items-center">
               <img src={AccountUser} alt="" className="mx-2" />
-              <p className="p-12345">Room/Station Name </p>
+              <p className="p-12345">{channel?.channelName} </p>
             </div>
             <div className="p-links mt-3">
               <p> Rooms/Stations status and features</p>
@@ -56,12 +58,12 @@ const Account = ({ handleTabClick }) => {
           <div className="d-flex flex-column align-items-center">
             <p className="p-1234">Your account at a glance:</p>
             <div>
-              <p>Chatrooms</p>
-              <p>Instant Messaging</p>
-              <p>pveHd</p>
-              <p>MadeXMcue Music</p>
-              <p>MadeXtube</p>
-              <p>Madexbet</p>
+              <p className="p-0">Chatrooms</p>
+              <p className="p-0">Instant Messaging</p>
+              <p className="p-0">pveHd</p>
+              <p className="p-0">MadeXMcue Music</p>
+              <p className="p-0">MadeXtube</p>
+              <p className="p-0">Madexbet</p>
             </div>
           </div>
         </div>

@@ -54,7 +54,7 @@ const Downloads = () => {
         <div className="d-flex flex-column mt-5">
           <p className="p-1234">Uninstall downloads</p>
           <div className="d-flex justify-content-between">
-            <span className="span-2">
+            <span className="span-12">
               Uninstalling downloads will clear up space on your account
             </span>
             <button className="unistall_button">Uninstall downloads</button>

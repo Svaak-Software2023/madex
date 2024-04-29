@@ -39,7 +39,7 @@ const CustomizeStation = () => {
           <div className="field-container d--flex flex-column mb-3">
             <h6>Name</h6>
             <p className="desc-detail">
-              Choose a channel name that represents you and your content.
+              Choose a Station name that represents you and your content.
               Changes made to your name and picture are only visible on
               MadeXtube and not on other Google services. You can change your
               name twice in 14 days.
@@ -86,7 +86,7 @@ const CustomizeStation = () => {
           <div className="field-container mb-3">
             <h6>Channel URL</h6>
             <p className="desc-detail">
-              This is the standard web address for your channel. It includes
+              This is the standard web address for your station. It includes
               your unique channel ID, which is the numbers and letters at the
               end of the URL
             </p>

@@ -1,7 +1,41 @@
 import ComplaintImage from "/assets/complaintHistory/complaintHistory.png";
 import "./style.css";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllComplaintByUserID } from "../../redux/features/complaintSlice";
+import DataTable from "react-data-table-component";
 
 const ComplaintHistory = () => {
+  const dispatch = useDispatch();
+  const accessToken = useSelector((state) => state.auth.data?.accessToken);
+  const { AllComplaintListByUserId } = useSelector((state) => state.complaint);
+
+  const columns = [
+    {
+      name: "Type",
+      selector: () => "Video",
+      width: "100px",
+    },
+    {
+      name: "content",
+      selector: (row) => row.videoId.title,
+      width: "400px",
+    },
+    {
+      name: "Reporting Reason",
+      selector: (row) => row.reportId.reportName,
+      width: "200px",
+    },
+    {
+      name: "status",
+      selector: () => "live",
+      width: "100px",
+    },
+  ];
+
+  useEffect(() => {
+    dispatch(getAllComplaintByUserID({ accessToken }));
+  }, []);
   return (
     <>
       <div className="page-heading">
@@ -14,7 +48,7 @@ const ComplaintHistory = () => {
         className="container d-flex justify-content-center align-items-center"
         style={{ flexDirection: "column" }}
       >
-        <div className="introduction-area w-75">
+        <div className="introduction-area w-75 border-bottom pb-3">
           <div className="text-area">
             <h4>Thank you for your report.</h4>
             <p>
@@ -46,37 +80,20 @@ const ComplaintHistory = () => {
             <img src={ComplaintImage} alt="Comlaint-History" />
           </div>
         </div>
-        {/* <div className="table-conatiner mt-5 w-100">
-          <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
-        </div> */}
+
+        <div className="table-conatiner mt-5 w-75">
+          {AllComplaintListByUserId ? (
+            <DataTable
+              columns={columns}
+              data={AllComplaintListByUserId}
+              pagination
+            />
+          ) : (
+            <p style={{ textAlign: "center", fontSize: "1.1rem" }}>
+              No video reported yet
+            </p>
+          )}
+        </div>
       </div>
     </>
   );

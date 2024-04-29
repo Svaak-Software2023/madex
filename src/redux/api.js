@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export const API = axios.create({
-  baseURL: "https://madextube700.com/api/v1",
-  // baseURL: "http://localhost:8000/api/v1",
+  // baseURL: "https://madextube700.com/api/v1",
+  baseURL: "http://localhost:8000/api/v1",
 });
 
 //User API's
@@ -75,11 +75,15 @@ export const viewCount = (videoId) => API.patch(`/videos/view/${videoId}`);
 //   });
 
 export const subscribe = ({ userId, channelId, accessToken }) =>
-  API.post(`/subscriptions/add-subscription`, { userId, channelId }, {
-    headers: {
-      Authorization: accessToken,
-    },
-  });
+  API.post(
+    `/subscriptions/add-subscription`,
+    { userId, channelId },
+    {
+      headers: {
+        Authorization: accessToken,
+      },
+    }
+  );
 
 export const unSubscribe = ({ userId, channelId, accessToken }) =>
   API.delete(`/subscriptions/unsubscribe/${userId}/${channelId}`, {
@@ -329,7 +333,6 @@ export const sendFeedBack = (feedBackDescription, accessToken) =>
     }
   );
 
-
 // notification
 
 export const getNotification = async (formData) => {
@@ -348,7 +351,8 @@ export const getNotification = async (formData) => {
 
 export const updateNotification = (accessToken) =>
   API.put(
-    "/notifications/read-notification",{},
+    "/notifications/read-notification",
+    {},
     {
       headers: {
         Authorization: accessToken,
@@ -356,7 +360,7 @@ export const updateNotification = (accessToken) =>
     }
   );
 
-  export const deleteNotification = (formData) =>
+export const deleteNotification = (formData) =>
   API.delete(
     `/notifications/delete-notification?notificationId=${formData.id}`,
     {
@@ -365,3 +369,10 @@ export const updateNotification = (accessToken) =>
       },
     }
   );
+
+export const getAllComplaintByUserId = (accessToken) =>
+  API.get("video-report/get-all-reports", {
+    headers: {
+      Authorization: accessToken,
+    },
+  });

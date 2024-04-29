@@ -32,11 +32,24 @@ export const createNewComplaint = createAsyncThunk(
   }
 );
 
+export const getAllComplaintByUserID = createAsyncThunk(
+  "get/allComplaintByUserID",
+  async ({ accessToken }) => {
+    try {
+      const response = await api.getAllComplaintByUserId(accessToken);
+      return response.data;
+    } catch (error) {
+      throw error.response.data;
+    }
+  }
+);
+
 const complaintSlice = createSlice({
   name: "complaint",
   initialState: {
     complaintCategoryList: null,
     complaintResponse: null,
+    AllComplaintListByUserId: null,
     isLoading: false,
     error: null,
   },
@@ -66,6 +79,18 @@ const complaintSlice = createSlice({
         state.error = "";
       })
       .addCase(createNewComplaint.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error;
+      })
+      .addCase(getAllComplaintByUserID.pending, (state) => {
+        state.isLoading = true;
+        state.error = "";
+      })
+      .addCase(getAllComplaintByUserID.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.AllComplaintListByUserId = action.payload.data;
+      })
+      .addCase(getAllComplaintByUserID.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error;
       });

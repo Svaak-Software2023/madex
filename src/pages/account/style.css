@@ -4,7 +4,7 @@
   margin-top: 20px;
 }
 .setting_container {
-  padding: 20px;
+  padding: 18px;
   width: 100%;
 }
 .sideMenu_settings {
@@ -21,7 +21,8 @@
 .setting-tab {
   display: flex;
   justify-content: start;
-  padding: 10px;
+  padding: 8px;
+  font-size: 0.9rem;
   font-weight: 500;
   transition: 0.3s all ease;
 }
@@ -40,56 +41,59 @@
   width: 100%;
   object-fit: contain;
 }
+.p-0 {
+  font-size: 0.8rem;
+}
 .p-1 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
 }
 .p-12 {
   color: #000;
 
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-weight: 500;
 }
 .span-1 {
   color: #8a8787;
 
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 .p-123 {
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   font-weight: 600;
 }
 .span-12 {
   color: #8a8585;
 
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 .p-1234 {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 600;
 }
 .p-12345 {
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   font-weight: 600;
 }
 .p-links p {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: #065fd4;
   line-height: 30px;
   cursor: pointer;
 }
 .p-123456 {
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   color: #727272;
 }
 .unistall_button {
   border: 2px solid grey;
   border-radius: 20px;
   padding: 10px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: #065fd4;
   transition: 0.5s all ease;
@@ -100,7 +104,7 @@
 }
 .copy_button {
   border-radius: 18px;
-  padding: 10px;
+  padding: 5px;
   padding-inline: 20px;
   font-size: 0.9rem;
   background: #065fd4;
@@ -200,4 +204,118 @@
 
     color: black;
   }
+}
+
+/* Toggle Button */
+.cl-toggle-switch {
+  position: relative;
+}
+
+.cl-switch {
+  position: relative;
+  display: inline-block;
+}
+/* Input */
+.cl-switch > input {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  z-index: -1;
+  position: absolute;
+  right: 6px;
+  top: -8px;
+  display: block;
+  margin: 0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(0, 0, 0, 0.38);
+  outline: none;
+  opacity: 0;
+  transform: scale(1);
+  pointer-events: none;
+  transition: opacity 0.3s 0.1s, transform 0.2s 0.1s;
+}
+/* Track */
+.cl-switch > span::before {
+  content: "";
+  float: right;
+  display: inline-block;
+  margin: 5px 0 5px 10px;
+  border-radius: 7px;
+  width: 36px;
+  height: 14px;
+  background-color: rgb(0, 0, 0, 0.38);
+  vertical-align: top;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+/* Thumb */
+.cl-switch > span::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  right: 16px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  transition: background-color 0.2s, transform 0.2s;
+}
+/* Checked */
+.cl-switch > input:checked {
+  right: -10px;
+  background-color: #636bc4;
+}
+
+.cl-switch > input:checked + span::before {
+  background-color: #636bc4;
+}
+
+.cl-switch > input:checked + span::after {
+  background-color: #1f3fa9;
+  transform: translateX(16px);
+}
+/* Hover, Focus */
+.cl-switch:hover > input {
+  opacity: 0.04;
+}
+
+.cl-switch > input:focus {
+  opacity: 0.12;
+}
+
+.cl-switch:hover > input:focus {
+  opacity: 0.16;
+}
+/* Active */
+.cl-switch > input:active {
+  opacity: 1;
+  transform: scale(0);
+  transition: transform 0s, opacity 0s;
+}
+
+.cl-switch > input:active + span::before {
+  background-color: #8f8f8f;
+}
+
+.cl-switch > input:checked:active + span::before {
+  background-color: #1f3fa9;
+}
+/* Disabled */
+.cl-switch > input:disabled {
+  opacity: 0;
+}
+
+.cl-switch > input:disabled + span::before {
+  background-color: #ddd;
+}
+
+.cl-switch > input:checked:disabled + span::before {
+  background-color: #bfdbda;
+}
+
+.cl-switch > input:checked:disabled + span::after {
+  background-color: #1f3fa9;
 }
