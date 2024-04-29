@@ -3,6 +3,7 @@ import "./style.css"
 import { deleteNotification, getNotifications, updateNotification } from "../../redux/features/notificationSlice";
 import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineDelete } from 'react-icons/md';
+import moment from 'moment/moment';
 
 function Notification({ notificationDropdown }) {
 
@@ -88,7 +89,7 @@ function Notification({ notificationDropdown }) {
                                         </div>
                                         <div className="notification_message">
                                             <p>{item?.message}</p>
-                                            <span>5 minuts ago</span>
+                                            <span>{moment(item.createdAt).fromNow()}</span>
                                         </div>
                                         <div className="notification_delete_button">
                                             <MdOutlineDelete onClick={() => deleteHandler(item._id)} />

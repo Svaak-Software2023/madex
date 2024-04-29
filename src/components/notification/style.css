@@ -33,12 +33,12 @@
 .notification_details {
     display: flex;
     align-items: center;
-    gap: .5em;
+    gap: .6em;
 }
 
 .notification_image {
+    width: 3em;
     height: 2em;
-    width: 2em;
 }
 
 .notification_image img {
